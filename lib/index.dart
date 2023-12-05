@@ -1,0 +1,12 @@
+export 'dart:io';
+export 'package:bas_clean_architecture/core/dependency_injection/dependency_injection.dart';
+export 'package:bas_clean_architecture/core/local_data/pref_keys.dart';
+export 'package:easy_localization/easy_localization.dart';
+export 'package:bas_clean_architecture/core/env/app_env.dart';
+export 'package:shared_preferences/shared_preferences.dart';
+export 'package:flutter_easyloading/flutter_easyloading.dart';
+export 'package:flutter/gestures.dart';
+export 'package:flutter_bloc/flutter_bloc.dart';
+export 'package:flutter_screenutil/flutter_screenutil.dart';
+export 'package:bas_clean_architecture/generated/locale_keys.g.dart';
+export 'main_application.dart';
