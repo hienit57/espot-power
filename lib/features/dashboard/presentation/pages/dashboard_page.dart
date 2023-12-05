@@ -1,5 +1,5 @@
-import 'package:bas_clean_architecture/core/mixins/index.dart';
-import 'package:bas_clean_architecture/features/login/index.dart';
+import 'package:espot_power/core/mixins/index.dart';
+import 'package:espot_power/features/index.dart';
 import 'package:flutter/material.dart';
 
 class Dashboard extends StatefulWidget {

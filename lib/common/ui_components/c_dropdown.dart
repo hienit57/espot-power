@@ -1,151 +1,61 @@
-import 'package:bas_clean_architecture/common/index.dart';
-import 'package:bas_clean_architecture/index.dart';
-import 'package:bas_clean_architecture/theme/index.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:espot_power/common/index.dart';
+import 'package:espot_power/index.dart';
+import 'package:espot_power/theme/index.dart';
 import 'package:flutter/material.dart';
 
-class CDropDown extends StatefulWidget {
-  final String? title;
-  final List<String> listTitle;
-  final String? selectTitle;
-  final Function(String?)? onChanged;
-  final String? icon;
-  final double? borderRadius;
-  final double? height;
-  final double? width;
-  final double? menuMaxHeight;
-  final double? paddingLeft;
+class CDropdownWidget extends StatelessWidget {
+  final List<String>? listOptionSelect;
+  final void Function(String?)? onChanged;
 
-  const CDropDown({
+  final Widget? customButtonDropdown;
+
+  const CDropdownWidget({
     super.key,
-    required this.listTitle,
-    this.title,
+    this.listOptionSelect,
     this.onChanged,
-    this.selectTitle,
-    this.icon,
-    this.borderRadius,
-    this.height,
-    this.width,
-    this.menuMaxHeight,
-    this.paddingLeft,
+    this.customButtonDropdown,
   });
 
   @override
-  State<CDropDown> createState() => _CDropDownState();
-}
-
-class _CDropDownState extends State<CDropDown> {
-  bool _isHovered = false;
-
-  @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        if (widget.title != null) ...[
-          Padding(
-            padding: EdgeInsets.only(bottom: 15.h),
-            child: CText(
-              text: widget.title,
-              fontSize: 18.h,
-              fontWeight: FontWeight.bold,
-              textColor: AppColors.charcoal,
-            ),
+    return DropdownButton2<String>(
+      onChanged: onChanged,
+      underline: const SizedBox.shrink(),
+      customButton: customButtonDropdown,
+      items: listOptionSelect?.map<DropdownMenuItem<String>>((String value) {
+        return DropdownMenuItem<String>(
+          value: value,
+          child: CText(
+            text: value,
+            fontWeight: FontWeight.w500,
+            textAlign: TextAlign.left,
+            textColor: AppColors.charcoal.withOpacity(0.6),
+            textOverflow: TextOverflow.ellipsis,
           ),
-        ],
-        MouseRegion(
-          onEnter: (_) {
-            setState(() {
-              _isHovered = true;
-            });
-          },
-          onExit: (_) {
-            setState(() {
-              _isHovered = false;
-            });
-          },
-          child: Container(
-            width: widget.width ?? double.infinity,
-            height: widget.height ?? 50,
-            alignment: Alignment.bottomCenter,
-            decoration: BoxDecoration(
-              color: _isHovered
-                  ? const Color.fromARGB(255, 161, 202, 238).withOpacity(0.1)
-                  : Colors.transparent,
-              border: Border.all(
-                color: AppColors.charcoal.withOpacity(0.3),
-              ),
-              borderRadius: BorderRadius.circular(widget.borderRadius ?? 4),
+        );
+      }).toList(),
+      dropdownStyleData: DropdownStyleData(
+        maxHeight: 200,
+
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(6.r),
+          color: AppColors.white,
+          boxShadow: const [
+            BoxShadow(
+              color: Color.fromRGBO(0, 0, 0, 0.25),
+              offset: Offset(0, 4),
+              blurRadius: 10,
             ),
-            child: Padding(
-              padding: EdgeInsets.only(right: 11.w),
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      if (widget.icon != null) ...[
-                        Row(
-                          children: [
-                            SizedBox(width: widget.paddingLeft),
-                            CImage(
-                              assetsPath: widget.icon,
-                              height: 16.h,
-                              width: 19.w,
-                            ),
-                            SizedBox(width: 10.w),
-                          ],
-                        ),
-                      ] else ...[
-                        SizedBox(width: widget.paddingLeft),
-                      ],
-                      Expanded(
-                        child: Padding(
-                          padding: EdgeInsets.only(right: 12.w),
-                          child: CText(
-                            text: widget.selectTitle,
-                            textColor: AppColors.charcoal,
-                            fontSize: 14.sp,
-                            textOverflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                  Align(
-                    alignment: Alignment.center,
-                    child: DropdownButton<String>(
-                      underline: const SizedBox(),
-                      menuMaxHeight: widget.menuMaxHeight,
-                      items: widget.listTitle
-                          .map((e) => DropdownMenuItem<String>(
-                                value: e,
-                                child: CText(
-                                  text: e,
-                                  fontSize: 14.sp,
-                                  fontWeight: FontWeight.w500,
-                                  textAlign: TextAlign.start,
-                                  fontFamily: AppFonts.plusJakartaSans,
-                                  textColor:
-                                      AppColors.charcoal.withOpacity(0.6),
-                                ),
-                              ))
-                          .toList(),
-                      onChanged: widget.onChanged,
-                      isExpanded: true,
-                      icon: CImage(
-                        assetsPath: AppAssets.icArrowDown,
-                        height: 7.h,
-                        width: 12.w,
-                        color: AppColors.charcoal.withOpacity(0.4),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
+          ],
         ),
-      ],
+        //offset: const Offset(-20, 0),
+        scrollbarTheme: ScrollbarThemeData(
+          radius: const Radius.circular(40),
+          thickness: MaterialStateProperty.all(6),
+          thumbVisibility: MaterialStateProperty.all(true),
+        ),
+      ),
     );
   }
 }

@@ -1,22 +1,21 @@
-import 'package:bas_clean_architecture/core/local_data/pref_utils.dart';
-import 'package:bas_clean_architecture/core/mixins/index.dart';
-import 'package:bas_clean_architecture/core/network/http_request/loggers/log_interceptor.dart';
-import 'package:bas_clean_architecture/core/network/http_request/request_model/request_model.dart';
-import 'package:bas_clean_architecture/core/network/http_request/request_model/request_status_code.dart';
-import 'package:bas_clean_architecture/core/network/index.dart';
-import 'package:bas_clean_architecture/features/login/data/data_cached_clients/login_data_cached.dart';
-import 'package:bas_clean_architecture/features/login/presentation/bloc/login_cubit.dart';
-import 'package:bas_clean_architecture/index.dart';
-import 'package:bas_clean_architecture/utils/index.dart';
+import 'dart:convert';
+
+import 'package:espot_power/core/index.dart';
+import 'package:espot_power/core/local_data/pref_utils.dart';
+import 'package:espot_power/core/mixins/index.dart';
+import 'package:espot_power/core/network/http_request/request_model/request_model.dart';
+import 'package:espot_power/core/network/http_request/request_model/request_status_code.dart';
+import 'package:espot_power/features/authentication/login/index.dart';
+import 'package:espot_power/utils/index.dart';
 import 'package:flutter/foundation.dart';
 import 'package:dio/dio.dart';
-import 'package:bas_clean_architecture/core/env/app_env.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 
 typedef ApiResponseToModelParser<T> = T Function(Map<String, dynamic> json);
 
-class ApiService with PreferencesUtil, LoadingMixin {
+class ApiService with PreferencesUtil, LoadingMixin, ToastMixin {
   var dio = Dio();
 
   static final ApiService _singleton = ApiService._internal();
@@ -31,17 +30,23 @@ class ApiService with PreferencesUtil, LoadingMixin {
     interceptorInit();
   }
 
-  String baseUrl = 'https://staging-api.freyatech.io/v1';
+  String baseURL = '';
 
   void interceptorInit() {
     dio.interceptors
         .add(InterceptorsWrapper(onRequest: (options, handler) async {
-      await getToken();
       return handler.next(options);
     }, onResponse: (response, handler) async {
+      final data = response.statusCode == 404;
+      if (data) {
+        showToast(
+            message: response.data['message'],
+            toastGravity: ToastGravity.BOTTOM,
+            toastLenght: Toast.LENGTH_LONG);
+      }
       return handler.next(response);
-    }, onError: (DioError e, handler) {
-      logger.d(e);
+    }, onError: (DioError e, handler) async {
+      await refreshToken();
       return handler.next(e);
     }));
 
@@ -64,8 +69,13 @@ class ApiService with PreferencesUtil, LoadingMixin {
     // ));
   }
 
+  int getTimeZoneOffSet() {
+    DateTime today = DateTime.now();
+    DateTime yesterday = today.subtract(const Duration(days: 1));
+    return yesterday.timeZoneOffset.inMinutes;
+  }
+
   Future<Options> _baseOptions() async {
-    await getToken();
     final deviceToken = await getDeviceToken();
 
     final accessToken =
@@ -78,6 +88,7 @@ class ApiService with PreferencesUtil, LoadingMixin {
       'Accept': 'application/json',
       'Authorization': accessToken,
       'DeviceToken': deviceToken,
+      'TimezoneOffset': getTimeZoneOffSet(),
     };
     Map<String, dynamic> extra = {};
     return Options(
@@ -144,7 +155,7 @@ class ApiService with PreferencesUtil, LoadingMixin {
   }
 
   Future<Map<String, dynamic>> _requestGet(RequestModel request) async {
-    final url = '$baseUrl${request.route}';
+    final url = '${AppEnviroment.instance.getApiUrl()}${request.route}';
 
     var response = await dio.get(
       url,
@@ -155,7 +166,7 @@ class ApiService with PreferencesUtil, LoadingMixin {
   }
 
   Future<Map<String, dynamic>> _requestPost(RequestModel request) async {
-    final url = '$baseUrl${request.route}';
+    final url = '${AppEnviroment.instance.getApiUrl()}${request.route}';
     var response = await dio.post(
       url,
       data: request.params,
@@ -166,7 +177,7 @@ class ApiService with PreferencesUtil, LoadingMixin {
   }
 
   Future<Map<String, dynamic>> _requestPut(RequestModel request) async {
-    final url = '$baseUrl${request.route}';
+    final url = '${AppEnviroment.instance.getApiUrl()}${request.route}';
     var response = await dio.put(
       url,
       data: request.params,
@@ -176,7 +187,7 @@ class ApiService with PreferencesUtil, LoadingMixin {
   }
 
   Future<Map<String, dynamic>> _requestDelete(RequestModel request) async {
-    final url = '$baseUrl${request.route}';
+    final url = '${AppEnviroment.instance.getApiUrl()}${request.route}';
     var response = await dio.delete(
       url,
       data: request.params,
@@ -185,15 +196,30 @@ class ApiService with PreferencesUtil, LoadingMixin {
     return response.data;
   }
 
-  Future<void> getToken() async {
-    final user = await DataUserLoginCachedClient.instance.getData();
-    final loginCubit = LoginCubit();
-    if (user?.token != null) {
-      final accessToken =
-          (await DataUserLoginCachedClient.instance.getData())?.token;
-      if (accessToken != null && isTokenExpired(accessToken)) {
-        loginCubit.refreshToken();
+  Future<void> refreshToken() async {
+    try {
+      final user = await DataUserLoginCachedClient.instance.getData();
+
+      Map<String, dynamic> body = {
+        "UserID": user?.data?.iD,
+      };
+      String jsonBody = json.encode(body);
+
+      final res = await ApiService().request(RefreshTokenRequest(jsonBody));
+
+      final response = LoginResponse.fromJson(res);
+
+      // Assuming your LoginResponse has a token property, update the cached token
+      if (response.token != null) {
+        final user = await DataUserLoginCachedClient.instance.getData();
+        //TODO:FIXME
+        // user?.token = response.token;
+        await DataUserLoginCachedClient.instance.storeData(user);
       }
+    } catch (e) {
+      // Handle any errors that might occur during the refresh process
+      print("Error refreshing token: $e");
+      // You might want to log the error, show a snackbar, or handle it in another way
     }
   }
 
@@ -204,7 +230,7 @@ class ApiService with PreferencesUtil, LoadingMixin {
   bool isTokenExpired(String token) {
     Map<String, dynamic> decodedToken = JwtDecoder.decode(token);
 
-    int expirationTimestamp = decodedToken['exp'];
+    int expirationTimestamp = decodedToken['REFRESH_TOKEN'];
 
     int currentTimestamp = DateTime.now().millisecondsSinceEpoch ~/ 1000;
 

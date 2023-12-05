@@ -1,5 +1,5 @@
-import 'package:bas_clean_architecture/core/const.dart';
-import 'package:bas_clean_architecture/utils/index.dart';
+import 'package:espot_power/core/const.dart';
+import 'package:espot_power/utils/index.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 class FormatUtils {

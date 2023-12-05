@@ -1,4 +1,4 @@
-import 'package:bas_clean_architecture/core/local_data/pref_keys.dart';
+import 'package:espot_power/core/local_data/pref_keys.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPrefsHelper {

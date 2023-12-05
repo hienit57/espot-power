@@ -1,11 +1,12 @@
-import 'package:bas_clean_architecture/bloc_providers.dart';
-import 'package:bas_clean_architecture/firebase_options.dart';
-import 'package:bas_clean_architecture/index.dart';
+import 'package:espot_power/bloc_providers.dart';
+import 'package:espot_power/firebase_options.dart';
+import 'package:espot_power/index.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:url_strategy/url_strategy.dart';
+import 'core/app_enviroment/app_enviroment.dart';
 import 'core/network/index.dart';
 import 'service/firebase_auth/firebase_configuration.dart';
 

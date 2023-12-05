@@ -1,4 +1,4 @@
-import 'package:bas_clean_architecture/firebase_options.dart';
+import 'package:espot_power/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 class FirebaseConfiguration {

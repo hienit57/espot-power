@@ -1,5 +1,5 @@
-import 'package:bas_clean_architecture/common/ui_components/index.dart';
-import 'package:bas_clean_architecture/theme/app_colors.dart';
+import 'package:espot_power/common/ui_components/index.dart';
+import 'package:espot_power/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class CConfirmDialog extends StatelessWidget {

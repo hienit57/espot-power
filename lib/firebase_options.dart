@@ -47,29 +47,32 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-      apiKey: "AIzaSyA2YeKNHhAYduWuD9xugCDBBBx7bslGVf8",
-      authDomain: "lavi-studio-shop.firebaseapp.com",
-      projectId: "lavi-studio-shop",
-      storageBucket: "lavi-studio-shop.appspot.com",
-      messagingSenderId: "683561064949",
-      appId: "1:683561064949:web:2aa5a86bdc5a0612cee8bc");
+    apiKey: "AIzaSyBwkwJO1bQko1-mbJAcfYNgjlTLMC4i_sQ",
+    authDomain: "espot-power.firebaseapp.com",
+    projectId: "espot-power",
+    storageBucket: "espot-power.appspot.com",
+    messagingSenderId: "568203469920",
+    appId: "1:568203469920:web:569e4525b061e93be60f05",
+    measurementId: "G-R9RPEEGDKW",
+  );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyA2YeKNHhAYduWuD9xugCDBBBx7bslGVf8',
-    appId: '',
-    messagingSenderId: '',
-    projectId: '',
-    storageBucket: '',
+    apiKey: 'AIzaSyBh8BwMnwu8MtHev-BzMMmiAjoAH5TcVuA',
+    appId: '1:568203469920:android:53029f6db9beac22e60f05',
+    messagingSenderId: '568203469920',
+    projectId: 'espot-power',
+    storageBucket: 'espot-power.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyA2YeKNHhAYduWuD9xugCDBBBx7bslGVf8',
-    appId: '',
-    messagingSenderId: '',
-    projectId: '',
-    storageBucket: '',
+    appId: '1:568203469920:ios:51f0d21e7ec37665e60f05',
+    messagingSenderId: '568203469920',
+    projectId: 'espot-power',
+    storageBucket: 'espot-power.appspot.com',
     androidClientId: '',
-    iosClientId: '',
-    iosBundleId: '',
+    iosClientId:
+        '568203469920-jqauun28empq66dm7fk5bm0981d1856m.apps.googleusercontent.com',
+    iosBundleId: 'com.espot.power',
   );
 }

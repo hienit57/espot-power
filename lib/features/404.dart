@@ -1,4 +1,5 @@
-import 'package:bas_clean_architecture/features/login/presentation/pages/login_page.dart';
+import 'package:espot_power/core/routes/app_pages.dart';
+import 'package:espot_power/extensions/app_context.dart';
 import 'package:flutter/material.dart';
 
 class Unknown404 extends StatelessWidget {
@@ -30,7 +31,8 @@ class Unknown404 extends StatelessWidget {
               const SizedBox(height: 10.0),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.pushReplacementNamed(context, LoginPage.routeName);
+                  Navigator.pushReplacementNamed(
+                      AppContext.navigatorKey.currentContext!, AppRoutes.login);
                 },
                 child: const Text(
                   "Go back",

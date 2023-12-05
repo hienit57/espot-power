@@ -1,8 +1,8 @@
-import 'package:bas_clean_architecture/common/global/index.dart';
-import 'package:bas_clean_architecture/theme/app_colors.dart';
-import 'package:bas_clean_architecture/utils/responsive.dart';
+import 'package:espot_power/common/global/index.dart';
+import 'package:espot_power/theme/app_colors.dart';
+import 'package:espot_power/utils/responsive.dart';
 import 'package:flutter/material.dart';
-import 'package:bas_clean_architecture/index.dart';
+import 'package:espot_power/index.dart';
 
 class GlobalPage extends StatefulWidget {
   final Widget child;

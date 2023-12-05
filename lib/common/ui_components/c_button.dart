@@ -1,4 +1,4 @@
-import 'package:bas_clean_architecture/theme/app_fonts.dart';
+import 'package:espot_power/theme/app_fonts.dart';
 import 'package:flutter/material.dart';
 
 class CButton extends StatelessWidget {

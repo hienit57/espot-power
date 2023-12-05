@@ -1,47 +1,47 @@
-import 'package:bas_clean_architecture/core/local_data/pref_utils.dart';
-import 'package:bas_clean_architecture/index.dart';
+import 'package:espot_power/core/local_data/pref_utils.dart';
+import 'package:espot_power/core/routes/app_routes.dart';
+import 'package:espot_power/extensions/app_context.dart';
+import 'package:espot_power/index.dart';
 import 'package:flutter/material.dart';
 
-import 'core/routes/router_table.dart';
+import 'core/routes/app_pages.dart';
 
 class MainApplication extends StatelessWidget with PreferencesUtil {
   const MainApplication({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-        designSize: const Size(1440, 1080),
-        minTextAdapt: true,
-        splitScreenMode: true,
-        builder: (context, child) {
-          return GestureDetector(
-            onTap: () {
-              FocusScopeNode focus = FocusScope.of(context);
-              if (!focus.hasPrimaryFocus && focus.focusedChild != null) {
-                focus.focusedChild?.unfocus();
-              }
-            },
-            child: MaterialApp.router(
-              localizationsDelegates: context.localizationDelegates,
-              supportedLocales: context.supportedLocales,
-              locale: context.locale,
-              builder: EasyLoading.init(),
-
-              debugShowCheckedModeBanner: false,
-              title: 'Main Application',
-              routerConfig: routerConfig,
-              theme: ThemeData(
-                useMaterial3: true,
-                // colorScheme: lightColorScheme,
-                colorSchemeSeed: Colors.blue,
-                visualDensity: VisualDensity.adaptivePlatformDensity,
-              ),
-              darkTheme: ThemeData(
-                useMaterial3: true,
-              ),
-              themeMode: ThemeMode.light, // Default is system
-            ),
-          );
-        });
+    return MaterialApp(
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      debugShowCheckedModeBanner: false,
+      title: 'Main Application',
+      locale: context.locale,
+      routes: AppPages.getPages(context),
+      onGenerateRoute: AppPages.generateRoute,
+      navigatorKey: AppContext.navigatorKey,
+      theme: ThemeData(
+        useMaterial3: true,
+        // colorScheme: lightColorScheme,
+        colorSchemeSeed: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      darkTheme: ThemeData(
+        useMaterial3: true,
+      ),
+      themeMode: ThemeMode.light,
+      initialRoute: (() {
+        return AppRoutes.login;
+        // if ((widget.token ?? '').isNotEmpty) {
+        //   return AppRoutes.home;
+        // }
+        // final isViewOnBoarding = PrefsService.isViewOnBoarding();
+        // if (isViewOnBoarding) {
+        //   return AppRoutes.signUp;
+        // }
+        // return AppRoutes.onBoarding;
+      }()),
+      builder: EasyLoading.init(),
+    );
   }
 }

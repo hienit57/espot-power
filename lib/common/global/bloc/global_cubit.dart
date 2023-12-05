@@ -1,6 +1,6 @@
-import 'package:bas_clean_architecture/core/mixins/index.dart';
+import 'package:espot_power/core/mixins/index.dart';
 import 'package:equatable/equatable.dart';
-import 'package:bas_clean_architecture/index.dart';
+import 'package:espot_power/index.dart';
 
 part 'global_state.dart';
 

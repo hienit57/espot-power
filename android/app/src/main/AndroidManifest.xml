@@ -1,8 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-package="com.example.bas_clean_architecture">
+package="com.example.espot_power">
     <application
-        android:label="bas_clean_architecture"
+        android:label="eSpot Power"
         android:name="${applicationName}"
+        android:requestLegacyExternalStorage="true"
+        android:icon="@mipmap/ic_launcher"
        >
         <activity
             android:name=".MainActivity"

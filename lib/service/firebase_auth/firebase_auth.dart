@@ -1,6 +1,6 @@
-import 'package:bas_clean_architecture/core/local_data/pref_utils.dart';
-import 'package:bas_clean_architecture/core/mixins/index.dart';
-import 'package:bas_clean_architecture/utils/index.dart';
+import 'package:espot_power/core/local_data/pref_utils.dart';
+import 'package:espot_power/core/mixins/index.dart';
+import 'package:espot_power/utils/index.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';

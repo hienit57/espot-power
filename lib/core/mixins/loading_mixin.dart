@@ -1,4 +1,4 @@
-import 'package:bas_clean_architecture/index.dart';
+import 'package:espot_power/index.dart';
 
 mixin LoadingMixin {
   showLoading() {

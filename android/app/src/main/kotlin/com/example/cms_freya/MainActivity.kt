@@ -1,4 +1,4 @@
-package com.example.bas_clean_architecture
+package com.example.espot_power
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class NavigatorExt {
-  //static const String Root = '/';
+  static const String Root = '/';
 
   /*
   * context

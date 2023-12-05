@@ -1,0 +1,96 @@
+{
+  "project_info": {
+    "project_number": "568203469920",
+    "project_id": "espot-power",
+    "storage_bucket": "espot-power.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:568203469920:android:53029f6db9beac22e60f05",
+        "android_client_info": {
+          "package_name": "com.espot.power"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "568203469920-gb17n1fqf96q13k172f1dd438nrlbog0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.espot.power",
+            "certificate_hash": "e74cc84c23c624313b53283d8e16230200e26ac7"
+          }
+        },
+        {
+          "client_id": "568203469920-3ceu1oe5hp7k9lli5e48lhsvet2boidt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBh8BwMnwu8MtHev-BzMMmiAjoAH5TcVuA"
+        },
+        {
+          "current_key": "AIzaSyAhklnQPzRZuF3hZvu2kZ7954yrJc22-zQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "568203469920-3ceu1oe5hp7k9lli5e48lhsvet2boidt.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "568203469920-4b6u69a273m3ipvvvu82h0dqk7iglrk4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.espot.power.alpha"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:568203469920:android:44c8ab61c81d8f57e60f05",
+        "android_client_info": {
+          "package_name": "com.espot.power.alpha"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "568203469920-3ceu1oe5hp7k9lli5e48lhsvet2boidt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBh8BwMnwu8MtHev-BzMMmiAjoAH5TcVuA"
+        },
+        {
+          "current_key": "AIzaSyAhklnQPzRZuF3hZvu2kZ7954yrJc22-zQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "568203469920-3ceu1oe5hp7k9lli5e48lhsvet2boidt.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "568203469920-4b6u69a273m3ipvvvu82h0dqk7iglrk4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.espot.power.alpha"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

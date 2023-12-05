@@ -1,4 +1,4 @@
-import 'package:bas_clean_architecture/generated/locale_keys.g.dart';
+import 'package:espot_power/generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 List<String> listContentFilterAlltime = [
