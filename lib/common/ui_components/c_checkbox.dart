@@ -28,11 +28,11 @@ class CCheckbox extends StatelessWidget {
           width: width,
           height: height,
           decoration: BoxDecoration(
-            color: isCheck == true ? AppColors.brick : AppColors.white,
+            color: isCheck == true ? AppColors.colorFFCB05 : AppColors.white,
             shape: BoxShape.circle,
             border: Border.all(
               width: 1,
-              color: AppColors.brick,
+              color: AppColors.colorFFCB05,
             ),
           ),
           child: Icon(

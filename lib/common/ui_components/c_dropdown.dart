@@ -30,7 +30,7 @@ class CDropdownWidget extends StatelessWidget {
             text: value,
             fontWeight: FontWeight.w500,
             textAlign: TextAlign.left,
-            textColor: AppColors.charcoal.withOpacity(0.6),
+            textColor: AppColors.color212121.withOpacity(0.6),
             textOverflow: TextOverflow.ellipsis,
           ),
         );

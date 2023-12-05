@@ -50,10 +50,10 @@ mixin ToastMixin {
                               shape: BoxShape.circle,
                               border: Border.all(
                                 width: 1,
-                                color: AppColors.brick,
+                                color: AppColors.color212121,
                               ),
-                              color: AppColors.brick),
-                          child: const Icon(
+                              color: AppColors.color212121),
+                          child: Icon(
                             Icons.check,
                             size: 13,
                             color: AppColors.white,
@@ -62,9 +62,9 @@ mixin ToastMixin {
                         SizedBox(width: 16.w),
                         CText(
                           text: message,
-                          textColor: AppColors.brick,
+                          textColor: AppColors.color212121,
                           fontSize: fontSizeMessage ?? 22.sp,
-                          fontFamily: AppFonts.dMSerifDisplayRegular,
+                          fontFamily: AppFonts.svnGotham,
                         )
                       ],
                     ),

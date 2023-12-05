@@ -1,11 +1,8 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'common/global/index.dart';
 import 'features/index.dart';
 
 final providers = [
-  BlocProvider<GlobalCubit>(
-    create: (context) => GlobalCubit(),
+  BlocProvider<OnboardingCubit>(
+    create: (context) => OnboardingCubit(),
   ),
   BlocProvider<LoginCubit>(
     create: (context) => LoginCubit(),

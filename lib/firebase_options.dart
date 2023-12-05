@@ -65,12 +65,13 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyA2YeKNHhAYduWuD9xugCDBBBx7bslGVf8',
+    apiKey: 'AIzaSyBS3dP0xrmRhor25RF7rkuZEWXTTqKFxaY',
     appId: '1:568203469920:ios:51f0d21e7ec37665e60f05',
     messagingSenderId: '568203469920',
     projectId: 'espot-power',
     storageBucket: 'espot-power.appspot.com',
-    androidClientId: '',
+    androidClientId:
+        '568203469920-85ab5uroik9elvdpqoce4fvpkakicj35.apps.googleusercontent.com',
     iosClientId:
         '568203469920-jqauun28empq66dm7fk5bm0981d1856m.apps.googleusercontent.com',
     iosBundleId: 'com.espot.power',

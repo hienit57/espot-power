@@ -77,7 +77,7 @@ class _CSearchState extends State<CSearch> {
         border: InputBorder.none,
         hintText: widget.placeholder,
         hintStyle: TextStyle(
-            color: AppColors.charcoal.withOpacity(0.6), fontSize: 14.sp),
+            color: AppColors.color212121.withOpacity(0.6), fontSize: 14.sp),
         suffixIcon: widget.suffix,
         suffixIconConstraints: const BoxConstraints(minWidth: 0, minHeight: 0),
         prefixIcon: widget.prefix,

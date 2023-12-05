@@ -68,7 +68,7 @@ class _CImageState extends State<CImage> {
                   progressIndicatorBuilder: (context, url, progress) => Center(
                     child: CircularProgressIndicator(
                       value: progress.progress,
-                      color: AppColors.brick,
+                      color: AppColors.colorFFCB05,
                     ),
                   ),
                   errorWidget: (

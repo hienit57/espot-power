@@ -55,14 +55,13 @@ class _CTextState extends State<CText> {
         (widget.text ?? ''),
         textAlign: widget.textAlign ?? TextAlign.left,
         style: TextStyle(
-          fontFamily: widget.fontFamily ?? AppFonts.plusJakartaSans,
+          fontFamily: widget.fontFamily ?? AppFonts.svnGotham,
           height: widget.lineSpacing,
           decoration: widget.textDecoration ?? TextDecoration.none,
           backgroundColor: widget.backgrounColor ?? Colors.transparent,
           fontWeight: widget.fontWeight ?? FontWeight.w400,
-          color: widget.textColor ?? AppColors.charcoal.withOpacity(0.8),
-          fontSize: (widget.fontSize ?? 15.sp) /
-              MediaQuery.of(context).textScaleFactor,
+          color: widget.textColor ?? AppColors.color212121,
+          fontSize: widget.fontSize ?? 14,
           fontStyle: widget.fontStyle,
         ),
         overflow: widget.textOverflow,

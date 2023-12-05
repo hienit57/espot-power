@@ -42,8 +42,8 @@ mixin ExtMixin {
                           "${pickedDateTime?.hour}:${pickedDateTime?.minute}");
                       Navigator.pop(context);
                     },
-                    child: const CText(
-                      textColor: AppColors.brick,
+                    child: CText(
+                      textColor: AppColors.white,
                       text: 'Done',
                       fontWeight: FontWeight.bold,
                     ),

@@ -46,7 +46,7 @@ class CTitleTextField extends StatelessWidget {
             text: title,
             fontSize: 18.h,
             fontWeight: FontWeight.bold,
-            textColor: AppColors.charcoal,
+            textColor: AppColors.color212121,
           ),
           SizedBox(height: 7.h),
         ],
@@ -67,9 +67,6 @@ class CTitleTextField extends StatelessWidget {
           contentPadding: EdgeInsets.symmetric(horizontal: 15.w),
           validator: validator ??
               (value) {
-                if (value == '') {
-                  return LocaleKeys.field_cant_be_empty.tr();
-                }
                 return null;
               },
         ),

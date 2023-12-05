@@ -5,12 +5,15 @@ import 'package:flutter/material.dart';
 class AppPages {
   static Map<String, WidgetBuilder> getPages(BuildContext context) {
     return {
+      AppRoutes.onboarding: (context) => const OnboardingPage(),
+      AppRoutes.verifyLogin: (context) => const VerifyLoginPage(),
+
       AppRoutes.login: (context) => const LoginPage(),
       // AppRoutes.signUp: (context) => const SignUpScreen(),
       // AppRoutes.signUpAffiliate: (context) => const AffiliatePage(),
       // AppRoutes.signUpCreatePassword: (context) => const CreatePasswordPage(),
       AppRoutes.home: (context) => const Dashboard(),
-      // AppRoutes.onBoarding: (context) => const OnBroadingScreen(),
+
       // AppRoutes.rentalBatteryFailed: (context) => const RentalBatteryFailed(),
       // AppRoutes.accountScreen: (context) => const AccountScreen(),
       // AppRoutes.formOrderSuccess: (context) => const FormCheckSuccess(),
@@ -69,6 +72,8 @@ class AppPages {
     // }
 
     switch (settings.name) {
+      case AppRoutes.verifyLogin:
+        return MaterialPageRoute(builder: (_) => const VerifyLoginPage());
       // case AppRoutes.login:
       //   return MaterialPageRoute(builder: (_) => const SignInScreen());
       // case AppRoutes.signUp:

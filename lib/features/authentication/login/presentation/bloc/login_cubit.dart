@@ -28,59 +28,59 @@ class LoginCubit extends Cubit<LoginState> with LoadingMixin, ToastMixin {
     }
   }
 
-  void login(BuildContext context) async {
-    showLoading();
-    emit(state.copyWith(onLogin: RequestStatus.loading));
+  // void login(BuildContext context) async {
+  //   showLoading();
+  //   emit(state.copyWith(onLogin: RequestStatus.loading));
 
-    try {
-      if (emailController.value.text.isValidEmail() == true &&
-          passwordController.value.text.isNotEmpty) {
-        _datasource
-            .login(
-                email: emailController.text.trim(),
-                password: passwordController.text.trim())
-            .then((response) async {
-          if (response?.status == 0) {
-            validateLogin(value: false);
-            emit(state.copyWith(
-              onLogin: RequestStatus.failure,
-            ));
-            dismissloading();
-          } else if (response?.data != null) {
-            await DataUserLoginCachedClient.instance.storeData(response);
-            emit(state.copyWith(
-              onLogin: RequestStatus.success,
-              loginResponse: response?.data,
-            ));
-          }
-        });
-      } else {
-        dismissloading();
-        emit(state.copyWith(onLogin: RequestStatus.failure));
-      }
-      dismissloading();
-    } catch (e) {
-      dismissloading();
+  //   try {
+  //     if (emailController.value.text.isValidEmail() == true &&
+  //         passwordController.value.text.isNotEmpty) {
+  //       _datasource
+  //           .login(
+  //               email: emailController.text.trim(),
+  //               password: passwordController.text.trim())
+  //           .then((response) async {
+  //         if (response?.status == 0) {
+  //           validateLogin(value: false);
+  //           emit(state.copyWith(
+  //             onLogin: RequestStatus.failure,
+  //           ));
+  //           dismissloading();
+  //         } else if (response?.data != null) {
+  //           await DataUserLoginCachedClient.instance.storeData(response);
+  //           emit(state.copyWith(
+  //             onLogin: RequestStatus.success,
+  //             loginResponse: response?.data,
+  //           ));
+  //         }
+  //       });
+  //     } else {
+  //       dismissloading();
+  //       emit(state.copyWith(onLogin: RequestStatus.failure));
+  //     }
+  //     dismissloading();
+  //   } catch (e) {
+  //     dismissloading();
 
-      emit(state.copyWith(onLogin: RequestStatus.failure));
-    }
-  }
+  //     emit(state.copyWith(onLogin: RequestStatus.failure));
+  //   }
+  // }
 
-  void refreshToken() async {
-    try {
-      final dataUserLocal = await DataUserLoginCachedClient.instance.getData();
+  // void refreshToken() async {
+  //   try {
+  //     final dataUserLocal = await DataUserLoginCachedClient.instance.getData();
 
-      await _datasource
-          .refreshToken(userId: dataUserLocal?.data?.iD)
-          .then((response) async {
-        if (response?.data != null) {
-          await DataUserLoginCachedClient.instance.storeData(response);
-        }
-      });
-    } catch (e) {
-      dismissloading();
-    }
-  }
+  //     await _datasource
+  //         .refreshToken(userId: dataUserLocal?.data?.iD)
+  //         .then((response) async {
+  //       if (response?.data != null) {
+  //         await DataUserLoginCachedClient.instance.storeData(response);
+  //       }
+  //     });
+  //   } catch (e) {
+  //     dismissloading();
+  //   }
+  // }
 
   void resetPassword(
     BuildContext context,
@@ -98,7 +98,7 @@ class LoginCubit extends Cubit<LoginState> with LoadingMixin, ToastMixin {
         }, onSuccess: () {
           emit(state.copyWith(onResetPassword: RequestStatus.success));
           if (state.onResetPassword == RequestStatus.success) {
-            NavigatorExt.push(context, const ForgotPasswordSuccess());
+            //NavigatorExt.push(context, const ForgotPasswordSuccess());
           }
         });
       }

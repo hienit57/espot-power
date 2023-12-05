@@ -16,9 +16,9 @@ class PrefsDataCleaner {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
 
-      prefs.remove(PrefsKeys.userProfile.value);
-      prefs.remove(PrefsKeys.appointments.value);
-      prefs.remove(PrefsKeys.invoices.value);
+      // prefs.remove(PrefsKeys.userProfile.value);
+      // prefs.remove(PrefsKeys.appointments.value);
+      // prefs.remove(PrefsKeys.invoices.value);
       prefs.remove(PrefsKeys.accessToken.value);
 
       return;

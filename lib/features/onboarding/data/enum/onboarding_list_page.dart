@@ -1,0 +1,1 @@
+enum OnboardingListPage { onboardingOne, onboardingTwo }

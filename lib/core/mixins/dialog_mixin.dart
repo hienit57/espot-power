@@ -44,11 +44,11 @@ mixin DialogMixin {
                       child: Container(
                         width: 40.w,
                         height: 40.h,
-                        decoration: const BoxDecoration(
+                        decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: AppColors.brick,
+                          color: AppColors.color212121,
                         ),
-                        child: const Center(
+                        child: Center(
                           child: Icon(Icons.close, color: AppColors.white),
                         ),
                       ),

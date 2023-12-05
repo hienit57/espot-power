@@ -61,7 +61,7 @@ class CButton extends StatelessWidget {
               Text(
                 title ?? '',
                 style: TextStyle(
-                  fontFamily: fontFamily ?? AppFonts.plusJakartaSans,
+                  fontFamily: fontFamily ?? AppFonts.svnGotham,
                   fontSize: titleFontSize ?? 14,
                   color: titleColor ?? Colors.black,
                   fontWeight: titleFontWeight ?? FontWeight.normal,

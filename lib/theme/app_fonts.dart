@@ -1,4 +1,3 @@
 class AppFonts {
-  static const String dMSerifDisplayRegular = 'DMSerifDisplay-Regular';
-  static const String plusJakartaSans = 'PlusJakartaSans';
+  static const String svnGotham = 'SVN-GOTHAM';
 }

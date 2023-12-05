@@ -55,17 +55,26 @@ void main() async {
 
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then((_) {
-    Future.delayed(const Duration(seconds: 1), () {
-      runApp(EasyLocalization(
-        supportedLocales: const [Locale('en'), Locale('zh')],
-        path: 'assets/localization',
-        fallbackLocale: const Locale('en'),
-        child: MultiBlocProvider(
-          providers: providers,
-          child: const MainApplication(),
-        ),
-      ));
-    });
+    Future.delayed(
+      const Duration(seconds: 1),
+      () {
+        runApp(
+          EasyLocalization(
+            supportedLocales: const [
+              Locale('vi'),
+              Locale('en'),
+            ],
+            path: 'assets/localization',
+            startLocale: const Locale('vi'),
+            fallbackLocale: const Locale('en'),
+            child: MultiBlocProvider(
+              providers: providers,
+              child: const MainApplication(),
+            ),
+          ),
+        );
+      },
+    );
   });
 }
 

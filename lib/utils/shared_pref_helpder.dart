@@ -21,4 +21,14 @@ class SharedPrefsHelper {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.getString(PrefsKeys.accessToken.value);
   }
+
+  static Future<bool> saveViewOnboarding(bool value) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.setBool(PrefsKeys.isViewOnboarding.value, value);
+  }
+
+  static Future<bool> getViewOnboarding() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getBool(PrefsKeys.isViewOnboarding.value) ?? false;
+  }
 }

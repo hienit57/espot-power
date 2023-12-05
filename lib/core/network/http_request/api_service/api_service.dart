@@ -46,7 +46,8 @@ class ApiService with PreferencesUtil, LoadingMixin, ToastMixin {
       }
       return handler.next(response);
     }, onError: (DioError e, handler) async {
-      await refreshToken();
+      ///TODO:FIX ME
+      //await refreshToken();
       return handler.next(e);
     }));
 
@@ -78,15 +79,16 @@ class ApiService with PreferencesUtil, LoadingMixin, ToastMixin {
   Future<Options> _baseOptions() async {
     final deviceToken = await getDeviceToken();
 
-    final accessToken =
-        (await DataUserLoginCachedClient.instance.getData())?.token;
+    ///TODO:FIX ACCESS TOKEN
+    // final accessToken =
+    //     (await DataUserLoginCachedClient.instance.getData())?.token;
     //final accessToken = await getToken();
-    logger.d('Access Token $accessToken');
+    //logger.d('Access Token $accessToken');
     final headers = {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': 'true',
       'Accept': 'application/json',
-      'Authorization': accessToken,
+      'Authorization': '',
       'DeviceToken': deviceToken,
       'TimezoneOffset': getTimeZoneOffSet(),
     };
@@ -196,32 +198,32 @@ class ApiService with PreferencesUtil, LoadingMixin, ToastMixin {
     return response.data;
   }
 
-  Future<void> refreshToken() async {
-    try {
-      final user = await DataUserLoginCachedClient.instance.getData();
+  // Future<void> refreshToken() async {
+  //   try {
+  //     final user = await DataUserLoginCachedClient.instance.getData();
 
-      Map<String, dynamic> body = {
-        "UserID": user?.data?.iD,
-      };
-      String jsonBody = json.encode(body);
+  //     Map<String, dynamic> body = {
+  //       "UserID": user?.data?.iD,
+  //     };
+  //     String jsonBody = json.encode(body);
 
-      final res = await ApiService().request(RefreshTokenRequest(jsonBody));
+  //     final res = await ApiService().request(RefreshTokenRequest(jsonBody));
 
-      final response = LoginResponse.fromJson(res);
+  //     final response = LoginResponse.fromJson(res);
 
-      // Assuming your LoginResponse has a token property, update the cached token
-      if (response.token != null) {
-        final user = await DataUserLoginCachedClient.instance.getData();
-        //TODO:FIXME
-        // user?.token = response.token;
-        await DataUserLoginCachedClient.instance.storeData(user);
-      }
-    } catch (e) {
-      // Handle any errors that might occur during the refresh process
-      print("Error refreshing token: $e");
-      // You might want to log the error, show a snackbar, or handle it in another way
-    }
-  }
+  //     // Assuming your LoginResponse has a token property, update the cached token
+  //     if (response.token != null) {
+  //       final user = await DataUserLoginCachedClient.instance.getData();
+  //       //TODO:FIXME
+  //       // user?.token = response.token;
+  //       await DataUserLoginCachedClient.instance.storeData(user);
+  //     }
+  //   } catch (e) {
+  //     // Handle any errors that might occur during the refresh process
+  //     print("Error refreshing token: $e");
+  //     // You might want to log the error, show a snackbar, or handle it in another way
+  //   }
+  // }
 
   Future<String> getDeviceToken() async {
     return SharedPrefsHelper.getFcmToken();

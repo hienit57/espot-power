@@ -86,7 +86,7 @@ class AppTextField extends StatelessWidget {
         color: textColor ?? Colors.black,
         fontSize: fontSize ?? 14.sp,
         fontWeight: fontWeight,
-        fontFamily: AppFonts.plusJakartaSans,
+        fontFamily: AppFonts.svnGotham,
         decoration: inpuDecoration,
       ),
       decoration: InputDecoration(
@@ -100,7 +100,7 @@ class AppTextField extends StatelessWidget {
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(borderRadius ?? 0),
           borderSide: BorderSide(
-            color: borderColor ?? AppColors.charcoal.withOpacity(0.2),
+            color: borderColor ?? AppColors.color212121.withOpacity(0.2),
             width: 1,
           ),
         ),
@@ -115,19 +115,19 @@ class AppTextField extends StatelessWidget {
           borderRadius: BorderRadius.circular(borderRadius ?? 0),
           borderSide: BorderSide(
             width: 1,
-            color: borderColor ?? AppColors.brick,
+            color: borderColor ?? AppColors.color212121,
           ),
         ),
         hintText: placeholder,
         hintStyle: TextStyle(
           color: Colors.grey,
           fontSize: fontSize ?? 14.sp,
-          fontFamily: AppFonts.plusJakartaSans,
+          fontFamily: AppFonts.svnGotham,
         ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(borderRadius ?? 0),
           borderSide: BorderSide(
-            color: borderColor ?? AppColors.charcoal.withOpacity(0.2),
+            color: borderColor ?? AppColors.color212121.withOpacity(0.2),
             width: 1,
           ),
         ),
