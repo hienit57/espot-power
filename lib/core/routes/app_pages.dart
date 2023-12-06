@@ -1,17 +1,19 @@
 class AppRoutes {
   static const onboarding = '/onboarding';
   static const verifyUserExists = '/verify-login';
-
+  static const verifyOtp = '/verify-otp';
+  static const verifyReferrer = '/verify-referrer';
+  static const passwordSettings = '/password-settings';
   static const login = '/login';
-  static const signUpOtp = '/signup-otp';
-  static const signUpSendOtp = '/signup-resend-otp';
+  static const forgotPassword = '/forgot-password';
+  static const home = '/home';
+
   static const signUpAffiliate = '/signup-affiliate';
   static const signUpCreatePassword = '/signup-create-password';
   static const signInFirst = '/sign-in-telephone';
   static const signInSecond = '/sign-in';
   static const passwordForgotOtp = '/password-forgot-otp';
   static const passwordForgotConfirm = '/password-forgot-confirm';
-  static const home = '/home';
   static const rentalBatteryFailed = 'rental-battery_failed';
   static const accountScreen = '/account-creen';
   static const formOrderSuccess = '/form-order-success';

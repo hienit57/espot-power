@@ -11,7 +11,7 @@ class VerifyUserDatasourcesImpl extends VerifyUserDatasources {
     }..removeWhere((key, value) => value == '' || value == null);
 
     final res = await ApiService()
-        .request(VerifyUserExistsRequest(), queryParameters: queryParameters);
+        .request(VerifyUserExistsRequest(queryParameters: queryParameters));
 
     return BaseRequestResponse.fromJson(res);
   }

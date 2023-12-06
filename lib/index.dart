@@ -8,3 +8,4 @@ export 'package:flutter/gestures.dart';
 export 'package:flutter_bloc/flutter_bloc.dart';
 export 'package:espot_power/generated/locale_keys.g.dart';
 export 'main_application.dart';
+export 'package:espot_power/extensions/app_context.dart';

@@ -11,6 +11,7 @@ class RequestModel {
   String route;
   final String? params;
   Map<String, dynamic>? grapqlVariables;
+  Map<String, dynamic>? queryParameters;
 
   RequestModel({
     required this.route,
@@ -18,5 +19,6 @@ class RequestModel {
     required this.requestMethod,
     this.grapqlVariables,
     this.params,
+    this.queryParameters,
   });
 }

@@ -16,11 +16,11 @@
   "password_create": "Create password",
   "password_wrong": "Password wrong",
   "password_forgot": "Forgot Password",
-  "create_password": "Your password",
-  "create_password_new": "New password",
-  "create_password_confirm": "Confirm password",
-  "password_create_done": "Password generation successful.\nYou will be redirected to the service page!",
-  "password_create_done_2": "Successful\nBạn sẽ được chuyển đến trang dịch vụ!",
+  "your_password": "Your password",
+  "new_password": "New password",
+  "confirm_password": "Confirm password",
+  "password_create_success": "Password generation successful.\nYou will be redirected to the service page!",
+  "password_create_success_2": "Successful\nBạn sẽ được chuyển đến trang dịch vụ!",
   "enter_username": "Enter user name here",
   "enter_password": "Enter password here",
   "enter_confirm_code": "Enter the confirmation code sent to",
@@ -396,5 +396,6 @@
   "please_input_full_info_field": "Bạn phải nhập đầy đủ thông tin",
   "error_form_update_info": "Kiểm tra lại chỗ trống hoặc không đúng định dạng",
   "please_check_info_account": "Vui lòng kiểm tra lại thông tin tài khoản",
-  "phone_not_correct_format": "Số điện thoại không đúng định dạng"
+  "phone_not_correct_format": "Số điện thoại không đúng định dạng",
+  "enter_new_password": "Nhập mật khẩu mới"
 }

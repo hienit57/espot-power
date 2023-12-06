@@ -7,12 +7,16 @@ class AppPages {
     return {
       AppRoutes.onboarding: (context) => const OnboardingPage(),
       AppRoutes.verifyUserExists: (context) => const VerifyUserPage(),
-
+      AppRoutes.verifyOtp: (context) => const VerifyOtpPage(),
+      AppRoutes.verifyReferrer: (context) => const VerifyReferrerPage(),
+      AppRoutes.passwordSettings: (context) => const PasswordSettingsPage(),
       AppRoutes.login: (context) => const LoginPage(),
+      AppRoutes.forgotPassword: (context) => const ForgotPasswordPage(),
+      AppRoutes.home: (context) => const HomePage(),
+
       // AppRoutes.signUp: (context) => const SignUpScreen(),
       // AppRoutes.signUpAffiliate: (context) => const AffiliatePage(),
       // AppRoutes.signUpCreatePassword: (context) => const CreatePasswordPage(),
-      AppRoutes.home: (context) => const Dashboard(),
 
       // AppRoutes.rentalBatteryFailed: (context) => const RentalBatteryFailed(),
       // AppRoutes.accountScreen: (context) => const AccountScreen(),
@@ -72,8 +76,20 @@ class AppPages {
     // }
 
     switch (settings.name) {
+      case AppRoutes.onboarding:
+        return MaterialPageRoute(builder: (_) => const OnboardingPage());
       case AppRoutes.verifyUserExists:
         return MaterialPageRoute(builder: (_) => const VerifyUserPage());
+      case AppRoutes.verifyOtp:
+        return MaterialPageRoute(builder: (_) => const VerifyOtpPage());
+      case AppRoutes.verifyReferrer:
+        return MaterialPageRoute(builder: (_) => const VerifyReferrerPage());
+      case AppRoutes.passwordSettings:
+        return MaterialPageRoute(builder: (_) => const PasswordSettingsPage());
+      case AppRoutes.login:
+        return MaterialPageRoute(builder: (_) => const LoginPage());
+      case AppRoutes.forgotPassword:
+        return MaterialPageRoute(builder: (_) => const ForgotPasswordPage());
       // case AppRoutes.login:
       //   return MaterialPageRoute(builder: (_) => const SignInScreen());
       // case AppRoutes.signUp:
@@ -81,7 +97,7 @@ class AppPages {
       // case AppRoutes.signUpAffiliate:
       //   return MaterialPageRoute(builder: (_) => const AffiliatePage());
       case AppRoutes.home:
-        return MaterialPageRoute(builder: (_) => const Dashboard());
+        return MaterialPageRoute(builder: (_) => const HomePage());
       // case AppRoutes.signUpCreatePassword:
       //   return MaterialPageRoute(builder: (_) => const CreatePasswordPage());
       // case AppRoutes.onBoarding:

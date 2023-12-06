@@ -100,19 +100,23 @@ class ApiService with PreferencesUtil, LoadingMixin, ToastMixin {
     );
   }
 
-  Future<Map<String, dynamic>> request(RequestModel request,
-      {Map<String, dynamic>? queryParameters}) async {
+  Future<Map<String, dynamic>> request(
+    RequestModel request,
+  ) async {
     if (request.requestType == RequestType.http) {
       switch (request.requestMethod) {
         case RequestMethod.get:
-          return await _requestGet(request, queryParameters: queryParameters);
+          return await _requestGet(request,
+              queryParameters: request.queryParameters);
         case RequestMethod.post:
-          return await _requestPost(request, queryParameters: queryParameters);
+          return await _requestPost(request,
+              queryParameters: request.queryParameters);
         case RequestMethod.put:
-          return await _requestPut(request, queryParameters: queryParameters);
+          return await _requestPut(request,
+              queryParameters: request.queryParameters);
         case RequestMethod.delete:
           return await _requestDelete(request,
-              queryParameters: queryParameters);
+              queryParameters: request.queryParameters);
       }
     } else {
       return await _requestGraphql(request);

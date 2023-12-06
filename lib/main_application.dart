@@ -13,43 +13,42 @@ class MainApplication extends StatelessWidget with PreferencesUtil {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<bool>(
-        future: OnboardingCubit().emitShowOnboarding(),
-        builder: (context, snapshot) {
-          return MaterialApp(
-            localizationsDelegates: context.localizationDelegates,
-            supportedLocales: context.supportedLocales,
-            debugShowCheckedModeBanner: false,
-            title: 'Main Application',
-            locale: context.locale,
-            routes: AppPages.getPages(context),
-            onGenerateRoute: AppPages.generateRoute,
-            navigatorKey: AppContext.navigatorKey,
-            theme: ThemeData(
-              useMaterial3: true,
-              // colorScheme: lightColorScheme,
-              colorSchemeSeed: Colors.blue,
-              visualDensity: VisualDensity.adaptivePlatformDensity,
-            ),
-            darkTheme: ThemeData(
-              useMaterial3: true,
-            ),
-            themeMode: ThemeMode.light,
-            initialRoute: (() {
-              if (snapshot.data == true) {
-                return AppRoutes.verifyUserExists;
-              }
-              return AppRoutes.onboarding;
-              // if ((widget.token ?? '').isNotEmpty) {
-              //   return AppRoutes.home;
-              // }
-              // final isViewOnBoarding = PrefsService.isViewOnBoarding();
-              // if (isViewOnBoarding) {
-              //   return AppRoutes.signUp;
-              // }
-              // return AppRoutes.onBoarding;
-            }()),
-            builder: EasyLoading.init(),
-          );
+        future: OnboardingCubit().isLogin(),
+        builder: (context, snapshotUser) {
+          return FutureBuilder<bool>(
+              future: OnboardingCubit().emitShowOnboarding(),
+              builder: (context, snapshot) {
+                return MaterialApp(
+                  localizationsDelegates: context.localizationDelegates,
+                  supportedLocales: context.supportedLocales,
+                  debugShowCheckedModeBanner: false,
+                  title: 'Main Application',
+                  locale: context.locale,
+                  routes: AppPages.getPages(context),
+                  onGenerateRoute: AppPages.generateRoute,
+                  navigatorKey: AppContext.navigatorKey,
+                  theme: ThemeData(
+                    useMaterial3: true,
+                    // colorScheme: lightColorScheme,
+                    colorSchemeSeed: Colors.blue,
+                    visualDensity: VisualDensity.adaptivePlatformDensity,
+                  ),
+                  darkTheme: ThemeData(
+                    useMaterial3: true,
+                  ),
+                  themeMode: ThemeMode.light,
+                  initialRoute: (() {
+                    if (snapshotUser.data == true) {
+                      return AppRoutes.home;
+                    }
+                    if (snapshot.data == true) {
+                      return AppRoutes.verifyUserExists;
+                    }
+                    return AppRoutes.onboarding;
+                  }()),
+                  builder: EasyLoading.init(),
+                );
+              });
         });
   }
 }

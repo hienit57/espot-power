@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class CText extends StatefulWidget {
   final double? width;
   final double? height;
-  final GestureTapCallback? tappedText;
+  final GestureTapCallback? onTap;
   final String? text;
   final EdgeInsets? pin;
   final EdgeInsets? margin;
@@ -34,7 +34,7 @@ class CText extends StatefulWidget {
     this.textAlign,
     this.backgrounColor,
     this.textDecoration,
-    this.tappedText,
+    this.onTap,
     this.width,
     this.fontFamily,
     this.lineSpacing,
@@ -50,7 +50,7 @@ class _CTextState extends State<CText> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: widget.tappedText,
+      onTap: widget.onTap,
       child: Text(
         (widget.text ?? ''),
         textAlign: widget.textAlign ?? TextAlign.left,

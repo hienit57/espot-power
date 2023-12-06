@@ -2,43 +2,32 @@ part of 'login_cubit.dart';
 
 class LoginState extends Equatable {
   final RequestStatus? onLogin;
-  final RequestStatus? onResetPassword;
-  final DataUserLogin? loginResponse;
-  final bool? isErrorWrongEmailOrPassword;
-  final bool? isColorLightButtonLogin;
+
+  final String? msgLogin;
+  final bool? isShowPassword;
 
   const LoginState({
     this.onLogin,
-    this.onResetPassword,
-    this.loginResponse,
-    this.isErrorWrongEmailOrPassword,
-    this.isColorLightButtonLogin,
+    this.msgLogin,
+    this.isShowPassword,
   });
 
   LoginState copyWith({
     RequestStatus? onLogin,
-    DataUserLogin? loginResponse,
-    RequestStatus? onResetPassword,
-    bool? isErrorWrongEmailOrPassword,
-    bool? isColorLightButtonLogin,
+    String? msgLogin,
+    bool? isShowPassword,
   }) {
     return LoginState(
       onLogin: onLogin ?? this.onLogin,
-      loginResponse: loginResponse ?? this.loginResponse,
-      onResetPassword: onResetPassword ?? this.onResetPassword,
-      isErrorWrongEmailOrPassword:
-          isErrorWrongEmailOrPassword ?? this.isErrorWrongEmailOrPassword,
-      isColorLightButtonLogin:
-          isColorLightButtonLogin ?? this.isColorLightButtonLogin,
+      msgLogin: msgLogin ?? this.msgLogin,
+      isShowPassword: isShowPassword ?? this.isShowPassword,
     );
   }
 
   @override
   List<Object?> get props => [
         onLogin,
-        loginResponse,
-        onResetPassword,
-        isErrorWrongEmailOrPassword,
-        isColorLightButtonLogin,
+        msgLogin,
+        isShowPassword,
       ];
 }

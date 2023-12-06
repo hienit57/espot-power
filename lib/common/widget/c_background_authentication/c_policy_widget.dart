@@ -26,7 +26,7 @@ class CPolicyWidget extends StatelessWidget {
               text: LocaleKeys.policy.tr(),
               textColor: AppColors.colorText231F20,
               textDecoration: TextDecoration.underline,
-              tappedText: () {
+              onTap: () {
                 // Navigator.push(
                 //     context,
                 //     MaterialPageRoute(
@@ -47,7 +47,7 @@ class CPolicyWidget extends StatelessWidget {
               text: LocaleKeys.rules.tr(),
               textColor: AppColors.colorText231F20,
               textDecoration: TextDecoration.underline,
-              tappedText: () {
+              onTap: () {
                 // Navigator.push(
                 //     context,
                 //     MaterialPageRoute(

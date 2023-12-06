@@ -1,3 +1,4 @@
+import 'package:espot_power/core/routes/app_pages.dart';
 import 'package:espot_power/features/index.dart';
 import 'package:espot_power/index.dart';
 import 'package:espot_power/utils/index.dart';
@@ -9,15 +10,26 @@ class VerifyUserExistsCubit extends Cubit<VerifyUserExistsState>
     with LoadingMixin, ToastMixin {
   VerifyUserExistsCubit() : super(const VerifyUserExistsState());
 
-  TextEditingController? phoneController = TextEditingController();
+  final phoneController = TextEditingController();
 
   final _datasource = GetIt.instance<VerifyUserDatasourcesImpl>();
+
+  void initData() {
+    phoneController.text = '';
+  }
+
+  void resetState() {
+    emit(state.copyWith(
+      onVerifyUserExists: RequestStatus.initial,
+      msgVerifyUserExists: '',
+    ));
+  }
 
   Future<void> verifyUserExist() async {
     emit(state.copyWith(onVerifyUserExists: RequestStatus.loading));
 
     try {
-      if (Validation.validationPhone(phoneController?.text ?? '') == false) {
+      if (Validation.validationPhone(phoneController.text) == false) {
         emit(
           state.copyWith(
             msgVerifyUserExists: LocaleKeys.phone_not_correct_format.tr(),
@@ -25,23 +37,37 @@ class VerifyUserExistsCubit extends Cubit<VerifyUserExistsState>
           ),
         );
       } else {
-        final dataRequest = VerifyUserExistModelRequest(
-            phoneNumber: phoneController?.text ?? '');
+        final dataRequest =
+            VerifyUserExistModelRequest(phoneNumber: phoneController.text);
         await _datasource.verifyUserExist(dataRequest).then((response) async {
-          if (response.code != 15) {
-            emit(
-              state.copyWith(
+          switch (response.code) {
+            case -13:
+              NavigatorExt.pushAndRemoveUntil(
+                AppContext.navigatorKey.currentContext!,
+                LoginPage(
+                  phoneNumber: phoneController.text,
+                ),
+                AppRoutes.verifyUserExists,
+              );
+              break;
+            case 15:
+              emit(state.copyWith(
+                msgVerifyUserExists: '',
+                onVerifyUserExists: RequestStatus.success,
+              ));
+              NavigatorExt.push(
+                AppContext.navigatorKey.currentContext!,
+                VerifyOtpPage(
+                  phoneNumber: phoneController.text,
+                ),
+              );
+              break;
+            default:
+              emit(state.copyWith(
                 msgVerifyUserExists: response.msg,
                 onVerifyUserExists: RequestStatus.failure,
-              ),
-            );
-          } else {
-            emit(
-              state.copyWith(
-                msgVerifyUserExists: response.msg,
-                onVerifyUserExists: RequestStatus.success,
-              ),
-            );
+              ));
+              break;
           }
         });
       }

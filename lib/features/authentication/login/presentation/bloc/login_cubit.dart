@@ -1,112 +1,66 @@
-import 'package:espot_power/extensions/string_extensions.dart';
+import 'package:espot_power/core/routes/app_pages.dart';
 import 'package:espot_power/features/index.dart';
-import 'package:espot_power/service/firebase_auth/firebase_auth.dart';
+import 'package:espot_power/index.dart';
+import 'package:espot_power/utils/index.dart';
 import 'package:flutter/widgets.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:get_it/get_it.dart';
 
 part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> with LoadingMixin, ToastMixin {
   LoginCubit() : super(const LoginState());
 
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
-  final _datasource = GetIt.instance<LoginDataSource>();
+  final _datasource = GetIt.instance<LoginDatasourcesImpl>();
 
-  void checkIsColorLightButtonLogin() {
-    if (emailController.text.isNotEmpty && passwordController.text.isNotEmpty) {
-      emit(state.copyWith(isColorLightButtonLogin: true));
-    } else {
-      emit(state.copyWith(isColorLightButtonLogin: false));
-    }
+  void initData({String? phoneNumber}) {
+    phoneController.text = phoneNumber ?? '';
+    passwordController.text = '';
+
+    emit(state.copyWith(isShowPassword: true));
   }
 
-  // void login(BuildContext context) async {
-  //   showLoading();
-  //   emit(state.copyWith(onLogin: RequestStatus.loading));
+  void resetState() {
+    emit(state.copyWith(
+      onLogin: RequestStatus.initial,
+      msgLogin: '',
+    ));
+  }
 
-  //   try {
-  //     if (emailController.value.text.isValidEmail() == true &&
-  //         passwordController.value.text.isNotEmpty) {
-  //       _datasource
-  //           .login(
-  //               email: emailController.text.trim(),
-  //               password: passwordController.text.trim())
-  //           .then((response) async {
-  //         if (response?.status == 0) {
-  //           validateLogin(value: false);
-  //           emit(state.copyWith(
-  //             onLogin: RequestStatus.failure,
-  //           ));
-  //           dismissloading();
-  //         } else if (response?.data != null) {
-  //           await DataUserLoginCachedClient.instance.storeData(response);
-  //           emit(state.copyWith(
-  //             onLogin: RequestStatus.success,
-  //             loginResponse: response?.data,
-  //           ));
-  //         }
-  //       });
-  //     } else {
-  //       dismissloading();
-  //       emit(state.copyWith(onLogin: RequestStatus.failure));
-  //     }
-  //     dismissloading();
-  //   } catch (e) {
-  //     dismissloading();
-
-  //     emit(state.copyWith(onLogin: RequestStatus.failure));
-  //   }
-  // }
-
-  // void refreshToken() async {
-  //   try {
-  //     final dataUserLocal = await DataUserLoginCachedClient.instance.getData();
-
-  //     await _datasource
-  //         .refreshToken(userId: dataUserLocal?.data?.iD)
-  //         .then((response) async {
-  //       if (response?.data != null) {
-  //         await DataUserLoginCachedClient.instance.storeData(response);
-  //       }
-  //     });
-  //   } catch (e) {
-  //     dismissloading();
-  //   }
-  // }
-
-  void resetPassword(
-    BuildContext context,
-  ) async {
-    emit(state.copyWith(onResetPassword: RequestStatus.loading));
+  Future<void> login() async {
+    emit(state.copyWith(onLogin: RequestStatus.loading));
 
     try {
-      if (emailController.value.text.isValidEmail() == true) {
-        await FirebaseAuthentication.instance.resetPassword(context,
-            email: emailController.text.trim(), onFailed: (err) {
-          showToast(
-              message: err,
-              toastLenght: Toast.LENGTH_SHORT,
-              toastGravity: ToastGravity.TOP);
-        }, onSuccess: () {
-          emit(state.copyWith(onResetPassword: RequestStatus.success));
-          if (state.onResetPassword == RequestStatus.success) {
-            //NavigatorExt.push(context, const ForgotPasswordSuccess());
-          }
-        });
-      }
-
-      dismissloading();
+      final dataRequest = LoginModelRequest(
+        phoneNumber: phoneController.text,
+        password: FormatUtils().convertToMd5(passwordController.text),
+      );
+      await _datasource.login(dataRequest).then((response) async {
+        if (response.code != 10) {
+          emit(state.copyWith(
+            msgLogin: response.msg,
+            onLogin: RequestStatus.failure,
+          ));
+        } else {
+          final dataResponse = UserData.fromJson(response.obj);
+          await SharedPrefsHelper.saveAccessToken(dataResponse.token ?? "");
+          emit(state.copyWith(
+            msgLogin: '',
+            onLogin: RequestStatus.success,
+          ));
+          NavigatorExt.pushAndRemoveUntil(
+              AppContext.navigatorKey.currentContext!,
+              const HomePage(),
+              AppRoutes.login);
+        }
+      });
     } catch (e) {
-      dismissloading();
-
-      emit(state.copyWith(onResetPassword: RequestStatus.failure));
+      emit(state.copyWith(onLogin: RequestStatus.failure));
     }
   }
 
-  void validateLogin({bool? value}) {
-    emit(state.copyWith(isErrorWrongEmailOrPassword: value));
+  void emitShowPassword(bool value) {
+    emit(state.copyWith(isShowPassword: value));
   }
 }

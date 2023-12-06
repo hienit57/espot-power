@@ -4,3 +4,8 @@ enum RequestStatus {
   success,
   failure,
 }
+
+enum FromPage {
+  signUp,
+  forgotPassword,
+}

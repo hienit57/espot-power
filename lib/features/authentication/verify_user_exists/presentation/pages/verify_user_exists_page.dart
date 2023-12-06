@@ -2,13 +2,19 @@ import 'package:espot_power/common/index.dart';
 import 'package:espot_power/features/index.dart';
 import 'package:espot_power/index.dart';
 import 'package:espot_power/theme/index.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class VerifyUserPage extends StatelessWidget {
-  const VerifyUserPage({super.key});
+  const VerifyUserPage({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
+    final _verifyUserExists = BlocProvider.of<VerifyUserExistsCubit>(context);
+    _verifyUserExists.initData();
+
     return CBackgroundAuthWidget(
       child: Column(
         children: [
@@ -40,10 +46,12 @@ class VerifyUserPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24),
             child: AppTextField(
-              controller: BlocProvider.of<VerifyUserExistsCubit>(context)
-                  .phoneController,
+              controller: _verifyUserExists.phoneController,
               placeholder: LocaleKeys.telephone.tr(),
               borderRadius: 10,
+              onChanged: (value) {
+                _verifyUserExists.resetState();
+              },
               prefix: const Padding(
                 padding: EdgeInsets.all(11.0),
                 child: CImage(
@@ -53,26 +61,22 @@ class VerifyUserPage extends StatelessWidget {
             ),
           ),
           BlocBuilder<VerifyUserExistsCubit, VerifyUserExistsState>(
-            bloc: BlocProvider.of<VerifyUserExistsCubit>(context),
             buildWhen: (previous, current) =>
                 previous.onVerifyUserExists != current.onVerifyUserExists,
             builder: (context, state) {
-              if (state.onVerifyUserExists == RequestStatus.failure) {
-                return Column(
-                  children: [
-                    const SizedBox(height: 12),
-                    CText(
-                      fontSize: 13,
-                      textColor: AppColors.colorEC222D,
-                      fontWeight: FontWeight.w400,
-                      lineSpacing: 1,
-                      text: state.msgVerifyUserExists,
-                    ),
-                    const SizedBox(height: 12),
-                  ],
-                );
-              }
-              return const SizedBox(height: 38);
+              return Column(
+                children: [
+                  const SizedBox(height: 12),
+                  CText(
+                    fontSize: 13,
+                    textColor: AppColors.colorEC222D,
+                    fontWeight: FontWeight.w400,
+                    lineSpacing: 1,
+                    text: state.msgVerifyUserExists,
+                  ),
+                  const SizedBox(height: 12),
+                ],
+              );
             },
           ),
           Padding(
@@ -85,8 +89,7 @@ class VerifyUserPage extends StatelessWidget {
               title: LocaleKeys.continues.tr(),
               titleFontWeight: FontWeight.w500,
               onPressed: () {
-                BlocProvider.of<VerifyUserExistsCubit>(context)
-                    .verifyUserExist();
+                _verifyUserExists.verifyUserExist();
               },
             ),
           )

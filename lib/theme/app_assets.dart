@@ -63,7 +63,7 @@ class AppAssets {
       'assets/images/icon_search_location.png';
   static const String iconSignUpLockError =
       'assets/images/icon_signup_lock_error.svg';
-  static const String iconSignupDialogChecked =
+  static const String iconCheckSuccess =
       'assets/images/icon_sigup_dialog_checked.svg';
   static const String iconTabMapInstruction =
       'assets/images/icon_tab_map_intruction.svg';

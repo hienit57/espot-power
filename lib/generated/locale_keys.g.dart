@@ -18,11 +18,11 @@ abstract class  LocaleKeys {
   static const password_create = 'password_create';
   static const password_wrong = 'password_wrong';
   static const password_forgot = 'password_forgot';
-  static const create_password = 'create_password';
-  static const create_password_new = 'create_password_new';
-  static const create_password_confirm = 'create_password_confirm';
-  static const password_create_done = 'password_create_done';
-  static const password_create_done_2 = 'password_create_done_2';
+  static const your_password = 'your_password';
+  static const new_password = 'new_password';
+  static const confirm_password = 'confirm_password';
+  static const password_create_success = 'password_create_success';
+  static const password_create_success_2 = 'password_create_success_2';
   static const enter_username = 'enter_username';
   static const enter_password = 'enter_password';
   static const enter_confirm_code = 'enter_confirm_code';
@@ -399,5 +399,6 @@ abstract class  LocaleKeys {
   static const error_form_update_info = 'error_form_update_info';
   static const please_check_info_account = 'please_check_info_account';
   static const phone_not_correct_format = 'phone_not_correct_format';
+  static const enter_new_password = 'enter_new_password';
 
 }

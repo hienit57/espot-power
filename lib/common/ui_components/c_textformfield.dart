@@ -88,7 +88,7 @@ class AppTextField extends StatelessWidget {
         style: TextStyle(
           color: textColor ?? Colors.black,
           fontSize: fontSize ?? 14,
-          fontWeight: fontWeight,
+          fontWeight: fontWeight ?? FontWeight.w400,
           fontFamily: AppFonts.svnGotham,
           decoration: inpuDecoration,
         ),
@@ -126,6 +126,7 @@ class AppTextField extends StatelessWidget {
             color: AppColors.color979797,
             fontSize: fontSize ?? 14,
             fontFamily: AppFonts.svnGotham,
+            fontWeight: FontWeight.w400,
           ),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(borderRadius ?? 0),

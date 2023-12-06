@@ -1,3 +1,4 @@
+export 'contact_service.dart';
 export 'datetime_utils.dart';
 export 'format_utils.dart';
 export 'my_logger.dart';

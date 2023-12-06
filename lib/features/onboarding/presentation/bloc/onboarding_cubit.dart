@@ -18,6 +18,11 @@ class OnboardingCubit extends Cubit<OnboardingState>
     emit(state.copyWith(selectedOnboardingPage: value));
   }
 
+  Future<bool> isLogin() async {
+    final accessToken = await SharedPrefsHelper.getAccessToken();
+    return (accessToken != null && accessToken != '');
+  }
+
   void onPushInApp() async {
     await SharedPrefsHelper.saveViewOnboarding(true);
     Navigator.pushNamed(

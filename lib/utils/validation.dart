@@ -8,7 +8,7 @@ class Validation {
     return true;
   }
 
-  static bool validationLengthInput(String value) {
+  static bool validationPassword(String value) {
     Pattern pattern = r'(^[a-z A-Z 0-9]{6,20}$)';
     RegExp regex = new RegExp(pattern.toString());
     if (!regex.hasMatch(value)) return false;

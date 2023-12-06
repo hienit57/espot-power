@@ -11,8 +11,8 @@
   "password_create": "Tạo mật khẩu",
   "password_wrong": "Sai mật khẩu",
   "password_forgot": "Quên mật khẩu",
-  "password_create_done": "Tạo mật khẩu thành công.\nBạn sẽ được chuyển đến trang dịch vụ!",
-  "password_create_done_2": "Thành công\nBạn sẽ được chuyển đến trang dịch vụ!",
+  "password_create_success": "Tạo mật khẩu thành công.\nBạn sẽ được chuyển đến trang dịch vụ!",
+  "password_create_success_2": "Thành công\nBạn sẽ được chuyển đến trang dịch vụ!",
   "enter_username": "Nhập tài khoản tại đây",
   "enter_password": "Nhập mật khẩu tại đây",
   "enter_confirm_code": "Nhập mã xác nhận đã gửi tới",
@@ -66,9 +66,9 @@
   "answer_question": "Hỏi đáp",
   "battery_rental": "Thuê pin",
   "battery_pay": "Trả pin",
-  "create_password": "Mật khẩu của bạn",
-  "create_password_new": "Mật khẩu mới",
-  "create_password_confirm": "Xác nhận mật khẩu",
+  "your_password": "Mật khẩu của bạn",
+  "new_password": "Mật khẩu mới",
+  "confirm_password": "Xác nhận mật khẩu",
   "manual_battery_rental": "Hướng dẫn thuê pin sạc eSpot",
   "manual_battery_pay": "Hướng dẫn trả pin sạc eSpot",
   "message_manual_battery_pay_one": "Trả pin sạc vào trạm ",
@@ -396,5 +396,6 @@
   "please_input_full_info_field": "Bạn phải nhập đầy đủ thông tin",
   "error_form_update_info": "Kiểm tra lại chỗ trống hoặc không đúng định dạng",
   "please_check_info_account": "Vui lòng kiểm tra lại thông tin tài khoản",
-  "phone_not_correct_format": "Số điện thoại không đúng định dạng"
+  "phone_not_correct_format": "Số điện thoại không đúng định dạng",
+  "enter_new_password": "Nhập mật khẩu mới"
 }
