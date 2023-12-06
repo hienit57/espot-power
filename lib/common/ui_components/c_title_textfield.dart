@@ -2,7 +2,6 @@ import 'package:espot_power/common/index.dart';
 import 'package:espot_power/theme/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:espot_power/index.dart';
 
 class CTitleTextField extends StatelessWidget {
   final String? title;
@@ -44,27 +43,27 @@ class CTitleTextField extends StatelessWidget {
         if (title != null) ...[
           CText(
             text: title,
-            fontSize: 18.h,
+            fontSize: 18,
             fontWeight: FontWeight.bold,
             textColor: AppColors.color212121,
           ),
-          SizedBox(height: 7.h),
+          SizedBox(height: 7),
         ],
         AppTextField(
           readOnly: readOnly ?? false,
           controller: controller,
-          borderRadius: 4.r,
+          borderRadius: 4,
           placeholder: hintText,
           keyboardType: keyboardType,
           inputFormatters: inputFormatters,
           onChanged: onChanged,
           focusNode: focusNode,
           onTap: onTap,
-          fontSize: 16.sp,
+          fontSize: 16,
           prefix: prefix,
           borderColor: borderColor,
           inpuDecoration: inpuDecoration,
-          contentPadding: EdgeInsets.symmetric(horizontal: 15.w),
+          contentPadding: EdgeInsets.symmetric(horizontal: 15),
           validator: validator ??
               (value) {
                 return null;

@@ -21,6 +21,6 @@ class OnboardingCubit extends Cubit<OnboardingState>
   void onPushInApp() async {
     await SharedPrefsHelper.saveViewOnboarding(true);
     Navigator.pushNamed(
-        AppContext.navigatorKey.currentContext!, AppRoutes.login);
+        AppContext.navigatorKey.currentContext!, AppRoutes.verifyUserExists);
   }
 }

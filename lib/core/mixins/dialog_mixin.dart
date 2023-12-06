@@ -30,20 +30,20 @@ mixin DialogMixin {
           child: Align(
             alignment: Alignment.centerRight,
             child: SizedBox(
-              width: width.w,
+              width: width,
               child: Stack(
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(left: 20.w),
+                    padding: EdgeInsets.only(left: 20),
                     child: widget,
                   ),
                   Padding(
-                    padding: EdgeInsets.only(top: 53.h),
+                    padding: EdgeInsets.only(top: 53),
                     child: GestureDetector(
                       onTap: () => context.pop(context),
                       child: Container(
-                        width: 40.w,
-                        height: 40.h,
+                        width: 40,
+                        height: 40,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           color: AppColors.color212121,

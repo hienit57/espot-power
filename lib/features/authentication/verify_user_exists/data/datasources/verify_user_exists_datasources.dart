@@ -1,6 +1,9 @@
-import 'dart:convert';
+import 'package:espot_power/core/index.dart';
+import 'package:espot_power/features/index.dart';
 
-class ExampleDatasources {
+abstract class VerifyUserDatasources {
+  Future<BaseRequestResponse> verifyUserExist(
+      VerifyUserExistModelRequest dataRequest);
   // Future<BaseRequestListResponseWithPagination<PatientRecordModelResponse>>
   //     getListInvoicing({int? skip, int? forceAll}) async {
   //   Map<String, dynamic> body = {

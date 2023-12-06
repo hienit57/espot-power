@@ -1,11 +1,6 @@
-import 'package:espot_power/core/enums/enums.dart';
-import 'package:espot_power/core/mixins/index.dart';
-import 'package:espot_power/core/routes/navigator_ext.dart';
 import 'package:espot_power/extensions/string_extensions.dart';
 import 'package:espot_power/features/index.dart';
 import 'package:espot_power/service/firebase_auth/firebase_auth.dart';
-import 'package:espot_power/index.dart';
-import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get_it/get_it.dart';

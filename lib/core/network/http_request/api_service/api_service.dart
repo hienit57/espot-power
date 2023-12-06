@@ -1,11 +1,8 @@
-import 'dart:convert';
-
 import 'package:espot_power/core/index.dart';
 import 'package:espot_power/core/local_data/pref_utils.dart';
 import 'package:espot_power/core/mixins/index.dart';
 import 'package:espot_power/core/network/http_request/request_model/request_model.dart';
 import 'package:espot_power/core/network/http_request/request_model/request_status_code.dart';
-import 'package:espot_power/features/authentication/login/index.dart';
 import 'package:espot_power/utils/index.dart';
 import 'package:flutter/foundation.dart';
 import 'package:dio/dio.dart';
@@ -77,7 +74,7 @@ class ApiService with PreferencesUtil, LoadingMixin, ToastMixin {
   }
 
   Future<Options> _baseOptions() async {
-    final deviceToken = await getDeviceToken();
+    //final deviceToken = await getDeviceToken();
 
     ///TODO:FIX ACCESS TOKEN
     // final accessToken =
@@ -89,30 +86,33 @@ class ApiService with PreferencesUtil, LoadingMixin, ToastMixin {
       'Access-Control-Allow-Origin': 'true',
       'Accept': 'application/json',
       'Authorization': '',
-      'DeviceToken': deviceToken,
-      'TimezoneOffset': getTimeZoneOffSet(),
+      //'DeviceToken': deviceToken,
+      //'TimezoneOffset': getTimeZoneOffSet(),
     };
     Map<String, dynamic> extra = {};
     return Options(
       validateStatus: (status) => true,
       headers: headers,
       extra: extra,
+
       // sendTimeout: 3 * 1000, // 3s
       // receiveTimeout: 3 * 1000, //3s
     );
   }
 
-  Future<Map<String, dynamic>> request(RequestModel request) async {
+  Future<Map<String, dynamic>> request(RequestModel request,
+      {Map<String, dynamic>? queryParameters}) async {
     if (request.requestType == RequestType.http) {
       switch (request.requestMethod) {
         case RequestMethod.get:
-          return await _requestGet(request);
+          return await _requestGet(request, queryParameters: queryParameters);
         case RequestMethod.post:
-          return await _requestPost(request);
+          return await _requestPost(request, queryParameters: queryParameters);
         case RequestMethod.put:
-          return await _requestPut(request);
+          return await _requestPut(request, queryParameters: queryParameters);
         case RequestMethod.delete:
-          return await _requestDelete(request);
+          return await _requestDelete(request,
+              queryParameters: queryParameters);
       }
     } else {
       return await _requestGraphql(request);
@@ -151,49 +151,57 @@ class ApiService with PreferencesUtil, LoadingMixin, ToastMixin {
     if (result.data != null) {
       return result.data!;
     } else {
-      return BaseRequestResponse(status: RequestStatusCode.failure.value)
+      return BaseRequestResponse(code: RequestStatusCode.failure.value)
           .toJson();
     }
   }
 
-  Future<Map<String, dynamic>> _requestGet(RequestModel request) async {
+  Future<Map<String, dynamic>> _requestGet(RequestModel request,
+      {Map<String, dynamic>? queryParameters}) async {
     final url = '${AppEnviroment.instance.getApiUrl()}${request.route}';
 
     var response = await dio.get(
       url,
       options: await _baseOptions(),
+      queryParameters: queryParameters,
     );
 
     return response.data;
   }
 
-  Future<Map<String, dynamic>> _requestPost(RequestModel request) async {
+  Future<Map<String, dynamic>> _requestPost(RequestModel request,
+      {Map<String, dynamic>? queryParameters}) async {
     final url = '${AppEnviroment.instance.getApiUrl()}${request.route}';
     var response = await dio.post(
       url,
       data: request.params,
       options: await _baseOptions(),
+      queryParameters: queryParameters,
     );
 
     return response.data;
   }
 
-  Future<Map<String, dynamic>> _requestPut(RequestModel request) async {
+  Future<Map<String, dynamic>> _requestPut(RequestModel request,
+      {Map<String, dynamic>? queryParameters}) async {
     final url = '${AppEnviroment.instance.getApiUrl()}${request.route}';
     var response = await dio.put(
       url,
       data: request.params,
       options: await _baseOptions(),
+      queryParameters: queryParameters,
     );
     return response.data;
   }
 
-  Future<Map<String, dynamic>> _requestDelete(RequestModel request) async {
+  Future<Map<String, dynamic>> _requestDelete(RequestModel request,
+      {Map<String, dynamic>? queryParameters}) async {
     final url = '${AppEnviroment.instance.getApiUrl()}${request.route}';
     var response = await dio.delete(
       url,
       data: request.params,
       options: await _baseOptions(),
+      queryParameters: queryParameters,
     );
     return response.data;
   }

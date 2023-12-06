@@ -1,22 +1,30 @@
 class BaseRequestResponse {
-  final int? status;
-  final String? userMessage;
-  final dynamic data;
+  final int? code;
+  final String? msg;
+  final bool? ok;
+  final dynamic obj;
+  final String? i18n;
 
   BaseRequestResponse({
-    this.status,
-    this.userMessage,
-    this.data,
+    this.code,
+    this.msg,
+    this.ok,
+    this.obj,
+    this.i18n,
   });
 
   BaseRequestResponse.fromJson(Map<String, dynamic> json)
-      : status = json['Status'] as int?,
-        userMessage = json['Message'] as String?,
-        data = json['Data'];
+      : code = json['code'] as int?,
+        msg = json['msg'] as String?,
+        ok = json['ok'] as bool?,
+        obj = json['obj'],
+        i18n = json['i18n'] as String?;
 
   Map<String, dynamic> toJson() => {
-        'Status': status,
-        'Message': userMessage,
-        'Data': data,
+        'code': code,
+        'msg': msg,
+        'ok': ok,
+        'obj': obj,
+        'i18n': i18n,
       };
 }

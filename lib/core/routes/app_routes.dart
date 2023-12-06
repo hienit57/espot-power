@@ -6,7 +6,7 @@ class AppPages {
   static Map<String, WidgetBuilder> getPages(BuildContext context) {
     return {
       AppRoutes.onboarding: (context) => const OnboardingPage(),
-      AppRoutes.verifyLogin: (context) => const VerifyLoginPage(),
+      AppRoutes.verifyUserExists: (context) => const VerifyUserPage(),
 
       AppRoutes.login: (context) => const LoginPage(),
       // AppRoutes.signUp: (context) => const SignUpScreen(),
@@ -72,8 +72,8 @@ class AppPages {
     // }
 
     switch (settings.name) {
-      case AppRoutes.verifyLogin:
-        return MaterialPageRoute(builder: (_) => const VerifyLoginPage());
+      case AppRoutes.verifyUserExists:
+        return MaterialPageRoute(builder: (_) => const VerifyUserPage());
       // case AppRoutes.login:
       //   return MaterialPageRoute(builder: (_) => const SignInScreen());
       // case AppRoutes.signUp:

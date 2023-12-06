@@ -388,12 +388,13 @@
   "incorrect": "Không đúng",
   "note_update_infomation_account": "Bạn vui lòng khai báo thông tin chính xác, để E-SPOT có thể hỗ trợ bạn thật tốt nhé.",
   "please_input_full_infomation": "Mời bạn cập nhật đầy đủ thông tin",
-  "transaction": "Giao dịch" ,
-  "pwd_do_not_match":"Mật khẩu không trùng nhau",
-  "pwd_is_missing_character":"Mật khẩu phải chứa ít nhất 6 kí tự",
-  "please_check_few_minutes":"Bạn vui lòng kiểm tra lại sau ít phút nữa...",
+  "transaction": "Giao dịch",
+  "pwd_do_not_match": "Mật khẩu không trùng nhau",
+  "pwd_is_missing_character": "Mật khẩu phải chứa ít nhất 6 kí tự",
+  "please_check_few_minutes": "Bạn vui lòng kiểm tra lại sau ít phút nữa...",
   "choose_beneficiary_bank": "Chọn ngân hàng thụ hưởng",
-   "please_input_full_info_field": "Bạn phải nhập đầy đủ thông tin",
-  "error_form_update_info":"Kiểm tra lại chỗ trống hoặc không đúng định dạng",
-  "please_check_info_account":"Vui lòng kiểm tra lại thông tin tài khoản"
+  "please_input_full_info_field": "Bạn phải nhập đầy đủ thông tin",
+  "error_form_update_info": "Kiểm tra lại chỗ trống hoặc không đúng định dạng",
+  "please_check_info_account": "Vui lòng kiểm tra lại thông tin tài khoản",
+  "phone_not_correct_format": "Số điện thoại không đúng định dạng"
 }

@@ -1,4 +1,5 @@
 import 'package:espot_power/theme/app_fonts.dart';
+import 'package:espot_power/theme/index.dart';
 import 'package:flutter/material.dart';
 
 class CButton extends StatelessWidget {
@@ -63,7 +64,7 @@ class CButton extends StatelessWidget {
                 style: TextStyle(
                   fontFamily: fontFamily ?? AppFonts.svnGotham,
                   fontSize: titleFontSize ?? 14,
-                  color: titleColor ?? Colors.black,
+                  color: titleColor ?? AppColors.colorText231F20,
                   fontWeight: titleFontWeight ?? FontWeight.normal,
                 ),
               ),

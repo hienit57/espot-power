@@ -36,7 +36,7 @@ class MainApplication extends StatelessWidget with PreferencesUtil {
             themeMode: ThemeMode.light,
             initialRoute: (() {
               if (snapshot.data == true) {
-                return AppRoutes.verifyLogin;
+                return AppRoutes.verifyUserExists;
               }
               return AppRoutes.onboarding;
               // if ((widget.token ?? '').isNotEmpty) {

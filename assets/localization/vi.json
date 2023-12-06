@@ -395,5 +395,6 @@
   "please_check_few_minutes": "Bạn vui lòng kiểm tra lại sau ít phút nữa...",
   "please_input_full_info_field": "Bạn phải nhập đầy đủ thông tin",
   "error_form_update_info": "Kiểm tra lại chỗ trống hoặc không đúng định dạng",
-  "please_check_info_account": "Vui lòng kiểm tra lại thông tin tài khoản"
+  "please_check_info_account": "Vui lòng kiểm tra lại thông tin tài khoản",
+  "phone_not_correct_format": "Số điện thoại không đúng định dạng"
 }

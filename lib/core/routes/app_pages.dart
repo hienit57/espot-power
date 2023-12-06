@@ -1,6 +1,6 @@
 class AppRoutes {
   static const onboarding = '/onboarding';
-  static const verifyLogin = '/verify-login';
+  static const verifyUserExists = '/verify-login';
 
   static const login = '/login';
   static const signUpOtp = '/signup-otp';

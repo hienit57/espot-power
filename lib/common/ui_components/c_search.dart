@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:espot_power/theme/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:espot_power/index.dart';
 
 class CSearch extends StatefulWidget {
   final TextEditingController? controller;
@@ -72,12 +71,12 @@ class _CSearchState extends State<CSearch> {
       controller: widget.controller,
       textAlign: widget.textAlign,
       inputFormatters: widget.inputFormatters,
-      style: TextStyle(color: Colors.black, fontSize: 14.sp),
+      style: TextStyle(color: Colors.black, fontSize: 14),
       decoration: InputDecoration(
         border: InputBorder.none,
         hintText: widget.placeholder,
         hintStyle: TextStyle(
-            color: AppColors.color212121.withOpacity(0.6), fontSize: 14.sp),
+            color: AppColors.color212121.withOpacity(0.6), fontSize: 14),
         suffixIcon: widget.suffix,
         suffixIconConstraints: const BoxConstraints(minWidth: 0, minHeight: 0),
         prefixIcon: widget.prefix,

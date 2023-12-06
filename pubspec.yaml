@@ -92,7 +92,6 @@ dependencies:
 
   flutter_cupertino_datetime_picker: ^3.0.0
   jwt_decoder: ^2.0.1
-  flutter_screenutil: ^5.7.0
   dotted_border: 2.0.0+3
   flutter_dropzone: 3.0.6
   file_picker: ^5.0.0

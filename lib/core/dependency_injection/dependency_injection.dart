@@ -6,5 +6,8 @@ Future<void> setupDi() async {
 
   getIt.registerFactory<LoginDataSource>(() => LoginDataSource());
 
+  getIt.registerFactory<VerifyUserDatasourcesImpl>(
+      () => VerifyUserDatasourcesImpl());
+
   return;
 }

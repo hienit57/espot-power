@@ -6,6 +6,5 @@ export 'package:shared_preferences/shared_preferences.dart';
 export 'package:flutter_easyloading/flutter_easyloading.dart';
 export 'package:flutter/gestures.dart';
 export 'package:flutter_bloc/flutter_bloc.dart';
-export 'package:flutter_screenutil/flutter_screenutil.dart';
 export 'package:espot_power/generated/locale_keys.g.dart';
 export 'main_application.dart';

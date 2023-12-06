@@ -39,7 +39,7 @@ class CDropdownWidget extends StatelessWidget {
         maxHeight: 200,
 
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(6.r),
+          borderRadius: BorderRadius.circular(6),
           color: AppColors.white,
           boxShadow: const [
             BoxShadow(

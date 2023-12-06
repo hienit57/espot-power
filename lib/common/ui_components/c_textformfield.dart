@@ -1,4 +1,3 @@
-import 'package:espot_power/index.dart';
 import 'package:espot_power/theme/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -67,85 +66,91 @@ class AppTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      scrollPadding: EdgeInsets.only(
-          bottom: MediaQuery.of(context).viewInsets.bottom + 14 * 4),
-      readOnly: readOnly ?? false,
-      textInputAction: textInputAction ?? TextInputAction.done,
-      minLines: minLine ?? 1,
-      autovalidateMode: autovalidateMode ?? AutovalidateMode.onUserInteraction,
-      initialValue: initialValue,
-      controller: controller,
-      textAlign: textAlign,
-      onTap: onTap,
-      inputFormatters: inputFormatters,
-      onFieldSubmitted: onFieldSubmitted,
-      enableSuggestions: false,
-      autocorrect: false,
-      style: TextStyle(
-        color: textColor ?? Colors.black,
-        fontSize: fontSize ?? 14.sp,
-        fontWeight: fontWeight,
-        fontFamily: AppFonts.svnGotham,
-        decoration: inpuDecoration,
+    return Container(
+      decoration: BoxDecoration(
+        color: AppColors.white,
+        borderRadius: BorderRadius.circular(borderRadius ?? 0),
       ),
-      decoration: InputDecoration(
-        errorMaxLines: 3,
-        errorStyle: const TextStyle(
-          color: Colors.red,
-          fontSize: 12,
-        ),
-        contentPadding:
-            contentPadding ?? const EdgeInsets.only(left: 24, right: 12),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(borderRadius ?? 0),
-          borderSide: BorderSide(
-            color: borderColor ?? AppColors.color212121.withOpacity(0.2),
-            width: 1,
-          ),
-        ),
-        errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(borderRadius ?? 0),
-          borderSide: const BorderSide(
-            width: 1,
-            color: Colors.red,
-          ),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(borderRadius ?? 0),
-          borderSide: BorderSide(
-            width: 1,
-            color: borderColor ?? AppColors.color212121,
-          ),
-        ),
-        hintText: placeholder,
-        hintStyle: TextStyle(
-          color: Colors.grey,
-          fontSize: fontSize ?? 14.sp,
+      child: TextFormField(
+        readOnly: readOnly ?? false,
+        textInputAction: textInputAction ?? TextInputAction.done,
+        minLines: minLine ?? 1,
+        autovalidateMode:
+            autovalidateMode ?? AutovalidateMode.onUserInteraction,
+        initialValue: initialValue,
+        controller: controller,
+        textAlign: textAlign,
+        onTap: onTap,
+        inputFormatters: inputFormatters,
+        onFieldSubmitted: onFieldSubmitted,
+        enableSuggestions: false,
+        autocorrect: false,
+        style: TextStyle(
+          color: textColor ?? Colors.black,
+          fontSize: fontSize ?? 14,
+          fontWeight: fontWeight,
           fontFamily: AppFonts.svnGotham,
+          decoration: inpuDecoration,
         ),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(borderRadius ?? 0),
-          borderSide: BorderSide(
-            color: borderColor ?? AppColors.color212121.withOpacity(0.2),
-            width: 1,
+        decoration: InputDecoration(
+          errorMaxLines: 3,
+          errorStyle: const TextStyle(
+            color: Colors.red,
+            fontSize: 12,
           ),
+          contentPadding:
+              contentPadding ?? const EdgeInsets.only(left: 24, right: 12),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(borderRadius ?? 0),
+            borderSide: BorderSide(
+              color: borderColor ?? AppColors.color212121.withOpacity(0.2),
+              width: 1,
+            ),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(borderRadius ?? 0),
+            borderSide: const BorderSide(
+              width: 1,
+              color: Colors.red,
+            ),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(borderRadius ?? 0),
+            borderSide: BorderSide(
+              width: 1,
+              color: borderColor ?? AppColors.color212121.withOpacity(0.2),
+            ),
+          ),
+          hintText: placeholder,
+          hintStyle: TextStyle(
+            color: AppColors.color979797,
+            fontSize: fontSize ?? 14,
+            fontFamily: AppFonts.svnGotham,
+          ),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(borderRadius ?? 0),
+            borderSide: BorderSide(
+              color: borderColor ?? AppColors.color212121.withOpacity(0.2),
+              width: 1,
+            ),
+          ),
+          suffixIcon: Padding(
+            padding: const EdgeInsets.only(right: 12),
+            child: suffix,
+          ),
+          suffixIconConstraints:
+              const BoxConstraints(minWidth: 0, minHeight: 0),
+          prefixIcon: prefix,
         ),
-        suffixIcon: Padding(
-          padding: const EdgeInsets.only(right: 12),
-          child: suffix,
-        ),
-        suffixIconConstraints: const BoxConstraints(minWidth: 0, minHeight: 0),
-        prefixIcon: prefix,
+        focusNode: focusNode,
+        //style: textFieldStyle?.textStyle,
+        obscureText: obscureText,
+        keyboardType: keyboardType,
+        validator: validator,
+        enabled: enabled,
+        onChanged: onChanged,
+        maxLines: maxLines,
       ),
-      focusNode: focusNode,
-      //style: textFieldStyle?.textStyle,
-      obscureText: obscureText,
-      keyboardType: keyboardType,
-      validator: validator,
-      enabled: enabled,
-      onChanged: onChanged,
-      maxLines: maxLines,
     );
   }
 }

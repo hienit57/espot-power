@@ -398,5 +398,6 @@ abstract class  LocaleKeys {
   static const please_input_full_info_field = 'please_input_full_info_field';
   static const error_form_update_info = 'error_form_update_info';
   static const please_check_info_account = 'please_check_info_account';
+  static const phone_not_correct_format = 'phone_not_correct_format';
 
 }

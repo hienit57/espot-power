@@ -1,6 +1,5 @@
 import 'package:espot_power/common/index.dart';
 import 'package:flutter/material.dart';
-import 'package:espot_power/index.dart';
 
 class CColumnTitleContentWidget extends StatelessWidget {
   final String? title;
@@ -35,14 +34,14 @@ class CColumnTitleContentWidget extends StatelessWidget {
       children: [
         CText(
           text: title,
-          fontSize: fontSizeTitle ?? 18.sp,
+          fontSize: fontSizeTitle ?? 18,
           fontWeight: fontWeightTitle ?? FontWeight.bold,
           textColor: titleColor,
         ),
-        SizedBox(height: spaceHeight ?? 15.h),
+        SizedBox(height: spaceHeight ?? 15),
         CText(
           text: content,
-          fontSize: fontSizeContent ?? 16.sp,
+          fontSize: fontSizeContent ?? 16,
           fontWeight: fontWeightContent ?? FontWeight.w500,
           textColor: contentColor,
         ),

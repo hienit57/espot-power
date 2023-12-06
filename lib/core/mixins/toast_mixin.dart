@@ -1,7 +1,6 @@
 import 'package:espot_power/common/index.dart';
 import 'package:espot_power/theme/index.dart';
 import 'package:flutter/material.dart';
-import 'package:espot_power/index.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 mixin ToastMixin {
@@ -30,22 +29,22 @@ mixin ToastMixin {
             color: Colors.transparent,
             alignment: Alignment.bottomRight,
             child: Padding(
-              padding: EdgeInsets.only(right: 70.w, bottom: 40.h),
+              padding: EdgeInsets.only(right: 70, bottom: 40),
               child: Container(
-                width: width ?? 418.w,
-                height: 89.h,
+                width: width ?? 418,
+                height: 89,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: AppColors.white,
                 ),
                 child: Padding(
-                  padding: EdgeInsets.only(left: 26.w),
+                  padding: EdgeInsets.only(left: 26),
                   child: Center(
                     child: Row(
                       children: [
                         Container(
-                          width: 29.h,
-                          height: 29.h,
+                          width: 29,
+                          height: 29,
                           decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               border: Border.all(
@@ -59,11 +58,11 @@ mixin ToastMixin {
                             color: AppColors.white,
                           ),
                         ),
-                        SizedBox(width: 16.w),
+                        SizedBox(width: 16),
                         CText(
                           text: message,
                           textColor: AppColors.color212121,
-                          fontSize: fontSizeMessage ?? 22.sp,
+                          fontSize: fontSizeMessage ?? 22,
                           fontFamily: AppFonts.svnGotham,
                         )
                       ],
