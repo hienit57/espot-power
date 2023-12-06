@@ -1,5 +1,4 @@
 import 'package:espot_power/common/index.dart';
-import 'package:espot_power/extensions/app_context.dart';
 import 'package:espot_power/index.dart';
 import 'package:espot_power/theme/index.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +16,7 @@ class CBackgroundAuthWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
