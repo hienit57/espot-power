@@ -1,5 +1,6 @@
 import 'package:espot_power/theme/index.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class COtpWidget extends StatelessWidget {
@@ -26,24 +27,30 @@ class COtpWidget extends StatelessWidget {
       length: 4,
       obscureText: false,
       //textStyle: TextStyle(color: brandBlue),
-      //animationType: AnimationType.scale,
+      animationType: AnimationType.none,
       keyboardType: const TextInputType.numberWithOptions(),
+      showCursor: false,
       pinTheme: PinTheme(
         borderWidth: 1,
         activeFillColor: Colors.white,
-        activeColor:
-            isError ?? true ? AppColors.colorBorder : AppColors.colorEC222D,
-        selectedColor:
-            isError ?? true ? AppColors.colorBorder : AppColors.colorEC222D,
-        inactiveColor:
-            isError ?? true ? AppColors.colorBorder : AppColors.colorEC222D,
+        activeColor: AppColors.colorBorder,
+        // isError ?? true ? AppColors.colorBorder : AppColors.colorEC222D,
+        selectedColor: AppColors.colorBorder,
+        // isError ?? true ? AppColors.colorBorder : AppColors.colorEC222D,
+        inactiveColor: AppColors.colorBorder,
+        //isError ?? true ? AppColors.colorBorder : AppColors.colorEC222D,
         shape: PinCodeFieldShape.box,
+
         borderRadius: BorderRadius.circular(10),
         fieldHeight: 44,
         fieldWidth: 44,
         inactiveFillColor: AppColors.white,
         selectedFillColor: AppColors.white,
       ),
+      inputFormatters: [
+        FilteringTextInputFormatter.digitsOnly,
+        FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+      ],
       animationDuration: const Duration(milliseconds: 300),
       enableActiveFill: true,
       controller: otpController,

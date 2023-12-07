@@ -58,6 +58,7 @@ class VerifyUserExistsCubit extends Cubit<VerifyUserExistsState>
               NavigatorExt.push(
                 AppContext.navigatorKey.currentContext!,
                 VerifyOtpPage(
+                  fromPage: FromPage.signUp,
                   phoneNumber: phoneController.text,
                 ),
               );

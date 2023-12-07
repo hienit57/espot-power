@@ -50,6 +50,10 @@ class LoginPage extends StatelessWidget {
               controller: _loginCubit.phoneController,
               placeholder: LocaleKeys.telephone.tr(),
               borderRadius: 10,
+              inputFormatters: [
+                FilteringTextInputFormatter.digitsOnly,
+                FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+              ],
               prefix: const Padding(
                 padding: EdgeInsets.all(11.0),
                 child: CImage(
