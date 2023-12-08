@@ -76,16 +76,14 @@ class ApiService with PreferencesUtil, LoadingMixin, ToastMixin {
   Future<Options> _baseOptions() async {
     //final deviceToken = await getDeviceToken();
 
-    ///TODO:FIX ACCESS TOKEN
-    // final accessToken =
-    //     (await DataUserLoginCachedClient.instance.getData())?.token;
+    final accessToken = await SharedPrefsHelper.getAccessToken();
     //final accessToken = await getToken();
-    //logger.d('Access Token $accessToken');
+    logger.d('Access Token $accessToken');
     final headers = {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': 'true',
       'Accept': 'application/json',
-      'Authorization': '',
+      'X-OAuth-Token': accessToken,
       //'DeviceToken': deviceToken,
       //'TimezoneOffset': getTimeZoneOffSet(),
     };

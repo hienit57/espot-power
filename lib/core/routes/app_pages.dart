@@ -7,6 +7,13 @@ class AppRoutes {
   static const login = '/login';
   static const forgotPassword = '/forgot-password';
   static const home = '/home';
+  static const profile = '/profile';
+  static const personalInformation = '/personal-information';
+
+  // static Map<String, String> profile = {
+  //   "profile": "/profile",
+  //   "personal-information": "/personal-information",
+  // };
 
   static const signUpAffiliate = '/signup-affiliate';
   static const signUpCreatePassword = '/signup-create-password';

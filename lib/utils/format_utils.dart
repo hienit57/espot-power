@@ -219,13 +219,16 @@ class FormatUtils {
     return '${FormatUtils().capitalizeFirstLetter(firstName ?? '')} ${FormatUtils().capitalizeFirstLetter(lastName ?? '')}';
   }
 
-  String ValidationPhoneNumber(String phone) {
-    if (phone.isNotEmpty && phone[0] == '0') {
-      phone = phone.substring(1);
-      return phone;
-    } else {
-      return phone;
-    }
+  String formatNumberWithCommas(dynamic number) {
+    String formattedString = number.toInt().toString();
+
+    final RegExp regExp = RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))');
+    formattedString = formattedString.replaceAllMapped(
+      regExp,
+      (Match match) => '${match[1]},',
+    );
+
+    return formattedString;
   }
 
   String convertToMd5(String value) {

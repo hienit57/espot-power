@@ -1,4 +1,4 @@
-import 'package:espot_power/features/home/bloc/home_cubit.dart';
+import 'package:espot_power/features/profile/dashboard/presentation/bloc/dashboard_profile_cubit.dart';
 
 import 'features/index.dart';
 
@@ -26,5 +26,8 @@ final providers = [
   ),
   BlocProvider<HomeCubit>(
     create: (context) => HomeCubit(),
+  ),
+  BlocProvider<DashboardProfileCubit>(
+    create: (context) => DashboardProfileCubit(),
   ),
 ];

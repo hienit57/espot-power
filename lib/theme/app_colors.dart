@@ -26,7 +26,6 @@ extension AppColors on Color {
   ///Text
   static Color colorText231F20 = const Color(0xff231F20);
   static Color colorText514D56 = const Color(0xff514D56);
-  static Color colorHintText = const Color(0xff979797);
   static Color colorff34A853 = const Color(0xff34A853);
   static Color colorffEC222D = const Color(0xffEC222D);
   static Color colorff03A9F4 = const Color(0xff03A9F4);
@@ -44,7 +43,6 @@ extension AppColors on Color {
   static Color bgcolor34a853 = const Color(0x1a34a853);
   static Color bgcolorFFFAE6 = const Color(0xffFFFAE6);
   static Color bgcolorF9F9FA = const Color(0xffF9F9FA);
-  static Color bgcolorF1F1F1 = const Color(0xffF1F1F1);
   static Color bgcolorFFCB05 = const Color(0xffFFCB05);
   static Color bgcolor231F2066 = const Color(0xff231F2066);
 

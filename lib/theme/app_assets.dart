@@ -69,20 +69,12 @@ class AppAssets {
       'assets/images/icon_tab_map_intruction.svg';
   static const String iconTabMapSupport =
       'assets/images/icon_tab_map_support.svg';
-  static const String iconTabbarMapChecked =
-      'assets/images/icon_tabbar_map_checked.svg';
   static const String iconTabbarMapUnChecked =
       'assets/images/icon_tabbar_map_unchecked.svg';
-  static const String iconTabbarNotifiChecked =
-      'assets/images/icon_tabbar_notifi_checked.svg';
   static const String iconTabbarNotifiUnChecked =
       'assets/images/icon_tabbar_notifi_unchecked.svg';
-  static const String iconTabbarOrderChecked =
-      'assets/images/icon_tabbar_order_checked.svg';
   static const String iconTabbarOrderUnChecked =
       'assets/images/icon_tabbar_order_unchecked.svg';
-  static const String iconTabbarProfileChecked =
-      'assets/images/icon_tabbar_profile_checked.svg';
   static const String iconTabbarProfileUnChecked =
       'assets/images/icon_tabbar_profile_unchecked.svg';
   static const String iconTabbarOrderSurplusVoucher =

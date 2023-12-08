@@ -6,7 +6,9 @@ export 'package:espot_power/core/mixins/index.dart';
 export 'package:equatable/equatable.dart';
 export 'package:espot_power/core/enums/enums.dart';
 export 'package:flutter/services.dart';
+export 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 export 'onboarding/index.dart';
 export 'authentication/index.dart';
 export 'home/index.dart';
+export 'profile/index.dart';

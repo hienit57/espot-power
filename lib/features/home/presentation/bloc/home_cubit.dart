@@ -8,6 +8,10 @@ part 'home_state.dart';
 class HomeCubit extends Cubit<HomeState> with LoadingMixin, ToastMixin {
   HomeCubit() : super(const HomeState());
 
+  void emitIndexTabSelect(int value) {
+    emit(state.copyWith(indexSelectTab: value));
+  }
+
   Future<void> logout() async {
     await SharedPrefsHelper.clearData().then((value) {
       NavigatorExt.pushAndRemoveUntil(AppContext.navigatorKey.currentContext!,
