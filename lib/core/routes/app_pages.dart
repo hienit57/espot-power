@@ -9,6 +9,7 @@ class AppRoutes {
   static const home = '/home';
   static const profile = '/profile';
   static const personalInformation = '/personal-information';
+  static const changePassword = '/change-password';
 
   // static Map<String, String> profile = {
   //   "profile": "/profile",

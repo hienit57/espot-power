@@ -4,11 +4,11 @@ import 'package:espot_power/theme/index.dart';
 import 'package:flutter/material.dart';
 
 class BaseWrapperWidget extends StatelessWidget {
-  final VoidCallback? onPop;
+  final VoidCallback? onReturn;
   final Widget? child;
   const BaseWrapperWidget({
     super.key,
-    this.onPop,
+    this.onReturn,
     this.child,
   });
 
@@ -21,7 +21,7 @@ class BaseWrapperWidget extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 16),
             child: GestureDetector(
-              onTap: onPop,
+              onTap: onReturn,
               child: Row(
                 children: [
                   const CImage(

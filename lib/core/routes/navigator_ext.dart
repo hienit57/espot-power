@@ -8,6 +8,7 @@ class NavigatorExt {
   * if need show bottomNavBar -> context = current screen context
   * else -> context = application context
   * */
+
   static Future<T?> push<T extends Object>(BuildContext context, Widget screen,
       {String? routeName}) async {
     return await Navigator.of(context).push(

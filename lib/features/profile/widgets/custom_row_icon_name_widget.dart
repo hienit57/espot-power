@@ -6,12 +6,14 @@ class CustomRowIconNameWidget extends StatelessWidget {
   final String? icon;
   final String? name;
   final bool? isViewArrow;
+  final Color? textColor;
 
   const CustomRowIconNameWidget({
     super.key,
     this.icon,
     this.name,
-    this.isViewArrow,
+    this.isViewArrow = true,
+    this.textColor,
   });
 
   @override
@@ -21,19 +23,21 @@ class CustomRowIconNameWidget extends StatelessWidget {
       children: [
         Row(
           children: [
-            CImage(assetsPath: icon, width: 16, height: 16),
+            CImage(assetsPath: icon, width: 16, height: 16, color: textColor),
             const SizedBox(width: 8),
             CText(
               text: name,
-              textColor: AppColors.colorText514D56,
+              textColor: textColor ?? AppColors.colorText514D56,
             ),
           ],
         ),
-        const CImage(
-          assetsPath: AppAssets.imgArrowRight,
-          width: 16,
-          height: 16,
-        )
+        if (isViewArrow == true) ...[
+          const CImage(
+            assetsPath: AppAssets.imgArrowRight,
+            width: 16,
+            height: 16,
+          )
+        ]
       ],
     );
   }

@@ -1,3 +1,4 @@
+import 'package:espot_power/index.dart';
 import 'package:espot_power/utils/index.dart';
 
 class UserProfileResponse {
@@ -197,6 +198,12 @@ extension UserProfileExt on UserProfileResponse {
   String? get getMoneySecondAccount => balanceAlt != null
       ? '${FormatUtils().formatNumberWithCommas(balanceAlt).toString()}đ'
       : '0đ';
+
+  String? get getEmail =>
+      (email?.isNotEmpty ?? false) ? email : LocaleKeys.not_update_email.tr();
+
+  String? get getDob =>
+      (dob?.isNotEmpty ?? false) ? dob : LocaleKeys.not_update_birthday.tr();
 
   bool? get isVerifyUser =>
       (email?.isNotEmpty ?? false) &&

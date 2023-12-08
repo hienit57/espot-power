@@ -30,4 +30,7 @@ final providers = [
   BlocProvider<DashboardProfileCubit>(
     create: (context) => DashboardProfileCubit(),
   ),
+  BlocProvider<ChangePasswordCubit>(
+    create: (context) => ChangePasswordCubit(),
+  ),
 ];

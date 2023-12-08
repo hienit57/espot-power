@@ -16,6 +16,8 @@ Future<void> setupDi() async {
       () => ForgotPasswordDatasourcesImpl());
   getIt.registerFactory<DashboardProfileDatasourcesImpl>(
       () => DashboardProfileDatasourcesImpl());
+  getIt.registerFactory<ChangePasswordDatasourcesImpl>(
+      () => ChangePasswordDatasourcesImpl());
 
   return;
 }

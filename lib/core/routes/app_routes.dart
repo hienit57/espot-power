@@ -1,7 +1,6 @@
 import 'package:espot_power/core/routes/app_pages.dart';
 import 'package:espot_power/features/index.dart';
-import 'package:espot_power/features/profile/dashboard/presentation/pages/dashboard_profile.dart';
-import 'package:espot_power/features/profile/personal_information/view_personal_information/presentation/pages/view_personal_information_page.dart';
+import 'package:espot_power/features/profile/personal_information/change_password/presentation/pages/change_password_page.dart';
 import 'package:flutter/material.dart';
 
 class AppPages {
@@ -18,6 +17,7 @@ class AppPages {
       AppRoutes.profile: (context) => const DashboardProfilePage(),
       AppRoutes.personalInformation: (context) =>
           const ViewPersonalInformationPage(),
+      AppRoutes.changePassword: (context) => const ChangePasswordPage(),
     };
   }
 

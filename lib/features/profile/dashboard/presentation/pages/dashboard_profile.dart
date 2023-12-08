@@ -3,7 +3,6 @@ import 'package:espot_power/features/index.dart';
 import 'package:espot_power/index.dart';
 import 'package:espot_power/theme/index.dart';
 import 'package:flutter/material.dart';
-import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 class DashboardProfilePage extends StatelessWidget {
   const DashboardProfilePage({super.key});
@@ -51,7 +50,11 @@ class DashboardProfilePage extends StatelessWidget {
                               ),
                               child: GestureDetector(
                                 onTap: () {
-                                  onTapFeature(element);
+                                  onTapFeature(
+                                    element,
+                                    userProfileResponse:
+                                        state.userProfileResponse,
+                                  );
                                 },
                                 child: CustomRowIconNameWidget(
                                   icon: element.icon,
@@ -77,12 +80,17 @@ class DashboardProfilePage extends StatelessWidget {
     );
   }
 
-  void onTapFeature(FeaturesProfile value) {
+  void onTapFeature(
+    FeaturesProfile value, {
+    UserProfileResponse? userProfileResponse,
+  }) {
     switch (value) {
       case FeaturesProfile.profileInformation:
         PersistentNavBarNavigator.pushNewScreen(
           AppContext.navigatorKey.currentContext!,
-          screen: ViewPersonalInformationPage(),
+          screen: ViewPersonalInformationPage(
+            userProfileResponse: userProfileResponse,
+          ),
           withNavBar: false,
           pageTransitionAnimation: PageTransitionAnimation.cupertino,
         );
