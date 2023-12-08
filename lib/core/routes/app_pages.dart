@@ -10,6 +10,7 @@ class AppRoutes {
   static const profile = '/profile';
   static const personalInformation = '/personal-information';
   static const changePassword = '/change-password';
+  static const updateInformationUser = '/update-information-user';
 
   // static Map<String, String> profile = {
   //   "profile": "/profile",

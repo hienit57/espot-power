@@ -396,5 +396,6 @@
   "please_check_info_account": "Vui lòng kiểm tra lại thông tin tài khoản",
   "phone_not_correct_format": "Số điện thoại không đúng định dạng",
   "enter_new_password": "Nhập mật khẩu mới",
-  "all_passwords_are_the_same": "Tất cả mật khẩu đều giống nhau"
+  "all_passwords_are_the_same": "Tất cả mật khẩu đều giống nhau",
+  "notice_update_information_user": "Bạn vui lòng khai báo thông tin chính xác, để E-SPOT có thể hỗ trợ bạn thật tốt nhé."
 }

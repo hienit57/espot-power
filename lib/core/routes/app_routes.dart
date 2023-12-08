@@ -18,6 +18,8 @@ class AppPages {
       AppRoutes.personalInformation: (context) =>
           const ViewPersonalInformationPage(),
       AppRoutes.changePassword: (context) => const ChangePasswordPage(),
+      AppRoutes.updateInformationUser: (context) =>
+          const UpdateInformationUserPage(),
     };
   }
 

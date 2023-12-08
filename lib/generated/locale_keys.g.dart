@@ -399,5 +399,6 @@ abstract class  LocaleKeys {
   static const phone_not_correct_format = 'phone_not_correct_format';
   static const enter_new_password = 'enter_new_password';
   static const all_passwords_are_the_same = 'all_passwords_are_the_same';
+  static const notice_update_information_user = 'notice_update_information_user';
 
 }

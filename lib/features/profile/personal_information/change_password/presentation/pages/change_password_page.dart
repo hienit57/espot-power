@@ -13,6 +13,14 @@ class ChangePasswordPage extends StatelessWidget with DialogMixin {
     final _changePwdCubit = BlocProvider.of<ChangePasswordCubit>(context);
 
     return BaseWrapperWidget(
+      onReturn: () {
+        PersistentNavBarNavigator.pushNewScreen(
+          AppContext.navigatorKey.currentContext!,
+          screen: const ViewPersonalInformationPage(),
+          withNavBar: true,
+          pageTransitionAnimation: PageTransitionAnimation.cupertino,
+        );
+      },
       child: BlocConsumer<ChangePasswordCubit, ChangePasswordState>(
         listenWhen: (previous, current) =>
             previous.onChangePassword != current.onChangePassword,

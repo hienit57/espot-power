@@ -33,4 +33,7 @@ final providers = [
   BlocProvider<ChangePasswordCubit>(
     create: (context) => ChangePasswordCubit(),
   ),
+  BlocProvider<UpdateInformationUserCubit>(
+    create: (context) => UpdateInformationUserCubit(),
+  ),
 ];

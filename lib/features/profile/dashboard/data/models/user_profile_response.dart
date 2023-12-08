@@ -205,8 +205,12 @@ extension UserProfileExt on UserProfileResponse {
   String? get getDob =>
       (dob?.isNotEmpty ?? false) ? dob : LocaleKeys.not_update_birthday.tr();
 
+  String? get getGender =>
+      (gender?.isNotEmpty ?? false) ? gender : LocaleKeys.f_gender.tr();
+
+  String? get getAddress =>
+      (address != null) ? gender : LocaleKeys.f_address.tr();
+
   bool? get isVerifyUser =>
-      (email?.isNotEmpty ?? false) &&
-      (gender?.isNotEmpty ?? false) &&
-      (address?.isNotEmpty ?? false);
+      (email != null) && (gender != null) && (address != null);
 }

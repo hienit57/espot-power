@@ -1,9 +1,12 @@
 class AppAssets {
   ///Icon
   static const String iconPush = 'ic_push';
+
   static const String iconArrow = 'assets/images/icon_arrow.svg';
+  static const String iconArrowDown = 'assets/images/icon_arrow_down.svg';
   static const String iconArrowLeft = 'assets/images/icon_arrow_left.svg';
   static const String iconArrowRight = 'assets/images/icon_arrow_right.svg';
+
   static const String iconCirleInfo = 'assets/images/ic_cirle_info.svg';
   static const String iconVisaMasterCard =
       'assets/images/icon_visa_master_card.svg';

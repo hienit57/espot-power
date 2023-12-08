@@ -88,9 +88,7 @@ class DashboardProfilePage extends StatelessWidget {
       case FeaturesProfile.profileInformation:
         PersistentNavBarNavigator.pushNewScreen(
           AppContext.navigatorKey.currentContext!,
-          screen: ViewPersonalInformationPage(
-            userProfileResponse: userProfileResponse,
-          ),
+          screen: const ViewPersonalInformationPage(),
           withNavBar: false,
           pageTransitionAnimation: PageTransitionAnimation.cupertino,
         );
