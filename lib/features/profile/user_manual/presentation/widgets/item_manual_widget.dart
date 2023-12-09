@@ -9,14 +9,16 @@ class ItemManualWidget extends StatelessWidget {
   final String? content;
   final bool? isOpen;
 
-  final VoidCallback? onTap;
+  final VoidCallback? onTapOpen;
+  final VoidCallback? onTapClose;
 
   const ItemManualWidget({
     Key? key,
     this.title,
     this.content,
     this.isOpen,
-    this.onTap,
+    this.onTapOpen,
+    this.onTapClose,
   }) : super(key: key);
 
   @override
@@ -28,7 +30,7 @@ class ItemManualWidget extends StatelessWidget {
         borderColor: AppColors.colorBorder,
         radius: 10,
         backgroundColor: AppColors.white,
-        onTap: onTap,
+        onTap: isOpen == true ? onTapClose : onTapOpen,
         child: Center(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),

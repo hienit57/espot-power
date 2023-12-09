@@ -1,13 +1,16 @@
 import 'package:espot_power/common/index.dart';
 import 'package:espot_power/core/mixins/dialog_mixin.dart';
 import 'package:espot_power/features/index.dart';
-import 'package:espot_power/features/profile/information_and_support_center/presentation/pages/information_and_support_center_page.dart';
 import 'package:espot_power/index.dart';
 import 'package:espot_power/theme/index.dart';
 import 'package:flutter/material.dart';
 
 class DashboardProfilePage extends StatelessWidget with DialogMixin {
-  const DashboardProfilePage({super.key});
+  final VoidCallback? onSetLocaleEn;
+  final VoidCallback? onSetLocaleVi;
+
+  const DashboardProfilePage(
+      {super.key, this.onSetLocaleEn, this.onSetLocaleVi});
 
   @override
   Widget build(BuildContext context) {
@@ -98,6 +101,12 @@ class DashboardProfilePage extends StatelessWidget with DialogMixin {
         );
         break;
       case FeaturesProfile.userManual:
+        PersistentNavBarNavigator.pushNewScreen(
+          AppContext.navigatorKey.currentContext!,
+          screen: const UserManualPage(),
+          withNavBar: false,
+          pageTransitionAnimation: PageTransitionAnimation.cupertino,
+        );
         break;
       case FeaturesProfile.informationAndSupportCenter:
         PersistentNavBarNavigator.pushNewScreen(
@@ -108,6 +117,7 @@ class DashboardProfilePage extends StatelessWidget with DialogMixin {
         );
         break;
       case FeaturesProfile.languageSettings:
+        _onLanguageSettings(AppContext.navigatorKey.currentContext!);
         break;
       case FeaturesProfile.contactForCooperation:
         break;
@@ -196,6 +206,126 @@ class DashboardProfilePage extends StatelessWidget with DialogMixin {
           ),
         ),
       ),
+    );
+  }
+
+  void _onLanguageSettings(BuildContext context) {
+    showModalBottomSheet<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return Container(
+          height: 270,
+          decoration: BoxDecoration(
+            color: AppColors.white,
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(10),
+              topRight: Radius.circular(10),
+            ),
+          ),
+          child: Center(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                const SizedBox(height: 9),
+                Container(
+                  width: 80,
+                  height: 2.5,
+                  color: AppColors.colorText231F20,
+                ),
+                const SizedBox(height: 12),
+                CText(
+                  text: LocaleKeys.change_language.tr(),
+                  fontSize: 16,
+                  fontWeight:
+                      FontWeight.lerp(FontWeight.w400, FontWeight.w500, 0.5),
+                ),
+                const SizedBox(height: 24),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  child: CContainer(
+                    height: 52,
+                    borderColor: AppColors.colorDADADA,
+                    radius: 10,
+                    onTap: () {
+                      Navigator.pop(context);
+                      onSetLocaleVi?.call();
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 12),
+                      child: Row(
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.only(right: 12),
+                            child: CImage(
+                              assetsPath: AppAssets.imgProfileVietnam,
+                              width: 36,
+                              height: 24,
+                            ),
+                          ),
+                          CText(
+                            text: LocaleKeys.language_vietnamese.tr(),
+                            fontSize: 16,
+                            fontWeight: FontWeight.lerp(
+                                FontWeight.w400, FontWeight.w500, 0.5),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  child: CContainer(
+                    height: 52,
+                    borderColor: AppColors.colorDADADA,
+                    radius: 10,
+                    onTap: () {
+                      Navigator.pop(context);
+                      onSetLocaleEn?.call();
+                    },
+                    //  () async =>
+                    //     await context.setLocale(const Locale('en')),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 12),
+                      child: Row(
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.only(right: 12),
+                            child: CImage(
+                              assetsPath: AppAssets.imgProfileEnglish,
+                              width: 36,
+                              height: 24,
+                            ),
+                          ),
+                          CText(
+                            text: LocaleKeys.language_english.tr(),
+                            fontSize: 16,
+                            fontWeight: FontWeight.lerp(
+                                FontWeight.w400, FontWeight.w500, 0.5),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 20),
+                CText(
+                  text: LocaleKeys.cancel.tr(),
+                  onTap: () {
+                    Navigator.pop(AppContext.navigatorKey.currentContext!);
+                  },
+                  fontWeight:
+                      FontWeight.lerp(FontWeight.w400, FontWeight.w500, 0.5),
+                ),
+                const SizedBox(height: 41),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }

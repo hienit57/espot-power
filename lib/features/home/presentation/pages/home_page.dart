@@ -1,6 +1,4 @@
 import 'package:espot_power/common/index.dart';
-import 'package:espot_power/common/widget/base_result_widget/result_page.dart';
-import 'package:espot_power/features/home/data/models/tabbar_action_model.dart';
 import 'package:espot_power/features/index.dart';
 import 'package:espot_power/index.dart';
 import 'package:espot_power/theme/index.dart';
@@ -32,38 +30,100 @@ class _HomePageState extends State<HomePage> with LoadingMixin {
     super.initState();
   }
 
-  final screens = [
-    UserManualPage(),
-    // Container(
-    //   child: Center(
-    //     child: CText(
-    //       text: LocaleKeys.map.tr(),
-    //     ),
-    //   ),
-    // ),
-    Container(
-      child: Center(
-        child: CText(
-          text: LocaleKeys.order.tr(),
+  List<StatelessWidget> screens(BuildContext context) => [
+        //UserManualPage(),
+        Container(
+          child: Center(
+            child: CText(
+              text: LocaleKeys.map.tr(),
+            ),
+          ),
         ),
-      ),
-    ),
-    Container(
-      child: Center(
-        child: CText(
-          text: 'QR Scan',
+        Container(
+          child: Center(
+            child: CText(
+              text: LocaleKeys.order.tr(),
+            ),
+          ),
         ),
-      ),
-    ),
-    Container(
-      child: Center(
-        child: CText(
-          text: LocaleKeys.notification.tr(),
+        Container(
+          child: Center(
+            child: CText(
+              text: 'QR Scan',
+            ),
+          ),
         ),
-      ),
-    ),
-    DashboardProfilePage(),
-  ];
+        Container(
+          child: Center(
+            child: CText(
+              text: LocaleKeys.notification.tr(),
+            ),
+          ),
+        ),
+        DashboardProfilePage(
+          onSetLocaleVi: () => context.setLocale(Locale('vi')),
+          onSetLocaleEn: () => context.setLocale(Locale('en')),
+        ),
+      ];
+
+  List<PersistentBottomNavBarItem>? items(
+          BuildContext context, HomeState state) =>
+      [
+        PersistentBottomNavBarItem(
+          icon: CustomIconTabbarWidget(
+            isCheck: state.indexSelectTab == 0,
+            icon: AppAssets.iconTabbarMapUnChecked,
+            name: LocaleKeys.map.tr(),
+          ),
+          activeColorPrimary: CupertinoColors.white,
+          inactiveColorPrimary: CupertinoColors.systemGrey,
+        ),
+        PersistentBottomNavBarItem(
+          icon: CustomIconTabbarWidget(
+            isCheck: state.indexSelectTab == 1,
+            icon: AppAssets.iconTabbarOrderUnChecked,
+            name: LocaleKeys.transaction.tr(),
+          ),
+          activeColorPrimary: CupertinoColors.white,
+          inactiveColorPrimary: CupertinoColors.systemGrey,
+        ),
+        PersistentBottomNavBarItem(
+          icon: Center(
+            child: Container(
+              width: MediaQuery.of(context).size.width / 5,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: AppColors.colorFFCB05,
+              ),
+              child: const Padding(
+                padding: EdgeInsets.all(9.0),
+                child: CImage(
+                  assetsPath: AppAssets.iconTabbarScan,
+                  boxFit: BoxFit.contain,
+                ),
+              ),
+            ),
+          ),
+        ),
+        PersistentBottomNavBarItem(
+          icon: CustomIconTabbarWidget(
+            isCheck: state.indexSelectTab == 3,
+            icon: AppAssets.iconTabbarNotifiUnChecked,
+            name: LocaleKeys.notification.tr(),
+          ),
+          activeColorPrimary: CupertinoColors.white,
+          inactiveColorPrimary: CupertinoColors.systemGrey,
+        ),
+        PersistentBottomNavBarItem(
+          icon: CustomIconTabbarWidget(
+            isCheck: state.indexSelectTab == 4,
+            icon: AppAssets.iconTabbarProfileUnChecked,
+            name: LocaleKeys.account.tr(),
+          ),
+          activeColorPrimary: CupertinoColors.white,
+          inactiveColorPrimary: CupertinoColors.systemGrey,
+        ),
+      ];
 
   @override
   Widget build(BuildContext context) {
@@ -74,43 +134,13 @@ class _HomePageState extends State<HomePage> with LoadingMixin {
         return PersistentTabView(
           context,
           controller: _controller,
-          screens: screens,
+          screens: screens(context),
           padding: const NavBarPadding.all(0),
           bottomScreenMargin: 0,
           onItemSelected: (value) {
             _homeCubit.emitIndexTabSelect(value);
           },
-          items: listTabbarActionModel.map((element) {
-            if (element == listTabbarActionModel[2]) {
-              return PersistentBottomNavBarItem(
-                icon: Center(
-                  child: Container(
-                    width: MediaQuery.of(context).size.width / 5,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: AppColors.colorFFCB05,
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(9.0),
-                      child: CImage(
-                        assetsPath: element.icon,
-                        boxFit: BoxFit.contain,
-                      ),
-                    ),
-                  ),
-                ),
-              );
-            }
-            return PersistentBottomNavBarItem(
-              icon: CustomIconTabbarWidget(
-                isCheck: state.indexSelectTab == element.index,
-                icon: element.icon,
-                name: element.name,
-              ),
-              activeColorPrimary: CupertinoColors.white,
-              inactiveColorPrimary: CupertinoColors.systemGrey,
-            );
-          }).toList(),
+          items: items(context, state),
           confineInSafeArea: true,
           backgroundColor: Colors.white, // Default is Colors.white.
           handleAndroidBackButtonPress: true, // Default is true.

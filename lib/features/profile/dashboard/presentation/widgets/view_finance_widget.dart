@@ -15,7 +15,7 @@ class ViewFinanceWidget extends StatelessWidget with DialogMixin {
       backgroundColor: AppColors.bgcolorFFFAE6,
       radius: 10,
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 11, horizontal: 16),
+        padding: const EdgeInsets.symmetric(vertical: 11, horizontal: 15),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -40,7 +40,7 @@ class ViewFinanceWidget extends StatelessWidget with DialogMixin {
             Expanded(
               flex: 1,
               child: Padding(
-                padding: const EdgeInsets.only(left: 12),
+                padding: const EdgeInsets.only(left: 10),
                 child: _itemFinance(
                   title: LocaleKeys.sub_account.tr().toUpperCase(),
                   content: userProfileResponse?.getMoneySecondAccount,
@@ -74,8 +74,9 @@ class ViewFinanceWidget extends StatelessWidget with DialogMixin {
               fontSize: 12,
               textColor: AppColors.color979797,
               fontWeight: FontWeight.w500,
+              textOverflow: TextOverflow.ellipsis,
             ),
-            const SizedBox(width: 8),
+            const SizedBox(width: 7),
             GestureDetector(
               onTap: onTapExplain,
               child: const CImage(

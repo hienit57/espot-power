@@ -127,7 +127,6 @@ abstract class  LocaleKeys {
   static const complete = 'complete';
   static const cancel = 'cancel';
   static const rentaling = 'rentaling';
-  static const cancel_2 = 'cancel_2';
   static const main_account = 'main_account';
   static const transfer = 'transfer';
   static const withdraw_money = 'withdraw_money';
