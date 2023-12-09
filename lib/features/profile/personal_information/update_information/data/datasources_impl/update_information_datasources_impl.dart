@@ -3,7 +3,7 @@ import 'package:espot_power/features/index.dart';
 
 class UpdateUserProfileDatasourcesImpl extends UpdateInformationDatasources {
   @override
-  Future<BaseRequestResponse> updateUserProfile(
+  Future<BaseResponseWithObj> updateUserProfile(
       UpdateInformationUserModelRequest dataRequest) async {
     Map<String, dynamic> queryParameters = {
       "name": dataRequest.userName,
@@ -17,6 +17,6 @@ class UpdateUserProfileDatasourcesImpl extends UpdateInformationDatasources {
     final res = await ApiService()
         .request(UpdateInformationRequest(queryParameters: queryParameters));
 
-    return BaseRequestResponse.fromJson(res);
+    return BaseResponseWithObj.fromJson(res);
   }
 }

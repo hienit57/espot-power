@@ -1,10 +1,12 @@
 import 'package:espot_power/common/index.dart';
+import 'package:espot_power/core/mixins/dialog_mixin.dart';
 import 'package:espot_power/features/index.dart';
+import 'package:espot_power/features/profile/information_and_support_center/presentation/pages/information_and_support_center_page.dart';
 import 'package:espot_power/index.dart';
 import 'package:espot_power/theme/index.dart';
 import 'package:flutter/material.dart';
 
-class DashboardProfilePage extends StatelessWidget {
+class DashboardProfilePage extends StatelessWidget with DialogMixin {
   const DashboardProfilePage({super.key});
 
   @override
@@ -51,6 +53,7 @@ class DashboardProfilePage extends StatelessWidget {
                               child: GestureDetector(
                                 onTap: () {
                                   onTapFeature(
+                                    context,
                                     element,
                                     userProfileResponse:
                                         state.userProfileResponse,
@@ -81,6 +84,7 @@ class DashboardProfilePage extends StatelessWidget {
   }
 
   void onTapFeature(
+    BuildContext context,
     FeaturesProfile value, {
     UserProfileResponse? userProfileResponse,
   }) {
@@ -96,6 +100,12 @@ class DashboardProfilePage extends StatelessWidget {
       case FeaturesProfile.userManual:
         break;
       case FeaturesProfile.informationAndSupportCenter:
+        PersistentNavBarNavigator.pushNewScreen(
+          AppContext.navigatorKey.currentContext!,
+          screen: const InformationAndSupportCenterPage(),
+          withNavBar: false,
+          pageTransitionAnimation: PageTransitionAnimation.cupertino,
+        );
         break;
       case FeaturesProfile.languageSettings:
         break;
@@ -104,9 +114,88 @@ class DashboardProfilePage extends StatelessWidget {
       case FeaturesProfile.feedback:
         break;
       case FeaturesProfile.logout:
+        _onLogout(context);
         break;
       default:
         break;
     }
+  }
+
+  void _onLogout(BuildContext context) {
+    cShowGeneralDialog(
+      context,
+      widget: Align(
+        alignment: Alignment.center,
+        child: IntrinsicHeight(
+          child: Container(
+            margin: const EdgeInsets.symmetric(horizontal: 37),
+            decoration: BoxDecoration(
+              color: AppColors.white,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Column(
+              children: [
+                const SizedBox(height: 36),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CImage(
+                      assetsPath: AppAssets.iconProfileDialogLogout,
+                      color: AppColors.colorFFCB05,
+                      width: 24,
+                      height: 24,
+                    ),
+                    const SizedBox(width: 12),
+                    CText(
+                      text: LocaleKeys.want_to_logout.tr(),
+                    )
+                  ],
+                ),
+                const SizedBox(height: 38),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        flex: 1,
+                        child: CButton(
+                          height: 40,
+                          radius: 10,
+                          borderColor: AppColors.colorBorder,
+                          backgroundColor: AppColors.colorBorder,
+                          title: LocaleKeys.not_no.tr(),
+                          titleFontWeight: FontWeight.w500,
+                          onPressed: () {
+                            Navigator.pop(
+                                AppContext.navigatorKey.currentContext!);
+                          },
+                        ),
+                      ),
+                      const SizedBox(width: 16),
+                      Expanded(
+                        flex: 1,
+                        child: CButton(
+                          height: 40,
+                          radius: 10,
+                          title: LocaleKeys.logout.tr(),
+                          titleFontWeight: FontWeight.w500,
+                          borderColor: AppColors.colorFFCB08,
+                          backgroundColor: AppColors.colorFFCB08,
+                          onPressed: () {
+                            BlocProvider.of<DashboardProfileCubit>(context)
+                                .logout();
+                          },
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 36),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }

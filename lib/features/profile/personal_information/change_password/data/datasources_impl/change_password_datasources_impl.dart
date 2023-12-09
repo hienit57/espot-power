@@ -3,7 +3,7 @@ import 'package:espot_power/features/index.dart';
 
 class ChangePasswordDatasourcesImpl extends ChangePasswordDatasources {
   @override
-  Future<BaseRequestResponse> changePassword(
+  Future<BaseResponseWithObj> changePassword(
       ChangePasswordModelRequest dataRequest) async {
     Map<String, dynamic> queryParameters = {
       "originalPwd": dataRequest.oldPassword,
@@ -13,6 +13,6 @@ class ChangePasswordDatasourcesImpl extends ChangePasswordDatasources {
     final res = await ApiService()
         .request(ChangePasswordRequest(queryParameters: queryParameters));
 
-    return BaseRequestResponse.fromJson(res);
+    return BaseResponseWithObj.fromJson(res);
   }
 }

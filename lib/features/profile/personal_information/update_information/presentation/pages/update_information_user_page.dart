@@ -73,7 +73,7 @@ class UpdateInformationUserPage extends StatelessWidget with DialogMixin {
                   const SizedBox(height: 36),
                   AppTextField(
                     readOnly:
-                        state.userProfileResponse?.email?.isNotEmpty ?? false,
+                        state.userProfileResponse?.name?.isNotEmpty ?? false,
                     controller: _updateInformationCubit.nameController,
                     placeholder: LocaleKeys.username.tr(),
                     borderRadius: 10,
@@ -93,7 +93,22 @@ class UpdateInformationUserPage extends StatelessWidget with DialogMixin {
                       _updateInformationCubit.resetState();
                     },
                   ),
-                  const SizedBox(height: 12),
+                  const SizedBox(height: 4),
+                  if (state.userProfileResponse?.name?.isEmpty ?? true) ...[
+                    Row(
+                      children: [
+                        CText(
+                          text: '*',
+                          textColor: AppColors.colorEC222D,
+                        ),
+                        CText(
+                          text: LocaleKeys.required_create_name.tr(),
+                          fontSize: 13,
+                        ),
+                      ],
+                    )
+                  ],
+                  const SizedBox(height: 8),
                   AppTextField(
                     controller: _updateInformationCubit.emailController,
                     placeholder: LocaleKeys.f_email.tr(),
@@ -133,8 +148,9 @@ class UpdateInformationUserPage extends StatelessWidget with DialogMixin {
                       _updateInformationCubit.emitGender(value ?? '');
                     },
                     icon: AppAssets.iconProfileGender,
-                    content:
-                        state.gender ?? state.userProfileResponse?.getGender,
+                    content: (state.gender?.isNotEmpty ?? false)
+                        ? state.gender
+                        : state.userProfileResponse?.getGender,
                     //LocaleKeys.f_gender.tr(),
                   ),
                   const SizedBox(height: 12),

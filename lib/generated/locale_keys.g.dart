@@ -141,7 +141,6 @@ abstract class  LocaleKeys {
   static const account_title = 'account_title';
   static const verification_tile = 'verification_tile';
   static const new_member_tile = 'new_member_tile';
-  static const second_account = 'second_account';
   static const profile_information = 'profile_information';
   static const information_and_support_center = 'information_and_support_center';
   static const language_settings = 'language_settings';
@@ -301,7 +300,7 @@ abstract class  LocaleKeys {
   static const inccorect_account_info = 'inccorect_account_info';
   static const transfer_money_success = 'transfer_money_success';
   static const transfer_money_failed = 'transfer_money_failed';
-  static const please_experence = 'please_experence';
+  static const please_experience = 'please_experience';
   static const message_transfer_money_failed_one = 'message_transfer_money_failed_one';
   static const message_transfer_money_failed_two = 'message_transfer_money_failed_two';
   static const order_placed_success = 'order_placed_success';
@@ -330,7 +329,6 @@ abstract class  LocaleKeys {
   static const note_battery_deposit_one = 'note_battery_deposit_one';
   static const note_battery_deposit_two = 'note_battery_deposit_two';
   static const note_battery_deposit_three = 'note_battery_deposit_three';
-  static const note_service_charge = 'note_service_charge';
   static const enter_even_amount = 'enter_even_amount';
   static const delete = 'delete';
   static const you_want_delete_account = 'you_want_delete_account';
@@ -400,5 +398,7 @@ abstract class  LocaleKeys {
   static const enter_new_password = 'enter_new_password';
   static const all_passwords_are_the_same = 'all_passwords_are_the_same';
   static const notice_update_information_user = 'notice_update_information_user';
+  static const check_information_account = 'check_information_account';
+  static const required_create_name = 'required_create_name';
 
 }

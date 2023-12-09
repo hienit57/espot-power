@@ -3,7 +3,7 @@ import 'package:espot_power/features/index.dart';
 
 class VerifyOtpDatasourcesImpl extends VerifyOtpDatasources {
   @override
-  Future<BaseRequestResponse> verifyOtpSignup(
+  Future<BaseResponseWithObj> verifyOtpSignup(
       VerifyOtpDataRequest dataRequest) async {
     Map<String, dynamic> queryParameters = {
       "account": dataRequest.phoneNumber,
@@ -13,11 +13,11 @@ class VerifyOtpDatasourcesImpl extends VerifyOtpDatasources {
     final res = await ApiService()
         .request(VerifyOtpSignupRequest(queryParameters: queryParameters));
 
-    return BaseRequestResponse.fromJson(res);
+    return BaseResponseWithObj.fromJson(res);
   }
 
   @override
-  Future<BaseRequestResponse> verifyOtpForgotPassword(
+  Future<BaseResponseWithObj> verifyOtpForgotPassword(
       VerifyOtpDataRequest dataRequest) async {
     Map<String, dynamic> queryParameters = {
       "tel": dataRequest.phoneNumber,
@@ -27,6 +27,6 @@ class VerifyOtpDatasourcesImpl extends VerifyOtpDatasources {
     final res = await ApiService().request(
         VerifyOtpForgotPasswordRequest(queryParameters: queryParameters));
 
-    return BaseRequestResponse.fromJson(res);
+    return BaseResponseWithObj.fromJson(res);
   }
 }

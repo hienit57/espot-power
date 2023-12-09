@@ -48,6 +48,7 @@ class UpdateInformationUserCubit extends Cubit<UpdateInformationUserState>
         userName: nameController.text,
         gender: state.gender,
         phoneNum: state.userProfileResponse?.tel,
+        address: state.address,
       );
       await _datasource.updateUserProfile(dataRequest).then((response) async {
         if (response.ok == false) {

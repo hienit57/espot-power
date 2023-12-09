@@ -1,10 +1,11 @@
 import 'package:espot_power/common/index.dart';
+import 'package:espot_power/core/mixins/dialog_mixin.dart';
 import 'package:espot_power/features/index.dart';
 import 'package:espot_power/index.dart';
 import 'package:espot_power/theme/index.dart';
 import 'package:flutter/material.dart';
 
-class ViewFinanceWidget extends StatelessWidget {
+class ViewFinanceWidget extends StatelessWidget with DialogMixin {
   final UserProfileResponse? userProfileResponse;
 
   const ViewFinanceWidget({super.key, this.userProfileResponse});
@@ -26,6 +27,7 @@ class ViewFinanceWidget extends StatelessWidget {
                   _itemFinance(
                     title: LocaleKeys.main_account.tr().toUpperCase(),
                     content: userProfileResponse?.getMoneyMainAccount,
+                    onTapExplain: () => onTapMainAccount(context),
                   ),
                   Container(
                     color: AppColors.colorFFCB05,
@@ -40,8 +42,9 @@ class ViewFinanceWidget extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.only(left: 12),
                 child: _itemFinance(
-                  title: LocaleKeys.second_account.tr(),
+                  title: LocaleKeys.sub_account.tr().toUpperCase(),
                   content: userProfileResponse?.getMoneySecondAccount,
+                  onTapExplain: () => onTapSubAccount(context),
                 ),
               ),
             ),
@@ -51,7 +54,7 @@ class ViewFinanceWidget extends StatelessWidget {
     );
   }
 
-  _itemFinance({String? content, String? title, VoidCallback? onTapTitle}) {
+  _itemFinance({String? content, String? title, VoidCallback? onTapExplain}) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -74,7 +77,7 @@ class ViewFinanceWidget extends StatelessWidget {
             ),
             const SizedBox(width: 8),
             GestureDetector(
-              onTap: onTapTitle,
+              onTap: onTapExplain,
               child: const CImage(
                 width: 16,
                 height: 16,
@@ -87,66 +90,158 @@ class ViewFinanceWidget extends StatelessWidget {
     );
   }
 
-  void onTapMainAccount() {
-    ///TODO:FIX ME
-    // cShowDialog(
-    //   context,
-    //   title: LocaleKeys.main_account.tr(),
-    //   childChangeContent: RichText(
-    //     textAlign: TextAlign.center,
-    //     text: TextSpan(
-    //       style: TextStyle(
-    //         color: FontColor.colorText514D56,
-    //         fontSize: FontSize.fontSize_14,
-    //         fontFamily: Assets.svnGotham,
-    //         fontWeight: FontWeight.w400,
-    //       ),
-    //       children: [
-    //         TextSpan(
-    //           text: LocaleKeys.content_popup_main_account_1
-    //               .tr(),
-    //         ),
-    //         TextSpan(
-    //           text: LocaleKeys.espot.tr(),
-    //           style: const TextStyle(
-    //               fontWeight: FontWeight.w500),
-    //         ),
-    //         TextSpan(
-    //           text: LocaleKeys.content_popup_main_account_2
-    //               .tr(),
-    //         ),
-    //       ],
-    //     ),
-    //   ),
-    // );
+  void onTapMainAccount(BuildContext context) {
+    cShowGeneralDialog(
+      context,
+      widget: Align(
+        alignment: Alignment.center,
+        child: IntrinsicHeight(
+          child: Container(
+            margin: const EdgeInsets.symmetric(horizontal: 37),
+            decoration: BoxDecoration(
+              color: AppColors.white,
+              borderRadius: BorderRadius.circular(11),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const CImage(
+                  height: 164,
+                  width: double.infinity,
+                  assetsPath: AppAssets.imgOrderDialogInstructionPayBattery,
+                  boxFit: BoxFit.fill,
+                ),
+                const SizedBox(height: 24),
+                CText(
+                  text: LocaleKeys.main_account.tr(),
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500,
+                ),
+                const SizedBox(height: 16),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 9),
+                  child: RichText(
+                    textAlign: TextAlign.center,
+                    text: TextSpan(
+                      style: TextStyle(
+                        color: AppColors.colorText514D56,
+                        fontSize: 14,
+                        fontFamily: AppFonts.svnGotham,
+                        fontWeight: FontWeight.w400,
+                      ),
+                      children: [
+                        TextSpan(
+                          text: LocaleKeys.content_popup_main_account_1.tr(),
+                        ),
+                        TextSpan(
+                          text: LocaleKeys.espot.tr(),
+                          style: const TextStyle(fontWeight: FontWeight.w500),
+                        ),
+                        TextSpan(
+                          text: LocaleKeys.content_popup_main_account_2.tr(),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 24),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 76),
+                  child: CButton(
+                    height: 40,
+                    width: double.infinity,
+                    radius: 10,
+                    backgroundColor: AppColors.colorFFCB05,
+                    borderColor: AppColors.colorFFCB05,
+                    title: LocaleKeys.i_understand.tr(),
+                    titleFontWeight: FontWeight.w500,
+                    onPressed: () {
+                      Navigator.pop(AppContext.navigatorKey.currentContext!);
+                    },
+                  ),
+                ),
+                const SizedBox(height: 36),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 
-  void onTapSecondAccount() {
-    // cShowDialog(
-    //   context,
-    //   title: LocaleKeys.sub_account.tr(),
-    //   childChangeContent: RichText(
-    //     textAlign: TextAlign.center,
-    //     text: TextSpan(
-    //       style: TextStyle(
-    //         color: FontColor.colorText514D56,
-    //         fontSize: FontSize.fontSize_14,
-    //         fontFamily: Assets.svnGotham,
-    //         fontWeight: FontWeight.w400,
-    //       ),
-    //       children: [
-    //         TextSpan(
-    //           text: LocaleKeys.content_popup_account_second
-    //               .tr(),
-    //         ),
-    //         TextSpan(
-    //           text: LocaleKeys.espot.tr(),
-    //           style: const TextStyle(
-    //               fontWeight: FontWeight.w500),
-    //         ),
-    //       ],
-    //     ),
-    //   ),
-    // );
+  void onTapSubAccount(BuildContext context) {
+    cShowGeneralDialog(
+      context,
+      widget: Align(
+        alignment: Alignment.center,
+        child: IntrinsicHeight(
+          child: Container(
+            margin: const EdgeInsets.symmetric(horizontal: 37),
+            decoration: BoxDecoration(
+              color: AppColors.white,
+              borderRadius: BorderRadius.circular(11),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const CImage(
+                  height: 164,
+                  width: double.infinity,
+                  assetsPath: AppAssets.imgOrderDialogInstructionPayBattery,
+                  boxFit: BoxFit.fill,
+                ),
+                const SizedBox(height: 24),
+                CText(
+                  text: LocaleKeys.sub_account.tr(),
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500,
+                ),
+                const SizedBox(height: 16),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 9),
+                  child: RichText(
+                    textAlign: TextAlign.center,
+                    text: TextSpan(
+                      style: TextStyle(
+                        color: AppColors.colorText514D56,
+                        fontSize: 14,
+                        fontFamily: AppFonts.svnGotham,
+                        fontWeight: FontWeight.w400,
+                      ),
+                      children: [
+                        TextSpan(
+                          text: LocaleKeys.content_popup_account_second.tr(),
+                        ),
+                        TextSpan(
+                          text: LocaleKeys.espot.tr(),
+                          style: const TextStyle(fontWeight: FontWeight.w500),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 24),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 76),
+                  child: CButton(
+                    height: 40,
+                    width: double.infinity,
+                    radius: 10,
+                    backgroundColor: AppColors.colorFFCB05,
+                    borderColor: AppColors.colorFFCB05,
+                    title: LocaleKeys.i_understand.tr(),
+                    titleFontWeight: FontWeight.w500,
+                    onPressed: () {
+                      Navigator.pop(AppContext.navigatorKey.currentContext!);
+                    },
+                  ),
+                ),
+                const SizedBox(height: 36),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }

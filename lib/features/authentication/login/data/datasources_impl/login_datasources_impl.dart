@@ -3,7 +3,7 @@ import 'package:espot_power/features/index.dart';
 
 class LoginDatasourcesImpl extends LoginDatasources {
   @override
-  Future<BaseRequestResponse> login(LoginModelRequest dataRequest) async {
+  Future<BaseResponseWithObj> login(LoginModelRequest dataRequest) async {
     Map<String, dynamic> queryParameters = {
       "phone": dataRequest.phoneNumber,
       "pwd": dataRequest.password,
@@ -12,6 +12,6 @@ class LoginDatasourcesImpl extends LoginDatasources {
     final res = await ApiService()
         .request(LoginRequest(queryParameters: queryParameters));
 
-    return BaseRequestResponse.fromJson(res);
+    return BaseResponseWithObj.fromJson(res);
   }
 }

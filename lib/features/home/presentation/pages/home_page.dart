@@ -1,4 +1,5 @@
 import 'package:espot_power/common/index.dart';
+import 'package:espot_power/common/widget/base_result_widget/result_page.dart';
 import 'package:espot_power/features/home/data/models/tabbar_action_model.dart';
 import 'package:espot_power/features/index.dart';
 import 'package:espot_power/index.dart';
@@ -32,13 +33,14 @@ class _HomePageState extends State<HomePage> with LoadingMixin {
   }
 
   final screens = [
-    Container(
-      child: Center(
-        child: CText(
-          text: LocaleKeys.map.tr(),
-        ),
-      ),
-    ),
+    UserManualPage(),
+    // Container(
+    //   child: Center(
+    //     child: CText(
+    //       text: LocaleKeys.map.tr(),
+    //     ),
+    //   ),
+    // ),
     Container(
       child: Center(
         child: CText(

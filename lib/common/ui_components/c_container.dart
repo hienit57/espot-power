@@ -34,6 +34,7 @@ class _CContainerState extends State<CContainer> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      behavior: HitTestBehavior.opaque,
       onTap: widget.onTap,
       child: Container(
         margin: widget.margin ?? const EdgeInsets.all(0),

@@ -1,6 +1,6 @@
+import 'package:espot_power/common/widget/base_result_widget/result_page.dart';
 import 'package:espot_power/core/routes/app_pages.dart';
 import 'package:espot_power/features/index.dart';
-import 'package:espot_power/features/profile/personal_information/change_password/presentation/pages/change_password_page.dart';
 import 'package:flutter/material.dart';
 
 class AppPages {
@@ -20,6 +20,11 @@ class AppPages {
       AppRoutes.changePassword: (context) => const ChangePasswordPage(),
       AppRoutes.updateInformationUser: (context) =>
           const UpdateInformationUserPage(),
+      AppRoutes.baseResultFeature: (context) => const ResultPage(),
+      AppRoutes.informationAndSupportCenter: (context) =>
+          const InformationAndSupportCenterPage(),
+      AppRoutes.supportWebview: (context) => const SupportWebviewPage(),
+      AppRoutes.userManual: (context) => const UserManualPage(),
     };
   }
 

@@ -1,25 +1,31 @@
-class BaseRequestListResponse<T> {
-  final List<T>? data;
-  final int? status;
-  final String? message;
+class BaseResponseWithListObj<T> {
+  final int? code;
+  final String? msg;
+  final bool? ok;
+  final String? i18n;
+  final List<T>? obj;
 
-  BaseRequestListResponse({
-    this.status,
-    this.data,
-    this.message,
+  BaseResponseWithListObj({
+    this.code,
+    this.msg,
+    this.ok,
+    this.obj,
+    this.i18n,
   });
 
-  factory BaseRequestListResponse.fromJson(
+  factory BaseResponseWithListObj.fromJson(
       Map<String, dynamic> json, T Function(Object? json) fromJsonT) {
-    BaseRequestListResponse<T> resultGeneric = BaseRequestListResponse<T>(
-      status: json['Status'] as int? ?? 0,
-      message: json['Message'] as String? ?? "",
+    BaseResponseWithListObj<T> resultGeneric = BaseResponseWithListObj<T>(
+      code: json['code'] as int? ?? 0,
+      msg: json['msg'] as String? ?? "",
+      ok: json['ok'] as bool,
+      i18n: json['i18n'] as String? ?? "",
     );
 
-    if (json['Data'] != null) {
-      if (json['Data'] is List?) {
+    if (json['obj'] != null) {
+      if (json['obj'] is List?) {
         return resultGeneric.copyWith(
-          data: (json['Data'] as List).map(fromJsonT).toList(),
+          obj: (json['obj'] as List).map(fromJsonT).toList(),
         );
       }
     }
@@ -28,20 +34,26 @@ class BaseRequestListResponse<T> {
   }
 
   Map<String, dynamic> toJson() => {
-        'Data': data,
-        'Status': status,
-        'Message': message,
+        'code': code,
+        'msg': msg,
+        'ok': ok,
+        'i18n': i18n,
+        'obj': obj,
       };
 
-  BaseRequestListResponse<T> copyWith({
-    List<T>? data,
-    int? status,
-    String? userMessage,
+  BaseResponseWithListObj<T> copyWith({
+    int? code,
+    String? msg,
+    bool? ok,
+    String? i18n,
+    List<T>? obj,
   }) {
-    return BaseRequestListResponse<T>(
-      status: status ?? this.status,
-      data: data ?? this.data,
-      message: userMessage ?? this.message,
+    return BaseResponseWithListObj<T>(
+      code: code ?? this.code,
+      msg: msg ?? this.msg,
+      ok: ok ?? this.ok,
+      i18n: i18n ?? this.i18n,
+      obj: obj ?? this.obj,
     );
   }
 }

@@ -144,7 +144,6 @@
   "account_title": "Thông tin tài khoản",
   "verification_tile": "Đã xác minh",
   "new_member_tile": "Thành viên mới",
-  "second_account": "TÀI KHOẢN PHỤ",
   "profile_information": "Thông tin cá nhân",
   "information_and_support_center": "Trung tâm thông tin & hỗ trợ",
   "language_settings": "Cài đặt ngôn ngữ",
@@ -397,5 +396,7 @@
   "phone_not_correct_format": "Số điện thoại không đúng định dạng",
   "enter_new_password": "Nhập mật khẩu mới",
   "all_passwords_are_the_same": "Tất cả mật khẩu đều giống nhau",
-  "notice_update_information_user": "Bạn vui lòng khai báo thông tin chính xác, để E-SPOT có thể hỗ trợ bạn thật tốt nhé."
+  "notice_update_information_user": "Bạn vui lòng khai báo thông tin chính xác, để E-SPOT có thể hỗ trợ bạn thật tốt nhé.",
+  "check_information_account": "Kiểm tra thông tin tài khoản",
+  "required_create_name": "Tên tài khoản được viết hoa và không có dấu"
 }

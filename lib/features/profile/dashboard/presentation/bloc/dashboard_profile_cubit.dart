@@ -1,4 +1,7 @@
+import 'package:espot_power/core/routes/app_pages.dart';
 import 'package:espot_power/features/index.dart';
+import 'package:espot_power/index.dart';
+import 'package:espot_power/utils/index.dart';
 
 part 'dashboard_profile_state.dart';
 
@@ -24,5 +27,12 @@ class DashboardProfileCubit extends Cubit<DashboardProfileState>
     } catch (e) {
       emit(state.copyWith(onGetUserProfile: RequestStatus.failure));
     }
+  }
+
+  Future<void> logout() async {
+    await SharedPrefsHelper.clearData().then((value) {
+      NavigatorExt.pushAndRemoveUntil(AppContext.navigatorKey.currentContext!,
+          const VerifyUserPage(), AppRoutes.home);
+    });
   }
 }

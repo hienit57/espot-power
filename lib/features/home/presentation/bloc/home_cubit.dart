@@ -11,11 +11,4 @@ class HomeCubit extends Cubit<HomeState> with LoadingMixin, ToastMixin {
   void emitIndexTabSelect(int value) {
     emit(state.copyWith(indexSelectTab: value));
   }
-
-  Future<void> logout() async {
-    await SharedPrefsHelper.clearData().then((value) {
-      NavigatorExt.pushAndRemoveUntil(AppContext.navigatorKey.currentContext!,
-          const VerifyUserPage(), AppRoutes.home);
-    });
-  }
 }

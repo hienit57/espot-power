@@ -153,7 +153,7 @@ class ApiService with PreferencesUtil, LoadingMixin, ToastMixin {
     if (result.data != null) {
       return result.data!;
     } else {
-      return BaseRequestResponse(code: RequestStatusCode.failure.value)
+      return BaseResponseWithObj(code: RequestStatusCode.failure.value)
           .toJson();
     }
   }

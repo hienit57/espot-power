@@ -1,80 +1,81 @@
 import 'package:espot_power/core/network/http_request/response_models/base_request_list_response.dart';
 
-class BaseRequestListResponseWithPagination<T>
-    extends BaseRequestListResponse<T> {
-  final Pagination? pagination;
+class BaseResponseWithPagination<T> extends BaseResponseWithListObj<T> {
+  final int? pageNo;
+  final int? pageSize;
+  final int? totalPage;
+  final int? totalSize;
 
-  BaseRequestListResponseWithPagination({
-    int? status,
-    List<T>? data,
-    String? message,
-    this.pagination,
+  BaseResponseWithPagination({
+    int? code,
+    bool? ok,
+    String? msg,
+    String? i18n,
+    List<T>? obj,
+    this.pageNo,
+    this.pageSize,
+    this.totalPage,
+    this.totalSize,
   }) : super(
-          status: status,
-          data: data,
-          message: message,
+          code: code,
+          ok: ok,
+          msg: msg,
+          i18n: i18n,
+          obj: obj,
         );
 
-  factory BaseRequestListResponseWithPagination.fromJson(
+  factory BaseResponseWithPagination.fromJson(
     Map<String, dynamic> json,
     T Function(Object? json) fromJsonT,
   ) {
-    return BaseRequestListResponseWithPagination<T>(
-      status: json['Status'] as int? ?? 0,
-      message: json['Message'] as String? ?? "",
-      data: (json['Data'] != null && json['Data'] is List)
-          ? (json['Data'] as List).map(fromJsonT).toList()
+    return BaseResponseWithPagination<T>(
+      code: json['code'] as int? ?? 0,
+      ok: json['cokode'] as bool? ?? false,
+      msg: json['msg'] as String? ?? "",
+      i18n: json['i18n'] as String? ?? "",
+      obj: (json['obj'] != null && json['obj'] is List)
+          ? (json['obj'] as List).map(fromJsonT).toList()
           : null,
-      pagination: Pagination.fromJson(json['Pagination']),
+      pageNo: json['pageNo'] as int? ?? 0,
+      pageSize: json['pageSize'] as int? ?? 0,
+      totalPage: json['totalPage'] as int? ?? 0,
+      totalSize: json['totalSize'] as int? ?? 0,
     );
   }
 
   @override
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = super.toJson();
-    data['Pagination'] = pagination?.toJson();
+    data['pageNo'] = pageNo;
+    data['pageSize'] = pageSize;
+    data['totalPage'] = totalPage;
+    data['totalSize'] = totalSize;
+
     return data;
   }
 
   @override
-  BaseRequestListResponseWithPagination<T> copyWith({
-    List<T>? data,
-    int? status,
-    String? userMessage,
-    Pagination? pagination,
+  BaseResponseWithPagination<T> copyWith({
+    int? code,
+    bool? ok,
+    String? msg,
+    String? i18n,
+    List<T>? obj,
+    int? pageNo,
+    int? pageSize,
+    int? totalPage,
+    int? totalSize,
   }) {
-    return BaseRequestListResponseWithPagination<T>(
-      status: status ?? this.status,
-      data: data ?? this.data,
-      message: userMessage ?? message,
-      pagination: pagination ?? this.pagination,
+    return BaseResponseWithPagination<T>(
+      code: code ?? this.code,
+      ok: ok ?? this.ok,
+      msg: msg ?? this.msg,
+      i18n: i18n ?? this.i18n,
+      obj: obj ?? this.obj,
+      pageNo: pageNo ?? this.pageNo,
+      pageSize: pageSize ?? this.pageSize,
+      totalPage: totalPage ?? this.totalPage,
+      totalSize: totalSize ?? this.totalSize,
     );
   }
-}
-
-class Pagination {
-  final int? totalItems;
-  final int? currentPage;
-  final int? position;
-  final int? itemsPerPage;
-
-  Pagination({
-    this.totalItems,
-    this.currentPage,
-    this.position,
-    this.itemsPerPage,
-  });
-
-  Pagination.fromJson(Map<String, dynamic> json)
-      : totalItems = json['TotalItems'] as int?,
-        currentPage = json['CurrentPage'] as int?,
-        position = json['Position'] as int?,
-        itemsPerPage = json['ItemsPerPage'] as int?;
-
-  Map<String, dynamic> toJson() => {
-        'TotalItems': totalItems,
-        'CurrentPage': currentPage,
-        'Position': position,
-        'ItemsPerPage': itemsPerPage,
-      };
 }

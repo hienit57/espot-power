@@ -36,4 +36,10 @@ final providers = [
   BlocProvider<UpdateInformationUserCubit>(
     create: (context) => UpdateInformationUserCubit(),
   ),
+  BlocProvider<DeleteAccountCubit>(
+    create: (context) => DeleteAccountCubit(),
+  ),
+  BlocProvider<UserManualCubit>(
+    create: (context) => UserManualCubit(),
+  ),
 ];

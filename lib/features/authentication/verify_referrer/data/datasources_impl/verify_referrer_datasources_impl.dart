@@ -3,7 +3,7 @@ import 'package:espot_power/features/authentication/verify_referrer/data/index.d
 
 class VerifyReferrerDatasourcesImpl extends VerifyReferrerDatasources {
   @override
-  Future<BaseRequestResponse> verifyReferrer(
+  Future<BaseResponseWithObj> verifyReferrer(
       VerifyReferrerModelRequest dataRequest) async {
     Map<String, dynamic> queryParameters = {
       "phoneNum": dataRequest.phoneNumber,
@@ -12,6 +12,6 @@ class VerifyReferrerDatasourcesImpl extends VerifyReferrerDatasources {
     final res = await ApiService()
         .request(VerifyReferrerRequest(queryParameters: queryParameters));
 
-    return BaseRequestResponse.fromJson(res);
+    return BaseResponseWithObj.fromJson(res);
   }
 }

@@ -20,6 +20,9 @@ Future<void> setupDi() async {
       () => ChangePasswordDatasourcesImpl());
   getIt.registerFactory<UpdateUserProfileDatasourcesImpl>(
       () => UpdateUserProfileDatasourcesImpl());
-
+  getIt.registerFactory<DeleteAccountDatasourcesImpl>(
+      () => DeleteAccountDatasourcesImpl());
+  getIt.registerFactory<UserManualDatasourcesImpl>(
+      () => UserManualDatasourcesImpl());
   return;
 }

@@ -1,11 +1,12 @@
 import 'package:espot_power/common/index.dart';
+import 'package:espot_power/core/mixins/dialog_mixin.dart';
 import 'package:espot_power/features/index.dart';
 import 'package:espot_power/features/profile/personal_information/change_password/presentation/pages/change_password_page.dart';
 import 'package:espot_power/index.dart';
 import 'package:espot_power/theme/index.dart';
 import 'package:flutter/material.dart';
 
-class ViewPersonalInformationPage extends StatelessWidget {
+class ViewPersonalInformationPage extends StatelessWidget with DialogMixin {
   const ViewPersonalInformationPage({
     super.key,
   });
@@ -125,16 +126,33 @@ class ViewPersonalInformationPage extends StatelessWidget {
               Padding(
                 padding:
                     const EdgeInsets.symmetric(vertical: 20, horizontal: 24),
-                child: CustomRowIconNameWidget(
-                  icon: AppAssets.iconProfileDeleteAccount,
-                  isViewArrow: false,
-                  name: LocaleKeys.delete_account.tr(),
+                child: GestureDetector(
+                  onTap: () {
+                    _onDeleteAccount(context);
+                  },
+                  child: CustomRowIconNameWidget(
+                    icon: AppAssets.iconProfileDeleteAccount,
+                    isViewArrow: false,
+                    name: LocaleKeys.delete_account.tr(),
+                  ),
                 ),
               ),
               Container(height: 1, color: AppColors.colorF1F1F1),
             ],
           );
         },
+      ),
+    );
+  }
+
+  _onDeleteAccount(BuildContext context) {
+    cShowGeneralDialog(
+      context,
+      widget: const Align(
+        alignment: Alignment.center,
+        child: IntrinsicHeight(
+          child: DeleteAccountPage(),
+        ),
       ),
     );
   }

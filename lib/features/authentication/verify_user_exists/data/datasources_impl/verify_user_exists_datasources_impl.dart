@@ -3,7 +3,7 @@ import 'package:espot_power/features/authentication/index.dart';
 
 class VerifyUserDatasourcesImpl extends VerifyUserDatasources {
   @override
-  Future<BaseRequestResponse> verifyUserExist(
+  Future<BaseResponseWithObj> verifyUserExist(
       VerifyUserExistModelRequest dataRequest) async {
     Map<String, dynamic> queryParameters = {
       "areaCode": dataRequest.areaCode,
@@ -13,6 +13,6 @@ class VerifyUserDatasourcesImpl extends VerifyUserDatasources {
     final res = await ApiService()
         .request(VerifyUserExistsRequest(queryParameters: queryParameters));
 
-    return BaseRequestResponse.fromJson(res);
+    return BaseResponseWithObj.fromJson(res);
   }
 }

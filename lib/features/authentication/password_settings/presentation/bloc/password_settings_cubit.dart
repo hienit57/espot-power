@@ -37,7 +37,7 @@ class PasswordSettingsCubit extends Cubit<PasswordSettingsState>
       if (Validation.validationPassword(passwordController.text) == true) {
         try {
           final dataRequest = PasswordSettingsModelRequest(
-            name: phoneNumber,
+            name: '',
             phoneNumber: phoneNumber,
             password: FormatUtils().convertToMd5(passwordController.text),
             referralNumber: referrerPhone,
@@ -51,15 +51,14 @@ class PasswordSettingsCubit extends Cubit<PasswordSettingsState>
                 ),
               );
             } else {
-              final dataResponse = UserData.fromJson(response.obj);
-
-              await SharedPrefsHelper.saveAccessToken(dataResponse.token ?? "");
-
-              emit(
-                state.copyWith(
-                  onCreatePassword: RequestStatus.success,
-                ),
-              );
+              await SharedPrefsHelper.saveAccessToken(response.data)
+                  .then((value) {
+                emit(
+                  state.copyWith(
+                    onCreatePassword: RequestStatus.success,
+                  ),
+                );
+              });
             }
           });
         } catch (e) {
