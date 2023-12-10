@@ -5,7 +5,7 @@ import 'package:espot_power/index.dart';
 import 'package:espot_power/theme/index.dart';
 import 'package:flutter/material.dart';
 
-class DashboardProfilePage extends StatelessWidget with DialogMixin {
+class DashboardProfilePage extends StatefulWidget {
   final VoidCallback? onSetLocaleEn;
   final VoidCallback? onSetLocaleVi;
 
@@ -13,10 +13,23 @@ class DashboardProfilePage extends StatelessWidget with DialogMixin {
       {super.key, this.onSetLocaleEn, this.onSetLocaleVi});
 
   @override
-  Widget build(BuildContext context) {
-    final _dashboardProfileCubit =
-        BlocProvider.of<DashboardProfileCubit>(context);
+  State<DashboardProfilePage> createState() => _DashboardProfilePageState();
+}
+
+class _DashboardProfilePageState extends State<DashboardProfilePage>
+    with DialogMixin, AutomaticKeepAliveClientMixin {
+  late DashboardProfileCubit _dashboardProfileCubit;
+
+  @override
+  void initState() {
+    _dashboardProfileCubit = BlocProvider.of<DashboardProfileCubit>(context);
     _dashboardProfileCubit.getUserProfile();
+
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return BlocBuilder<DashboardProfileCubit, DashboardProfileState>(
       buildWhen: (previous, current) =>
           previous.onGetUserProfile != current.onGetUserProfile,
@@ -94,11 +107,12 @@ class DashboardProfilePage extends StatelessWidget with DialogMixin {
     switch (value) {
       case FeaturesProfile.profileInformation:
         PersistentNavBarNavigator.pushNewScreen(
-          AppContext.navigatorKey.currentContext!,
-          screen: const ViewPersonalInformationPage(),
-          withNavBar: false,
-          pageTransitionAnimation: PageTransitionAnimation.cupertino,
-        );
+            AppContext.navigatorKey.currentContext!,
+            screen: const DashboardProfilePage(),
+            withNavBar: false,
+            pageTransitionAnimation: PageTransitionAnimation.cupertino,
+            customPageRoute: MaterialPageRoute(
+                builder: (_) => const ViewPersonalInformationPage()));
         break;
       case FeaturesProfile.userManual:
         PersistentNavBarNavigator.pushNewScreen(
@@ -120,6 +134,12 @@ class DashboardProfilePage extends StatelessWidget with DialogMixin {
         _onLanguageSettings(AppContext.navigatorKey.currentContext!);
         break;
       case FeaturesProfile.contactForCooperation:
+        PersistentNavBarNavigator.pushNewScreen(
+          AppContext.navigatorKey.currentContext!,
+          screen: const ContactForCooperationPage(),
+          withNavBar: false,
+          pageTransitionAnimation: PageTransitionAnimation.cupertino,
+        );
         break;
       case FeaturesProfile.feedback:
         break;
@@ -250,7 +270,7 @@ class DashboardProfilePage extends StatelessWidget with DialogMixin {
                     radius: 10,
                     onTap: () {
                       Navigator.pop(context);
-                      onSetLocaleVi?.call();
+                      widget.onSetLocaleVi?.call();
                     },
                     child: Padding(
                       padding: const EdgeInsets.only(left: 12),
@@ -284,10 +304,8 @@ class DashboardProfilePage extends StatelessWidget with DialogMixin {
                     radius: 10,
                     onTap: () {
                       Navigator.pop(context);
-                      onSetLocaleEn?.call();
+                      widget.onSetLocaleEn?.call();
                     },
-                    //  () async =>
-                    //     await context.setLocale(const Locale('en')),
                     child: Padding(
                       padding: const EdgeInsets.only(left: 12),
                       child: Row(
@@ -328,4 +346,7 @@ class DashboardProfilePage extends StatelessWidget with DialogMixin {
       },
     );
   }
+
+  @override
+  bool get wantKeepAlive => false;
 }

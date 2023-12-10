@@ -396,5 +396,6 @@
   "all_passwords_are_the_same": "All passwords are the same",
   "notice_update_information_user": "Please provide accurate information so that E-SPOT can support you better.",
   "check_information_account": "Check account information",
-  "required_create_name": "The account name is capitalized and has no accents"
+  "required_create_name": "The account name is capitalized and has no accents",
+  "please_enter_all_information": "Please enter all information "
 }

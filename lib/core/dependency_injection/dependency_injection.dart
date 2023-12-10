@@ -24,5 +24,7 @@ Future<void> setupDi() async {
       () => DeleteAccountDatasourcesImpl());
   getIt.registerFactory<UserManualDatasourcesImpl>(
       () => UserManualDatasourcesImpl());
+  getIt.registerFactory<ContactForCooperationDatasourcesImpl>(
+      () => ContactForCooperationDatasourcesImpl());
   return;
 }

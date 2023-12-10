@@ -397,5 +397,6 @@
   "all_passwords_are_the_same": "Tất cả mật khẩu đều giống nhau",
   "notice_update_information_user": "Bạn vui lòng khai báo thông tin chính xác, để E-SPOT có thể hỗ trợ bạn thật tốt nhé.",
   "check_information_account": "Kiểm tra thông tin tài khoản",
-  "required_create_name": "Tên tài khoản được viết hoa và không có dấu"
+  "required_create_name": "Tên tài khoản được viết hoa và không có dấu",
+  "please_enter_all_information": "Vui lòng nhập đầy đủ thông tin"
 }

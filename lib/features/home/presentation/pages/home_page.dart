@@ -30,42 +30,6 @@ class _HomePageState extends State<HomePage> with LoadingMixin {
     super.initState();
   }
 
-  List<StatelessWidget> screens(BuildContext context) => [
-        //UserManualPage(),
-        Container(
-          child: Center(
-            child: CText(
-              text: LocaleKeys.map.tr(),
-            ),
-          ),
-        ),
-        Container(
-          child: Center(
-            child: CText(
-              text: LocaleKeys.order.tr(),
-            ),
-          ),
-        ),
-        Container(
-          child: Center(
-            child: CText(
-              text: 'QR Scan',
-            ),
-          ),
-        ),
-        Container(
-          child: Center(
-            child: CText(
-              text: LocaleKeys.notification.tr(),
-            ),
-          ),
-        ),
-        DashboardProfilePage(
-          onSetLocaleVi: () => context.setLocale(Locale('vi')),
-          onSetLocaleEn: () => context.setLocale(Locale('en')),
-        ),
-      ];
-
   List<PersistentBottomNavBarItem>? items(
           BuildContext context, HomeState state) =>
       [
@@ -134,7 +98,41 @@ class _HomePageState extends State<HomePage> with LoadingMixin {
         return PersistentTabView(
           context,
           controller: _controller,
-          screens: screens(context),
+          screens: [
+            //ContactForCooperationPage(),
+            Container(
+              child: Center(
+                child: CText(
+                  text: LocaleKeys.map.tr(),
+                ),
+              ),
+            ),
+            Container(
+              child: Center(
+                child: CText(
+                  text: LocaleKeys.order.tr(),
+                ),
+              ),
+            ),
+            Container(
+              child: Center(
+                child: CText(
+                  text: 'QR Scan',
+                ),
+              ),
+            ),
+            Container(
+              child: Center(
+                child: CText(
+                  text: LocaleKeys.notification.tr(),
+                ),
+              ),
+            ),
+            DashboardProfilePage(
+              onSetLocaleVi: () => context.setLocale(Locale('vi')),
+              onSetLocaleEn: () => context.setLocale(Locale('en')),
+            ),
+          ],
           padding: const NavBarPadding.all(0),
           bottomScreenMargin: 0,
           onItemSelected: (value) {

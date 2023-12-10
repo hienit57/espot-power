@@ -25,6 +25,8 @@ class AppPages {
           const InformationAndSupportCenterPage(),
       AppRoutes.supportWebview: (context) => const SupportWebviewPage(),
       AppRoutes.userManual: (context) => const UserManualPage(),
+      AppRoutes.contactForCooperation: (context) =>
+          const ContactForCooperationPage(),
     };
   }
 

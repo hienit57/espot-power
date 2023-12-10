@@ -1,7 +1,6 @@
 import 'package:espot_power/common/index.dart';
 import 'package:espot_power/core/mixins/dialog_mixin.dart';
 import 'package:espot_power/features/index.dart';
-import 'package:espot_power/features/profile/personal_information/change_password/presentation/pages/change_password_page.dart';
 import 'package:espot_power/index.dart';
 import 'package:espot_power/theme/index.dart';
 import 'package:flutter/material.dart';

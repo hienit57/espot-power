@@ -42,4 +42,7 @@ final providers = [
   BlocProvider<UserManualCubit>(
     create: (context) => UserManualCubit(),
   ),
+  BlocProvider<ContactForCooperationCubit>(
+    create: (context) => ContactForCooperationCubit(),
+  ),
 ];

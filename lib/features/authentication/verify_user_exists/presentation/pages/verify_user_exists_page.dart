@@ -49,6 +49,7 @@ class VerifyUserPage extends StatelessWidget {
               controller: _verifyUserExists.phoneController,
               placeholder: LocaleKeys.telephone.tr(),
               borderRadius: 10,
+              keyboardType: TextInputType.phone,
               inputFormatters: [
                 FilteringTextInputFormatter.digitsOnly,
                 FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),

@@ -399,5 +399,6 @@ abstract class  LocaleKeys {
   static const notice_update_information_user = 'notice_update_information_user';
   static const check_information_account = 'check_information_account';
   static const required_create_name = 'required_create_name';
+  static const please_enter_all_information = 'please_enter_all_information';
 
 }
