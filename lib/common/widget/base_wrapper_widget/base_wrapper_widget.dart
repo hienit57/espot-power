@@ -15,13 +15,14 @@ class BaseWrapperWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      //resizeToAvoidBottomInset: false,
       body: Column(
         children: [
           const SizedBox(height: 58),
           Padding(
             padding: const EdgeInsets.only(left: 16),
             child: GestureDetector(
+              behavior: HitTestBehavior.opaque,
               onTap: onReturn,
               child: Row(
                 children: [
@@ -40,7 +41,7 @@ class BaseWrapperWidget extends StatelessWidget {
               ),
             ),
           ),
-          child ?? const SizedBox.shrink()
+          Expanded(child: child ?? const SizedBox.shrink())
         ],
       ),
     );

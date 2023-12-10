@@ -62,13 +62,16 @@ class UpdateInformationUserPage extends StatelessWidget with DialogMixin {
               }
             },
             builder: (context, state) {
-              return Column(
+              return ListView(
+                padding: EdgeInsets.zero,
                 children: [
                   const SizedBox(height: 24),
-                  CText(
-                    text: LocaleKeys.info_person.tr(),
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,
+                  Center(
+                    child: CText(
+                      text: LocaleKeys.info_person.tr(),
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                   const SizedBox(height: 36),
                   AppTextField(

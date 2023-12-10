@@ -67,6 +67,7 @@ class _DashboardProfilePageState extends State<DashboardProfilePage>
                                 horizontal: 24,
                               ),
                               child: GestureDetector(
+                                behavior: HitTestBehavior.opaque,
                                 onTap: () {
                                   onTapFeature(
                                     context,
@@ -142,6 +143,12 @@ class _DashboardProfilePageState extends State<DashboardProfilePage>
         );
         break;
       case FeaturesProfile.feedback:
+        PersistentNavBarNavigator.pushNewScreen(
+          AppContext.navigatorKey.currentContext!,
+          screen: const FeedbackPage(),
+          withNavBar: false,
+          pageTransitionAnimation: PageTransitionAnimation.cupertino,
+        );
         break;
       case FeaturesProfile.logout:
         _onLogout(context);

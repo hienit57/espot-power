@@ -34,8 +34,8 @@ class ContactForCooperationPage extends StatelessWidget with DialogMixin {
             );
           }
         },
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: ListView(
+          padding: EdgeInsets.zero,
           children: [
             const SizedBox(height: 24),
             Center(
@@ -136,11 +136,11 @@ class ContactForCooperationPage extends StatelessWidget with DialogMixin {
                 ),
               ),
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: 6),
             BlocBuilder<ContactForCooperationCubit, ContactForCooperationState>(
               buildWhen: (previous, current) =>
-                  previous.msgSendContactForCooperation !=
-                  current.msgSendContactForCooperation,
+                  previous.onSendContactForCooperation !=
+                  current.onSendContactForCooperation,
               builder: (context, state) {
                 return Center(
                   child: CText(
@@ -153,9 +153,9 @@ class ContactForCooperationPage extends StatelessWidget with DialogMixin {
                 );
               },
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: 6),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 112),
+              padding: const EdgeInsets.symmetric(horizontal: 88),
               child: CButton(
                 height: 40,
                 width: double.infinity,

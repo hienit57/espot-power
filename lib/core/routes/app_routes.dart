@@ -27,6 +27,7 @@ class AppPages {
       AppRoutes.userManual: (context) => const UserManualPage(),
       AppRoutes.contactForCooperation: (context) =>
           const ContactForCooperationPage(),
+      AppRoutes.userFeedback: (context) => const FeedbackPage(),
     };
   }
 

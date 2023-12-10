@@ -1,5 +1,3 @@
-import 'package:espot_power/features/profile/dashboard/presentation/bloc/dashboard_profile_cubit.dart';
-
 import 'features/index.dart';
 
 final providers = [
@@ -44,5 +42,8 @@ final providers = [
   ),
   BlocProvider<ContactForCooperationCubit>(
     create: (context) => ContactForCooperationCubit(),
+  ),
+  BlocProvider<FeedbackCubit>(
+    create: (context) => FeedbackCubit(),
   ),
 ];

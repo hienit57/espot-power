@@ -16,6 +16,7 @@ class AppRoutes {
   static const supportWebview = '/support-webview';
   static const userManual = '/user-manual';
   static const contactForCooperation = '/contact-for-cooperation';
+  static const userFeedback = '/feedback';
 
   // static Map<String, String> profile = {
   //   "profile": "/profile",

@@ -99,7 +99,6 @@ class _HomePageState extends State<HomePage> with LoadingMixin {
           context,
           controller: _controller,
           screens: [
-            //ContactForCooperationPage(),
             Container(
               child: Center(
                 child: CText(

@@ -26,5 +26,7 @@ Future<void> setupDi() async {
       () => UserManualDatasourcesImpl());
   getIt.registerFactory<ContactForCooperationDatasourcesImpl>(
       () => ContactForCooperationDatasourcesImpl());
+  getIt.registerFactory<FeedbackDatasourcesImpl>(
+      () => FeedbackDatasourcesImpl());
   return;
 }
