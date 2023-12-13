@@ -7,19 +7,22 @@ import 'package:flutter/material.dart';
 class UserManualPage extends StatelessWidget {
   const UserManualPage({super.key});
 
+  static List<String> listTabUserManual = [
+    LocaleKeys.rent_and_pay_batterry.tr(),
+    LocaleKeys.payment.tr(),
+    LocaleKeys.answer_question.tr(),
+  ];
+
   @override
   Widget build(BuildContext context) {
     final userManualCubit = BlocProvider.of<UserManualCubit>(context);
     userManualCubit.emitSelectTab(0);
     userManualCubit.getUserManual();
+
     return BaseWrapperWidget(
       onReturn: () {
-        PersistentNavBarNavigator.pushNewScreen(
-          AppContext.navigatorKey.currentContext!,
-          screen: const HomePage(indexTab: 4),
-          withNavBar: true,
-          pageTransitionAnimation: PageTransitionAnimation.cupertino,
-        );
+        NavigatorExt.push(AppContext.navigatorKey.currentContext!,
+            const HomePage(indexTab: 4));
       },
       child: BlocBuilder<UserManualCubit, UserManualState>(
         buildWhen: (previous, current) =>
@@ -45,10 +48,10 @@ class UserManualPage extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 40),
                     child: ListView.builder(
-                      itemCount: userManualCubit.listTabUserManual.length,
+                      itemCount: listTabUserManual.length,
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
-                        final item = userManualCubit.listTabUserManual[index];
+                        final item = listTabUserManual[index];
                         return MouseRegion(
                           cursor: SystemMouseCursors.click,
                           child: GestureDetector(

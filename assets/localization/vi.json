@@ -398,5 +398,6 @@
   "notice_update_information_user": "Bạn vui lòng khai báo thông tin chính xác, để E-SPOT có thể hỗ trợ bạn thật tốt nhé.",
   "check_information_account": "Kiểm tra thông tin tài khoản",
   "required_create_name": "Tên tài khoản được viết hoa và không có dấu",
-  "please_enter_all_information": "Vui lòng nhập đầy đủ thông tin"
+  "please_enter_all_information": "Vui lòng nhập đầy đủ thông tin",
+  "message_service_usage": "Là số tiền sử dụng dịch vụ thuê pin sạc của bạn tính tới thời điểm hiện tại."
 }

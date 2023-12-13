@@ -17,12 +17,8 @@ class ViewPersonalInformationPage extends StatelessWidget with DialogMixin {
     _dashboardProfileCubit.getUserProfile();
     return BaseWrapperWidget(
       onReturn: () {
-        PersistentNavBarNavigator.pushNewScreen(
-          AppContext.navigatorKey.currentContext!,
-          screen: const HomePage(indexTab: 4),
-          withNavBar: true,
-          pageTransitionAnimation: PageTransitionAnimation.cupertino,
-        );
+        NavigatorExt.push(AppContext.navigatorKey.currentContext!,
+            const HomePage(indexTab: 4));
       },
       child: BlocBuilder<DashboardProfileCubit, DashboardProfileState>(
         buildWhen: (previous, current) =>
@@ -89,11 +85,9 @@ class ViewPersonalInformationPage extends StatelessWidget with DialogMixin {
                 padding:
                     const EdgeInsets.symmetric(vertical: 20, horizontal: 24),
                 child: GestureDetector(
-                  onTap: () => PersistentNavBarNavigator.pushNewScreen(
+                  onTap: () => NavigatorExt.push(
                     AppContext.navigatorKey.currentContext!,
-                    screen: const ChangePasswordPage(),
-                    withNavBar: false,
-                    pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                    const ChangePasswordPage(),
                   ),
                   child: CustomRowIconNameWidget(
                     icon: AppAssets.iconProfileChangePassword,
@@ -107,11 +101,9 @@ class ViewPersonalInformationPage extends StatelessWidget with DialogMixin {
                 padding:
                     const EdgeInsets.symmetric(vertical: 20, horizontal: 24),
                 child: GestureDetector(
-                  onTap: () => PersistentNavBarNavigator.pushNewScreen(
+                  onTap: () => NavigatorExt.push(
                     AppContext.navigatorKey.currentContext!,
-                    screen: const UpdateInformationUserPage(),
-                    withNavBar: false,
-                    pageTransitionAnimation: PageTransitionAnimation.cupertino,
+                    const UpdateInformationUserPage(),
                   ),
                   child: CustomRowIconNameWidget(
                     icon: AppAssets.iconProfileUpdateInfo,

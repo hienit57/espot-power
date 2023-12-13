@@ -400,5 +400,6 @@ abstract class  LocaleKeys {
   static const check_information_account = 'check_information_account';
   static const required_create_name = 'required_create_name';
   static const please_enter_all_information = 'please_enter_all_information';
+  static const message_service_usage = 'message_service_usage';
 
 }

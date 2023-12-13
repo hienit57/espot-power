@@ -46,4 +46,13 @@ final providers = [
   BlocProvider<FeedbackCubit>(
     create: (context) => FeedbackCubit(),
   ),
+  BlocProvider<NotificationCubit>(
+    create: (context) => NotificationCubit(),
+  ),
+  BlocProvider<DashboardTransactionCubit>(
+    create: (context) => DashboardTransactionCubit(),
+  ),
+  BlocProvider<DashboardOrderCubit>(
+    create: (context) => DashboardOrderCubit(),
+  ),
 ];

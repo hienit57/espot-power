@@ -63,6 +63,7 @@ class _CTextState extends State<CText> {
           color: widget.textColor ?? AppColors.color212121,
           fontSize: widget.fontSize ?? 14,
           fontStyle: widget.fontStyle,
+          decorationColor: widget.textColor,
         ),
         overflow: widget.textOverflow,
         maxLines: widget.maxLine,

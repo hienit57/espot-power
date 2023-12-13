@@ -14,12 +14,8 @@ class ChangePasswordPage extends StatelessWidget with DialogMixin {
 
     return BaseWrapperWidget(
       onReturn: () {
-        PersistentNavBarNavigator.pushNewScreen(
-          AppContext.navigatorKey.currentContext!,
-          screen: const ViewPersonalInformationPage(),
-          withNavBar: true,
-          pageTransitionAnimation: PageTransitionAnimation.cupertino,
-        );
+        NavigatorExt.push(AppContext.navigatorKey.currentContext!,
+            const ViewPersonalInformationPage());
       },
       child: BlocConsumer<ChangePasswordCubit, ChangePasswordState>(
         listenWhen: (previous, current) =>
@@ -57,7 +53,7 @@ class ChangePasswordPage extends StatelessWidget with DialogMixin {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: AppTextField(
-                  obscureText: state.isShowOldPwd ?? false,
+                  obscureText: state.isShowOldPwd ?? true,
                   controller: _changePwdCubit.oldPwdController,
                   placeholder: LocaleKeys.password_old.tr(),
                   borderRadius: 10,
@@ -71,7 +67,7 @@ class ChangePasswordPage extends StatelessWidget with DialogMixin {
                     onTap: () => _changePwdCubit
                         .emitShowOldPwd(!(state.isShowOldPwd ?? true)),
                     child: CImage(
-                      assetsPath: state.isShowOldPwd == true
+                      assetsPath: state.isShowOldPwd == false
                           ? AppAssets.iconEyeShow
                           : AppAssets.iconEyeHidden,
                     ),
@@ -85,7 +81,7 @@ class ChangePasswordPage extends StatelessWidget with DialogMixin {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: AppTextField(
-                  obscureText: state.isShowNewPwd ?? false,
+                  obscureText: state.isShowNewPwd ?? true,
                   controller: _changePwdCubit.newPwdController,
                   placeholder: LocaleKeys.new_password.tr(),
                   borderRadius: 10,
@@ -113,7 +109,7 @@ class ChangePasswordPage extends StatelessWidget with DialogMixin {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: AppTextField(
-                  obscureText: state.isShowConfirmPwd ?? false,
+                  obscureText: state.isShowConfirmPwd ?? true,
                   controller: _changePwdCubit.confirmController,
                   placeholder: LocaleKeys.confirm_password.tr(),
                   borderRadius: 10,
@@ -127,7 +123,7 @@ class ChangePasswordPage extends StatelessWidget with DialogMixin {
                     onTap: () => _changePwdCubit
                         .emitShowConfirmPwd(!(state.isShowConfirmPwd ?? true)),
                     child: CImage(
-                      assetsPath: state.isShowConfirmPwd == true
+                      assetsPath: state.isShowConfirmPwd == false
                           ? AppAssets.iconEyeShow
                           : AppAssets.iconEyeHidden,
                     ),

@@ -397,5 +397,6 @@
   "notice_update_information_user": "Please provide accurate information so that E-SPOT can support you better.",
   "check_information_account": "Check account information",
   "required_create_name": "The account name is capitalized and has no accents",
-  "please_enter_all_information": "Please enter all information "
+  "please_enter_all_information": "Please enter all information ",
+  "message_service_usage": "This is the amount of money spent on your rechargeable battery rental service up to the present time."
 }

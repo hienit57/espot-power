@@ -1,6 +1,8 @@
 import 'package:espot_power/common/widget/base_result_widget/result_page.dart';
 import 'package:espot_power/core/routes/app_pages.dart';
 import 'package:espot_power/features/index.dart';
+import 'package:espot_power/features/transaction/dashboard/presentation/index.dart';
+import 'package:espot_power/features/transaction/order/presentation/pages/detail_order_page.dart';
 import 'package:flutter/material.dart';
 
 class AppPages {
@@ -28,6 +30,9 @@ class AppPages {
       AppRoutes.contactForCooperation: (context) =>
           const ContactForCooperationPage(),
       AppRoutes.userFeedback: (context) => const FeedbackPage(),
+      AppRoutes.notification: (context) => const NotificationPage(),
+      AppRoutes.transaction: (context) => const DashboardTransactionPage(),
+      AppRoutes.detailOrder: (context) => const DetailOrderPage(),
     };
   }
 

@@ -234,4 +234,48 @@ class FormatUtils {
   String convertToMd5(String value) {
     return md5.convert(utf8.encode(value)).toString();
   }
+
+  String convertTime(double count) {
+    int hour = 0;
+    int minutes = 0;
+    if (count.toInt() > 60) {
+      hour = count ~/ 60;
+      minutes = count.toInt() % 60;
+    } else {
+      minutes = count.toInt();
+    }
+    return '${hour}h:${minutes}m';
+  }
+
+  String calculateTimeDifferenceAndFormat({
+    String? startDate,
+    String? startTime,
+    String? endDate,
+    String? endTime,
+  }) {
+    // Định dạng ngày và giờ
+    DateTime startDateTime =
+        DateFormat("yyyy-MM-dd HH:mm:ss").parse("$startDate $startTime");
+    DateTime endDateTime =
+        DateFormat("yyyy-MM-dd HH:mm:ss").parse("$endDate $endTime");
+
+    // Tính thời gian giữa hai thời điểm
+    Duration difference = endDateTime.difference(startDateTime);
+
+    // Định dạng thời gian kết quả
+    int hours = difference.inHours;
+    int minutes = (difference.inSeconds / 60).ceil();
+
+    String formattedDuration = '';
+
+    if (hours > 0) {
+      formattedDuration += '$hours giờ ';
+    }
+
+    if (minutes > 0 || hours == 0) {
+      formattedDuration += '$minutes phút';
+    }
+
+    return formattedDuration.trim();
+  }
 }

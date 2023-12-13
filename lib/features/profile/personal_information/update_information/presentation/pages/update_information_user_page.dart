@@ -30,12 +30,8 @@ class UpdateInformationUserPage extends StatelessWidget with DialogMixin {
       },
       child: BaseWrapperWidget(
         onReturn: () {
-          PersistentNavBarNavigator.pushNewScreen(
-            AppContext.navigatorKey.currentContext!,
-            screen: const ViewPersonalInformationPage(),
-            withNavBar: true,
-            pageTransitionAnimation: PageTransitionAnimation.cupertino,
-          );
+          NavigatorExt.push(AppContext.navigatorKey.currentContext!,
+              const ViewPersonalInformationPage());
         },
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24),

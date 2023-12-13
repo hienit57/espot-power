@@ -22,11 +22,15 @@ Future<void> setupDi() async {
       () => UpdateUserProfileDatasourcesImpl());
   getIt.registerFactory<DeleteAccountDatasourcesImpl>(
       () => DeleteAccountDatasourcesImpl());
+  getIt.registerFactory<FeedbackDatasourcesImpl>(
+      () => FeedbackDatasourcesImpl());
   getIt.registerFactory<UserManualDatasourcesImpl>(
       () => UserManualDatasourcesImpl());
   getIt.registerFactory<ContactForCooperationDatasourcesImpl>(
       () => ContactForCooperationDatasourcesImpl());
-  getIt.registerFactory<FeedbackDatasourcesImpl>(
-      () => FeedbackDatasourcesImpl());
+  getIt.registerFactory<NotificationDatasourcesImpl>(
+      () => NotificationDatasourcesImpl());
+  getIt.registerFactory<DashboardOrderDatasourcesImpl>(
+      () => DashboardOrderDatasourcesImpl());
   return;
 }

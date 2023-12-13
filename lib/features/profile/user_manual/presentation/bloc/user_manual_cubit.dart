@@ -1,5 +1,4 @@
 import 'package:espot_power/features/index.dart';
-import 'package:espot_power/index.dart';
 import 'package:espot_power/models/index.dart';
 
 part 'user_manual_state.dart';
@@ -7,12 +6,6 @@ part 'user_manual_state.dart';
 class UserManualCubit extends Cubit<UserManualState>
     with LoadingMixin, ToastMixin {
   UserManualCubit() : super(const UserManualState());
-
-  List<String> listTabUserManual = [
-    LocaleKeys.rent_and_pay_batterry.tr(),
-    LocaleKeys.payment.tr(),
-    LocaleKeys.answer_question.tr(),
-  ];
 
   final _datasource = GetIt.instance<UserManualDatasourcesImpl>();
 

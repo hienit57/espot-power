@@ -1,7 +1,6 @@
 import 'package:espot_power/common/index.dart';
 import 'package:espot_power/common/widget/base_result_widget/result_page.dart';
 import 'package:espot_power/features/index.dart';
-import 'package:espot_power/features/profile/personal_information/delete_account/presentation/bloc/delete_account_cubit.dart';
 import 'package:espot_power/index.dart';
 import 'package:espot_power/theme/index.dart';
 import 'package:flutter/widgets.dart';
@@ -30,32 +29,25 @@ class DeleteAccountPage extends StatelessWidget {
             BlocProvider.of<DashboardProfileCubit>(context).logout();
           }
           if (state.codeResponse == -8) {
-            PersistentNavBarNavigator.pushNewScreen(
-              AppContext.navigatorKey.currentContext!,
-              screen: ResultPage(
-                title: LocaleKeys.title_delete_account_failed.tr(),
-                icon: AppAssets.iconCheckOutFailed,
-                customMessage: CText(
-                  text: LocaleKeys.message_delete_account_failed_money.tr(),
-                  textAlign: TextAlign.center,
-                ),
-                titleButtonOne: LocaleKeys.goback_home.tr(),
-                titleButtonTwo: LocaleKeys.check_information_account.tr(),
-                onTapButtonOne: () {
-                  PersistentNavBarNavigator.pushNewScreen(
-                    AppContext.navigatorKey.currentContext!,
-                    screen: const HomePage(indexTab: 0),
-                    withNavBar: true,
-                    pageTransitionAnimation: PageTransitionAnimation.cupertino,
-                  );
-                },
-                onTapButtonTwo: () {
-                  ///Navigator.pop(context);
-                },
-              ),
-              withNavBar: true,
-              pageTransitionAnimation: PageTransitionAnimation.cupertino,
-            );
+            NavigatorExt.push(
+                AppContext.navigatorKey.currentContext!,
+                ResultPage(
+                  title: LocaleKeys.title_delete_account_failed.tr(),
+                  icon: AppAssets.iconCheckOutFailed,
+                  customMessage: CText(
+                    text: LocaleKeys.message_delete_account_failed_money.tr(),
+                    textAlign: TextAlign.center,
+                  ),
+                  titleButtonOne: LocaleKeys.goback_home.tr(),
+                  titleButtonTwo: LocaleKeys.check_information_account.tr(),
+                  onTapButtonOne: () {
+                    NavigatorExt.push(AppContext.navigatorKey.currentContext!,
+                        const HomePage(indexTab: 0));
+                  },
+                  onTapButtonTwo: () {
+                    ///Navigator.pop(context);
+                  },
+                ));
           }
         },
         builder: (context, state) {

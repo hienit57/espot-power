@@ -19,12 +19,14 @@ class CustomIconTabbarWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         CImage(
+          width: 24,
+          height: 24,
           assetsPath: icon,
           color: isCheck == true ? AppColors.colorFFCB08 : null,
         ),
         CText(
           text: name,
-          fontSize: 11.5,
+          fontSize: 12,
           fontWeight: FontWeight.w500,
           textColor:
               AppColors.colorText231F20.withOpacity(isCheck == true ? 1 : 0.5),

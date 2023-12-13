@@ -14,12 +14,8 @@ class FeedbackPage extends StatelessWidget with DialogMixin {
 
     return BaseWrapperWidget(
       onReturn: () {
-        PersistentNavBarNavigator.pushNewScreen(
-          AppContext.navigatorKey.currentContext!,
-          screen: const HomePage(indexTab: 4),
-          withNavBar: true,
-          pageTransitionAnimation: PageTransitionAnimation.cupertino,
-        );
+        NavigatorExt.push(AppContext.navigatorKey.currentContext!,
+            const HomePage(indexTab: 4));
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24),

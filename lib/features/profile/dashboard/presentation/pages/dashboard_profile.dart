@@ -34,67 +34,68 @@ class _DashboardProfilePageState extends State<DashboardProfilePage>
       buildWhen: (previous, current) =>
           previous.onGetUserProfile != current.onGetUserProfile,
       builder: (context, state) {
-        return Scaffold(
-          body: Column(
-            children: [
-              const SizedBox(height: 64),
-              CText(
+        return ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            const SizedBox(height: 64),
+            Center(
+              child: CText(
                 text: LocaleKeys.account_title.tr(),
                 fontSize: 20,
                 fontWeight: FontWeight.w500,
               ),
-              const SizedBox(height: 16),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: ViewInformationUserWidget(
-                  userProfileResponse: state.userProfileResponse,
-                ),
+            ),
+            const SizedBox(height: 16),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: ViewInformationUserWidget(
+                userProfileResponse: state.userProfileResponse,
               ),
-              const SizedBox(height: 24),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: ViewFinanceWidget(
-                  userProfileResponse: state.userProfileResponse,
-                ),
+            ),
+            const SizedBox(height: 24),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: ViewFinanceWidget(
+                userProfileResponse: state.userProfileResponse,
               ),
-              Column(
-                children: FeaturesProfile.values
-                    .map((element) => Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                vertical: 20,
-                                horizontal: 24,
-                              ),
-                              child: GestureDetector(
-                                behavior: HitTestBehavior.opaque,
-                                onTap: () {
-                                  onTapFeature(
-                                    context,
-                                    element,
-                                    userProfileResponse:
-                                        state.userProfileResponse,
-                                  );
-                                },
-                                child: CustomRowIconNameWidget(
-                                  icon: element.icon,
-                                  name: element.name,
-                                ),
+            ),
+            Column(
+              children: FeaturesProfile.values
+                  .map((element) => Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                              vertical: 20,
+                              horizontal: 24,
+                            ),
+                            child: GestureDetector(
+                              behavior: HitTestBehavior.opaque,
+                              onTap: () {
+                                onTapFeature(
+                                  context,
+                                  element,
+                                  userProfileResponse:
+                                      state.userProfileResponse,
+                                );
+                              },
+                              child: CustomRowIconNameWidget(
+                                icon: element.icon,
+                                name: element.name,
                               ),
                             ),
-                            if (element != FeaturesProfile.logout) ...[
-                              Container(
-                                width: double.infinity,
-                                height: 1,
-                                color: AppColors.colorF1F1F1,
-                              )
-                            ]
-                          ],
-                        ))
-                    .toList(),
-              )
-            ],
-          ),
+                          ),
+                          if (element != FeaturesProfile.logout) ...[
+                            Container(
+                              width: double.infinity,
+                              height: 1,
+                              color: AppColors.colorF1F1F1,
+                            )
+                          ]
+                        ],
+                      ))
+                  .toList(),
+            )
+          ],
         );
       },
     );
@@ -107,48 +108,31 @@ class _DashboardProfilePageState extends State<DashboardProfilePage>
   }) {
     switch (value) {
       case FeaturesProfile.profileInformation:
-        PersistentNavBarNavigator.pushNewScreen(
-            AppContext.navigatorKey.currentContext!,
-            screen: const DashboardProfilePage(),
-            withNavBar: false,
-            pageTransitionAnimation: PageTransitionAnimation.cupertino,
-            customPageRoute: MaterialPageRoute(
-                builder: (_) => const ViewPersonalInformationPage()));
+        NavigatorExt.push(AppContext.navigatorKey.currentContext!,
+            ViewPersonalInformationPage());
         break;
       case FeaturesProfile.userManual:
-        PersistentNavBarNavigator.pushNewScreen(
-          AppContext.navigatorKey.currentContext!,
-          screen: const UserManualPage(),
-          withNavBar: false,
-          pageTransitionAnimation: PageTransitionAnimation.cupertino,
-        );
+        NavigatorExt.push(
+            AppContext.navigatorKey.currentContext!, const UserManualPage());
+
         break;
       case FeaturesProfile.informationAndSupportCenter:
-        PersistentNavBarNavigator.pushNewScreen(
-          AppContext.navigatorKey.currentContext!,
-          screen: const InformationAndSupportCenterPage(),
-          withNavBar: false,
-          pageTransitionAnimation: PageTransitionAnimation.cupertino,
-        );
+        NavigatorExt.push(AppContext.navigatorKey.currentContext!,
+            const InformationAndSupportCenterPage());
+
         break;
       case FeaturesProfile.languageSettings:
         _onLanguageSettings(AppContext.navigatorKey.currentContext!);
         break;
       case FeaturesProfile.contactForCooperation:
-        PersistentNavBarNavigator.pushNewScreen(
-          AppContext.navigatorKey.currentContext!,
-          screen: const ContactForCooperationPage(),
-          withNavBar: false,
-          pageTransitionAnimation: PageTransitionAnimation.cupertino,
-        );
+        NavigatorExt.push(AppContext.navigatorKey.currentContext!,
+            const ContactForCooperationPage());
+
         break;
       case FeaturesProfile.feedback:
-        PersistentNavBarNavigator.pushNewScreen(
-          AppContext.navigatorKey.currentContext!,
-          screen: const FeedbackPage(),
-          withNavBar: false,
-          pageTransitionAnimation: PageTransitionAnimation.cupertino,
-        );
+        NavigatorExt.push(
+            AppContext.navigatorKey.currentContext!, const FeedbackPage());
+
         break;
       case FeaturesProfile.logout:
         _onLogout(context);
