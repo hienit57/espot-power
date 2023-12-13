@@ -30,6 +30,8 @@ class _DashboardOrderPageState extends State<DashboardOrderPage> {
   void dispose() {
     _scrollController.dispose();
 
+    orderCubit.cancelTimeCounting();
+
     super.dispose();
   }
 
@@ -74,10 +76,17 @@ class _DashboardOrderPageState extends State<DashboardOrderPage> {
           buildWhen: (previous, current) =>
               previous.onGetOrders != current.onGetOrders,
           builder: (context, state) {
+            final orderProgress = state.ordersReponseDisplay?.firstWhere(
+              (element) => element.statusGroup == 'Underway',
+            );
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const CountingTimeRentalBatteryWidget(),
+                if (orderProgress != null) ...[
+                  CountingTimeRentalBatteryWidget(
+                    orderProgress: orderProgress,
+                  ),
+                ],
                 CText(
                   text: LocaleKeys.rental_history.tr(),
                   textAlign: TextAlign.center,

@@ -14,8 +14,12 @@ class FeedbackPage extends StatelessWidget with DialogMixin {
 
     return BaseWrapperWidget(
       onReturn: () {
-        NavigatorExt.push(AppContext.navigatorKey.currentContext!,
-            const HomePage(indexTab: 4));
+        NavigatorExt.push(
+            AppContext.navigatorKey.currentContext!,
+            const HomePage(
+              indexTab: 4,
+              child: AllScreenHome.profile,
+            ));
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24),

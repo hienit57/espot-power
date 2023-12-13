@@ -253,11 +253,17 @@ class FormatUtils {
     String? endDate,
     String? endTime,
   }) {
+    DateTime endDateTime;
     // Định dạng ngày và giờ
     DateTime startDateTime =
         DateFormat("yyyy-MM-dd HH:mm:ss").parse("$startDate $startTime");
-    DateTime endDateTime =
-        DateFormat("yyyy-MM-dd HH:mm:ss").parse("$endDate $endTime");
+
+    if (endDate == null || endTime == null) {
+      endDateTime = DateTime.now();
+    } else {
+      endDateTime =
+          DateFormat("yyyy-MM-dd HH:mm:ss").parse("$endDate $endTime");
+    }
 
     // Tính thời gian giữa hai thời điểm
     Duration difference = endDateTime.difference(startDateTime);
@@ -277,5 +283,38 @@ class FormatUtils {
     }
 
     return formattedDuration.trim();
+  }
+
+  //Tinh số second so với hiện tại
+  int calculateTimeDifferenceInSeconds(
+      String? timeStartDate, String? timeStartTime) {
+    // Chuyển đổi chuỗi thành DateTime
+    DateTime startDateTime = DateFormat("yyyy-MM-dd HH:mm:ss")
+        .parse("$timeStartDate $timeStartTime");
+
+    // Lấy thời gian hiện tại
+    DateTime now = DateTime.now();
+
+    // Tính thời gian giữa hai thời điểm
+    Duration difference = now.difference(startDateTime);
+
+    // Lấy số giây giữa hai thời điểm
+    int secondsDifference = difference.inSeconds;
+
+    return secondsDifference;
+  }
+
+  ///Format dạng 00:00:00
+  String formatDuration(int seconds) {
+    Duration duration = Duration(seconds: seconds);
+
+    int hours = duration.inHours;
+    int minutes = duration.inMinutes.remainder(60);
+    int remainingSeconds = duration.inSeconds.remainder(60);
+
+    String formattedDuration =
+        '$hours:${minutes.toString().padLeft(2, '0')}:${remainingSeconds.toString().padLeft(2, '0')}';
+
+    return formattedDuration;
   }
 }

@@ -90,7 +90,7 @@ class ItemOrderWidget extends StatelessWidget {
                         const SizedBox(height: 2),
                         _rowIconContent(
                           icon: AppAssets.iconOrderDolarSmall,
-                          content: '15.000d',
+                          content: orderResponse?.getPriceOrder,
                           contentColor: AppColors.color039BE5,
                         ),
                       ],

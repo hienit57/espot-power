@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:espot_power/features/index.dart';
 import 'package:espot_power/models/index.dart';
 
@@ -8,13 +10,13 @@ class DashboardOrderCubit extends Cubit<DashboardOrderState>
   DashboardOrderCubit() : super(const DashboardOrderState());
 
   final _datasource = GetIt.instance<DashboardOrderDatasourcesImpl>();
+  bool? isFirstLoadData;
 
   void initData() {
+    isFirstLoadData = false;
     emit(state.copyWith(skip: 0));
     getOrders();
   }
-
-  bool isFirstLoadData = false;
 
   List<OrderResponse> listOrderDisplay = [];
 
@@ -90,5 +92,24 @@ class DashboardOrderCubit extends Cubit<DashboardOrderState>
 
   void emitOrderSelected(OrderResponse? value) {
     emit(state.copyWith(orderSelected: value));
+  }
+
+  Timer? timeCounting;
+
+  void increaseValueEverySecond(int initialValue) {
+    int value = initialValue;
+
+    // Tạo một Timer chạy mỗi giây
+    timeCounting = Timer.periodic(Duration(seconds: 1), (timer) {
+      value++; // Tăng giá trị lên 1 mỗi giây
+      emit(state.copyWith(countTime: value));
+
+      // Điều kiện dừng Timer (ví dụ: dừng sau khi giá trị đạt 10)
+      //cancelTimeCounting(timer);
+    });
+  }
+
+  void cancelTimeCounting() {
+    timeCounting?.cancel();
   }
 }

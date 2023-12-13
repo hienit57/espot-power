@@ -6,13 +6,11 @@ import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
   final int? indexTab;
-  final bool? isMainTab;
-  final Widget? child;
+  final AllScreenHome? child;
 
   const HomePage({
     super.key,
     this.indexTab,
-    this.isMainTab,
     this.child,
   });
 
@@ -28,7 +26,7 @@ class _HomePageState extends State<HomePage> with LoadingMixin {
     _homeCubit = BlocProvider.of<HomeCubit>(context);
     _homeCubit.emitIndexTabSelect(
       widget.indexTab ?? 0,
-      screenForHome: AllScreenHome.map,
+      screenForHome: widget.child,
     );
     super.initState();
   }

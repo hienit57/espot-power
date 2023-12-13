@@ -1,21 +1,37 @@
 import 'package:espot_power/common/index.dart';
 import 'package:espot_power/core/mixins/dialog_mixin.dart';
+import 'package:espot_power/features/index.dart';
 import 'package:espot_power/index.dart';
+import 'package:espot_power/models/index.dart';
 import 'package:espot_power/theme/index.dart';
+import 'package:espot_power/utils/index.dart';
 import 'package:flutter/widgets.dart';
 
 class CountingTimeRentalBatteryWidget extends StatelessWidget with DialogMixin {
-  const CountingTimeRentalBatteryWidget({super.key});
+  final OrderResponse? orderProgress;
+
+  const CountingTimeRentalBatteryWidget({
+    super.key,
+    this.orderProgress,
+  });
 
   @override
   Widget build(BuildContext context) {
+    BlocProvider.of<DashboardOrderCubit>(context)
+        .increaseValueEverySecond(orderProgress?.getTimeProgress ?? 0);
     return Column(
       children: [
         Center(
-          child: CText(
-            text: '04:25:45',
-            fontSize: 36,
-            textColor: AppColors.colorText514D56,
+          child: BlocBuilder<DashboardOrderCubit, DashboardOrderState>(
+            buildWhen: (previous, current) =>
+                previous.countTime != current.countTime,
+            builder: (context, state) {
+              return CText(
+                text: FormatUtils().formatDuration(state.countTime ?? 0),
+                fontSize: 36,
+                textColor: AppColors.colorText514D56,
+              );
+            },
           ),
         ),
         const SizedBox(height: 24),
@@ -64,7 +80,7 @@ class CountingTimeRentalBatteryWidget extends StatelessWidget with DialogMixin {
                   textColor: AppColors.color979797,
                 ),
                 CText(
-                  text: '1234567',
+                  text: orderProgress?.id.toString(),
                   textAlign: TextAlign.center,
                   textColor: AppColors.colorText231F20,
                   fontWeight: FontWeight.w500,
@@ -115,7 +131,7 @@ class CountingTimeRentalBatteryWidget extends StatelessWidget with DialogMixin {
                 children: [
                   _itemFinance(
                     title: LocaleKeys.deposit.tr().toUpperCase(),
-                    content: '100.000d',
+                    content: orderProgress?.getCustodyAmount,
                     contentColor: AppColors.colorF9A825,
                     onTapExplain: () => onTapExplainDeposit(context),
                   ),
@@ -133,7 +149,7 @@ class CountingTimeRentalBatteryWidget extends StatelessWidget with DialogMixin {
                 padding: const EdgeInsets.only(left: 10),
                 child: _itemFinance(
                   title: LocaleKeys.used.tr().toUpperCase(),
-                  content: '100.000d',
+                  content: orderProgress?.getPriceOrder,
                   contentColor: AppColors.color039BE5,
                   onTapExplain: () => onTapExplainMoneyUsed(context),
                 ),
@@ -145,11 +161,12 @@ class CountingTimeRentalBatteryWidget extends StatelessWidget with DialogMixin {
     );
   }
 
-  _itemFinance(
-      {String? content,
-      Color? contentColor,
-      String? title,
-      VoidCallback? onTapExplain}) {
+  _itemFinance({
+    String? content,
+    Color? contentColor,
+    String? title,
+    VoidCallback? onTapExplain,
+  }) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,

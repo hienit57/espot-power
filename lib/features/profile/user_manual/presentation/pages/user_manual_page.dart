@@ -21,8 +21,12 @@ class UserManualPage extends StatelessWidget {
 
     return BaseWrapperWidget(
       onReturn: () {
-        NavigatorExt.push(AppContext.navigatorKey.currentContext!,
-            const HomePage(indexTab: 4));
+        NavigatorExt.push(
+            AppContext.navigatorKey.currentContext!,
+            const HomePage(
+              indexTab: 4,
+              child: AllScreenHome.profile,
+            ));
       },
       child: BlocBuilder<UserManualCubit, UserManualState>(
         buildWhen: (previous, current) =>

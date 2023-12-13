@@ -240,7 +240,7 @@ class DetailOrderPage extends StatelessWidget {
         const SizedBox(height: 12),
         _buidlItemDetailInformation(
           icon: AppAssets.imgOrderDetailItemServiceUsageFee,
-          title: orderSelected?.getServiceUsageFee,
+          title: orderSelected?.getPriceOrder,
           content: LocaleKeys.service_usage_fee.tr(),
         ),
         const SizedBox(height: 12),

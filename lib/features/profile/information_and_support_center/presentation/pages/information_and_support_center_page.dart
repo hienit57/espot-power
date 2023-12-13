@@ -11,8 +11,12 @@ class InformationAndSupportCenterPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseWrapperWidget(
       onReturn: () {
-        NavigatorExt.push(AppContext.navigatorKey.currentContext!,
-            const HomePage(indexTab: 4));
+        NavigatorExt.push(
+            AppContext.navigatorKey.currentContext!,
+            const HomePage(
+              indexTab: 4,
+              child: AllScreenHome.profile,
+            ));
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

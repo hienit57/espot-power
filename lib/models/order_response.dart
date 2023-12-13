@@ -276,7 +276,7 @@ extension OrderExt on OrderResponse {
       : '0đ';
 
   String? get getDateTimeRental {
-    if (timeEndTime != null) {
+    if (timeStartTime != null) {
       return '$timeStartTime - ${FormatUtils().displayDate2(
         date: timeStartDate,
         typeFormat: 'dd/MM/yyy',
@@ -313,5 +313,21 @@ extension OrderExt on OrderResponse {
           .displayDate2(date: timeStartDate, typeFormat: 'dd-MM-yyyy');
     }
     return '';
+  }
+
+  String? get getPriceOrder => price != null
+      ? '${FormatUtils().formatNumberWithCommas(price).toString()}đ'
+      : '0đ';
+
+  String? get getCustodyAmount => money != null
+      ? '${FormatUtils().formatNumberWithCommas(money).toString()}đ'
+      : '0đ';
+
+  int? get getTimeProgress {
+    if (statusGroup == 'Underway') {
+      return FormatUtils()
+          .calculateTimeDifferenceInSeconds(timeStartDate, timeStartTime);
+    }
+    return 0;
   }
 }

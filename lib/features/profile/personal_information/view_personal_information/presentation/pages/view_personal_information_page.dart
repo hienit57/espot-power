@@ -17,8 +17,12 @@ class ViewPersonalInformationPage extends StatelessWidget with DialogMixin {
     _dashboardProfileCubit.getUserProfile();
     return BaseWrapperWidget(
       onReturn: () {
-        NavigatorExt.push(AppContext.navigatorKey.currentContext!,
-            const HomePage(indexTab: 4));
+        NavigatorExt.push(
+            AppContext.navigatorKey.currentContext!,
+            const HomePage(
+              indexTab: 4,
+              child: AllScreenHome.profile,
+            ));
       },
       child: BlocBuilder<DashboardProfileCubit, DashboardProfileState>(
         buildWhen: (previous, current) =>

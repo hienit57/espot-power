@@ -9,6 +9,7 @@ class DashboardOrderState extends Equatable {
   final List<OrderResponse>? ordersReponseDisplay;
 
   final OrderResponse? orderSelected;
+  final int? countTime;
 
   const DashboardOrderState({
     this.onGetOrders,
@@ -17,6 +18,7 @@ class DashboardOrderState extends Equatable {
     this.ordersReponse,
     this.ordersReponseDisplay,
     this.orderSelected,
+    this.countTime,
   });
 
   DashboardOrderState copyWith({
@@ -26,6 +28,7 @@ class DashboardOrderState extends Equatable {
     List<OrderResponse>? ordersReponse,
     List<OrderResponse>? ordersReponseDisplay,
     OrderResponse? orderSelected,
+    int? countTime,
   }) {
     return DashboardOrderState(
       onGetOrders: onGetOrders ?? this.onGetOrders,
@@ -34,6 +37,7 @@ class DashboardOrderState extends Equatable {
       ordersReponse: ordersReponse ?? this.ordersReponse,
       ordersReponseDisplay: ordersReponseDisplay ?? this.ordersReponseDisplay,
       orderSelected: orderSelected ?? this.orderSelected,
+      countTime: countTime ?? this.countTime,
     );
   }
 
@@ -45,5 +49,6 @@ class DashboardOrderState extends Equatable {
         ordersReponse,
         ordersReponseDisplay,
         orderSelected,
+        countTime,
       ];
 }

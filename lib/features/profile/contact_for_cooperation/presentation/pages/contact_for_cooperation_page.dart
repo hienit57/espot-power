@@ -14,8 +14,12 @@ class ContactForCooperationPage extends StatelessWidget with DialogMixin {
         BlocProvider.of<ContactForCooperationCubit>(context);
     return BaseWrapperWidget(
       onReturn: () {
-        NavigatorExt.push(AppContext.navigatorKey.currentContext!,
-            const HomePage(indexTab: 4));
+        NavigatorExt.push(
+            AppContext.navigatorKey.currentContext!,
+            const HomePage(
+              indexTab: 4,
+              child: AllScreenHome.profile,
+            ));
       },
       child:
           BlocListener<ContactForCooperationCubit, ContactForCooperationState>(
