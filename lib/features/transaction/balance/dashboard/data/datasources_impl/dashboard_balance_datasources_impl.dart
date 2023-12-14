@@ -3,7 +3,7 @@ import 'package:espot_power/features/index.dart';
 
 class DashboardBalanceDatasourcesImpl extends DashboardBalanceDatasources {
   @override
-  Future<BaseResponseWithObj> verify() async {
+  Future<BaseResponseWithObj> getBalance() async {
     Map<String, dynamic> queryParameters = {}
       ..removeWhere((key, value) => value == '' || value == null);
 

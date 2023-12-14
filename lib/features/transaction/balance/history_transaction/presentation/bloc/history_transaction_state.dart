@@ -1,19 +1,57 @@
 part of 'history_transaction_cubit.dart';
 
-class ExampleState extends Equatable {
-  final RequestStatus? onGetView;
-  const ExampleState({this.onGetView});
+class HistoryTransactionState extends Equatable {
+  final RequestStatus? onGetHistoryTransaction;
 
-  ExampleState copyWith({
-    RequestStatus? onGetView,
+  final int? skip;
+  final int? totalPage;
+  final bool? isFirstLoad;
+
+  final List<TransactionResponse>? transactionsReponse;
+  final List<TransactionResponse>? transactionsReponseDisplay;
+
+  final int? indexTab;
+
+  const HistoryTransactionState({
+    this.onGetHistoryTransaction,
+    this.skip,
+    this.totalPage,
+    this.transactionsReponse,
+    this.transactionsReponseDisplay,
+    this.indexTab,
+    this.isFirstLoad,
+  });
+
+  HistoryTransactionState copyWith({
+    RequestStatus? onGetHistoryTransaction,
+    int? indexTab,
+    int? totalPage,
+    List<TransactionResponse>? transactionsReponse,
+    List<TransactionResponse>? transactionsReponseDisplay,
+    int? skip,
+    bool? isFirstLoad,
   }) {
-    return ExampleState(
-      onGetView: onGetView ?? this.onGetView,
+    return HistoryTransactionState(
+      onGetHistoryTransaction:
+          onGetHistoryTransaction ?? this.onGetHistoryTransaction,
+      indexTab: indexTab ?? this.indexTab,
+      totalPage: totalPage ?? this.totalPage,
+      transactionsReponse: transactionsReponse ?? this.transactionsReponse,
+      transactionsReponseDisplay:
+          transactionsReponseDisplay ?? this.transactionsReponseDisplay,
+      skip: skip ?? this.skip,
+      isFirstLoad: isFirstLoad ?? this.isFirstLoad,
     );
   }
 
   @override
   List<Object?> get props => [
-        onGetView,
+        onGetHistoryTransaction,
+        indexTab,
+        totalPage,
+        transactionsReponse,
+        transactionsReponseDisplay,
+        skip,
+        isFirstLoad,
       ];
 }

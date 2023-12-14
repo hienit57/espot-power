@@ -9,7 +9,10 @@ export 'package:flutter/services.dart';
 
 export 'onboarding/index.dart';
 export 'authentication/index.dart';
+export 'deposit_money/index.dart';
 export 'home/index.dart';
+export 'map/index.dart';
 export 'notification/index.dart';
 export 'profile/index.dart';
 export 'transaction/index.dart';
+export 'transfer_money/index.dart';

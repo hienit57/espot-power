@@ -58,9 +58,10 @@ class _DashboardTransactionPageState extends State<DashboardTransactionPage> {
                 child: (() {
                   switch (state.indexTabbar) {
                     case 0:
-                      return DashboardOrderPage();
+                      return const DashboardBalancePage();
+
                     case 1:
-                      return Container();
+                      return const DashboardOrderPage();
                   }
                 }()),
               ),
@@ -93,7 +94,7 @@ class _DashboardTransactionPageState extends State<DashboardTransactionPage> {
                     child: Column(
                       children: [
                         CText(
-                          text: LocaleKeys.order.tr(),
+                          text: LocaleKeys.surplus_account.tr(),
                           fontSize: 14,
                           textColor: state.indexTabbar == 0
                               ? AppColors.colorText231F20
@@ -120,7 +121,7 @@ class _DashboardTransactionPageState extends State<DashboardTransactionPage> {
                     child: Column(
                       children: [
                         CText(
-                          text: LocaleKeys.surplus_account.tr(),
+                          text: LocaleKeys.order.tr(),
                           fontSize: 14,
                           textColor: state.indexTabbar == 1
                               ? AppColors.colorText231F20

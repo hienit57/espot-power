@@ -91,7 +91,7 @@ abstract class  LocaleKeys {
   static const wait_util_order_finish = 'wait_util_order_finish';
   static const balance_not_enough = 'balance_not_enough';
   static const check_balance = 'check_balance';
-  static const recharge = 'recharge';
+  static const deposit_money = 'deposit_money';
   static const note = 'note';
   static const note_message_balance_one = 'note_message_balance_one';
   static const define_vnd_50000 = 'define_vnd_50000';
@@ -401,5 +401,9 @@ abstract class  LocaleKeys {
   static const required_create_name = 'required_create_name';
   static const please_enter_all_information = 'please_enter_all_information';
   static const message_service_usage = 'message_service_usage';
+  static const please_choose_amount_and_payment_method = 'please_choose_amount_and_payment_method';
+  static const deposit_via_e_wallet = 'deposit_via_e_wallet';
+  static const amount_transfer_exceeds = 'amount_transfer_exceeds';
+  static const please_experence = 'please_experence';
 
 }

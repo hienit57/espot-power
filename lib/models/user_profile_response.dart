@@ -38,7 +38,7 @@ class UserProfileResponse {
   final dynamic phoneNumRefuse;
   final String? password;
   final dynamic fictitiousMoney;
-  final dynamic type;
+  final String? type;
   final dynamic memberStatus;
   final dynamic memberRank;
   final dynamic selfId;
@@ -131,7 +131,7 @@ class UserProfileResponse {
         phoneNumRefuse = json['phoneNumRefuse'],
         password = json['password'] as String?,
         fictitiousMoney = json['fictitiousMoney'],
-        type = json['type'],
+        type = json['type'] as String,
         memberStatus = json['memberStatus'],
         memberRank = json['memberRank'],
         selfId = json['selfId'],
@@ -211,6 +211,6 @@ extension UserProfileExt on UserProfileResponse {
   String? get getAddress =>
       (address != null) ? gender : LocaleKeys.f_address.tr();
 
-  bool? get isVerifyUser =>
-      (email != null) && (gender != null) && (address != null);
+  bool? get isVerifyUser => memberStatus == '2';
+  bool? get isMemberNew => memberRank == '2';
 }

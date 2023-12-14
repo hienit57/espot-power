@@ -10,14 +10,14 @@ class NotificationCubit extends Cubit<NotificationState>
   final _datasource = GetIt.instance<NotificationDatasourcesImpl>();
 
   void initData() {
-    emitSelectTab(0);
-    emit(state.copyWith(skip: 0));
+    emit(state.copyWith(
+      skip: 0,
+      isFirstLoad: false,
+    ));
     getNotifications();
   }
 
   List<NotificationResponse> listNotificationDisplay = [];
-
-  bool isFirstLoadData = false;
 
   Future<void> getNotifications() async {
     emit(state.copyWith(onGetNotification: RequestStatus.loading));
@@ -62,9 +62,7 @@ class NotificationCubit extends Cubit<NotificationState>
             );
           }
         });
-      }
-      if (isFirstLoadData == false) {
-        isFirstLoadData = true;
+      } else if (state.isFirstLoad == false) {
         await _datasource
             .getListNotification(NotificationModelRequest(
           typeNotification: getTypeRequest(state.indexTab ?? 0),
@@ -81,6 +79,7 @@ class NotificationCubit extends Cubit<NotificationState>
                 notificationsReponseDisplay:
                     response.obj as List<NotificationResponse>,
                 onGetNotification: RequestStatus.success,
+                isFirstLoad: true,
               ),
             );
           } else {
@@ -88,12 +87,18 @@ class NotificationCubit extends Cubit<NotificationState>
               state.copyWith(
                 totalPage: 0,
                 skip: 0,
+                isFirstLoad: false,
                 notificationsReponse: [],
                 onGetNotification: RequestStatus.success,
               ),
             );
           }
         });
+      } else {
+        emit(state.copyWith(
+          notificationsReponseDisplay: state.notificationsReponseDisplay,
+          onGetNotification: RequestStatus.success,
+        ));
       }
     } catch (e) {
       emit(state.copyWith(onGetNotification: RequestStatus.failure));
@@ -114,6 +119,13 @@ class NotificationCubit extends Cubit<NotificationState>
   }
 
   void emitSelectTab(int value) {
-    emit(state.copyWith(indexTab: value, skip: 0));
+    emit(state.copyWith(
+      indexTab: value,
+      skip: 0,
+      totalPage: 0,
+      isFirstLoad: false,
+      notificationsReponseDisplay: [],
+    ));
+    getNotifications();
   }
 }

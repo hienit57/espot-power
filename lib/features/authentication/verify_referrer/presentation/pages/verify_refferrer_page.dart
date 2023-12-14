@@ -1,6 +1,5 @@
 import 'package:espot_power/common/index.dart';
 import 'package:espot_power/core/mixins/dialog_mixin.dart';
-import 'package:espot_power/features/authentication/password_settings/presentation/pages/password_settings_page.dart';
 import 'package:espot_power/features/index.dart';
 import 'package:espot_power/index.dart';
 import 'package:espot_power/theme/index.dart';
@@ -35,6 +34,7 @@ class VerifyReferrerPage extends StatelessWidget with DialogMixin {
                   BlocProvider.of<VerifyReferrerCubit>(context).phoneController,
               placeholder: LocaleKeys.telephone_refer.tr(),
               borderRadius: 10,
+              keyboardType: TextInputType.number,
               inputFormatters: [
                 FilteringTextInputFormatter.digitsOnly,
                 FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),

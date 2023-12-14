@@ -92,7 +92,7 @@
   "note_balance_not_enough_one": " ESPOT cần bạn đặt cọc ",
   "note_balance_not_enough_two": ", và sẽ tạm giữ khi bạn thuê pin. Số tiền này sẽ hoàn lại sau khi bạn kết thúc giao dịch.",
   "check_balance": "Kiểm tra số dư của bạn",
-  "recharge": "Nạp tiền",
+  "deposit_money": "Nạp tiền",
   "note": "Lưu ý:",
   "note_message_balance_one": "cần bạn duy trì số dư tài khoản chính tối thiểu là ",
   "define_vnd_50000": "50.000đ",
@@ -399,5 +399,8 @@
   "check_information_account": "Kiểm tra thông tin tài khoản",
   "required_create_name": "Tên tài khoản được viết hoa và không có dấu",
   "please_enter_all_information": "Vui lòng nhập đầy đủ thông tin",
-  "message_service_usage": "Là số tiền sử dụng dịch vụ thuê pin sạc của bạn tính tới thời điểm hiện tại."
+  "message_service_usage": "Là số tiền sử dụng dịch vụ thuê pin sạc của bạn tính tới thời điểm hiện tại.",
+  "please_choose_amount_and_payment_method": "Làm ơn chọn số tiền bạn muốn nạp và hình thức thanh toán",
+  "deposit_via_e_wallet": "Nạp tiền qua ví điện tử",
+  "amount_transfer_exceeds": "Số tiền bạn chuyển vượt quá số tiền trong tài khoản của bạn"
 }

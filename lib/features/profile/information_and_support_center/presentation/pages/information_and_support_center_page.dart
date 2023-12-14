@@ -69,6 +69,7 @@ class InformationAndSupportCenterPage extends StatelessWidget {
 
   _itemFeatureSupport({String? name, String? url}) {
     return GestureDetector(
+      behavior: HitTestBehavior.opaque,
       onTap: () {
         NavigatorExt.push(
           AppContext.navigatorKey.currentContext!,

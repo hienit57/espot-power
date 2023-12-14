@@ -89,7 +89,7 @@
   "wait_util_order_finish": "Please wait until order is processed",
   "balance_not_enough": "Your balance is not enough",
   "check_balance": "Check your balance",
-  "recharge": "Recharge",
+  "deposit_money": "Deposit money",
   "note": "Note:",
   "note_message_balance_one": "requires you to maintain a minimum main account balance of ",
   "define_vnd_50000": "50.000đ",
@@ -398,5 +398,9 @@
   "check_information_account": "Check account information",
   "required_create_name": "The account name is capitalized and has no accents",
   "please_enter_all_information": "Please enter all information ",
-  "message_service_usage": "This is the amount of money spent on your rechargeable battery rental service up to the present time."
+  "message_service_usage": "This is the amount of money spent on your rechargeable battery rental service up to the present time.",
+  "please_choose_amount_and_payment_method": "Please choose the amount you want to deposit and payment method",
+  "deposit_via_e_wallet": "Deposit via e-wallet",
+  "amount_transfer_exceeds": "The amount you transferred exceeds the amount in your account",
+  "please_experence": "Please continue to experience."
 }

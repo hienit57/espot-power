@@ -5,6 +5,8 @@ class DashboardOrderState extends Equatable {
 
   final int? skip;
   final int? totalPage;
+  final bool? isFirstLoad;
+
   final List<OrderResponse>? ordersReponse;
   final List<OrderResponse>? ordersReponseDisplay;
 
@@ -15,6 +17,7 @@ class DashboardOrderState extends Equatable {
     this.onGetOrders,
     this.skip,
     this.totalPage,
+    this.isFirstLoad,
     this.ordersReponse,
     this.ordersReponseDisplay,
     this.orderSelected,
@@ -25,6 +28,7 @@ class DashboardOrderState extends Equatable {
     RequestStatus? onGetOrders,
     int? skip,
     int? totalPage,
+    bool? isFirstLoad,
     List<OrderResponse>? ordersReponse,
     List<OrderResponse>? ordersReponseDisplay,
     OrderResponse? orderSelected,
@@ -34,6 +38,7 @@ class DashboardOrderState extends Equatable {
       onGetOrders: onGetOrders ?? this.onGetOrders,
       skip: skip ?? this.skip,
       totalPage: totalPage ?? this.totalPage,
+      isFirstLoad: isFirstLoad ?? this.isFirstLoad,
       ordersReponse: ordersReponse ?? this.ordersReponse,
       ordersReponseDisplay: ordersReponseDisplay ?? this.ordersReponseDisplay,
       orderSelected: orderSelected ?? this.orderSelected,
@@ -46,6 +51,7 @@ class DashboardOrderState extends Equatable {
         onGetOrders,
         skip,
         totalPage,
+        isFirstLoad,
         ordersReponse,
         ordersReponseDisplay,
         orderSelected,

@@ -44,10 +44,10 @@ class ViewInformationUserWidget extends StatelessWidget {
                     : LocaleKeys.not_verify.tr(),
               ),
               _checkVerifyStatus(
-                icon: userProfileResponse?.isVerifyUser == true
+                icon: userProfileResponse?.isMemberNew == true
                     ? AppAssets.iconProfileMemberMain
                     : AppAssets.iconProfileMemberNew,
-                name: userProfileResponse?.isVerifyUser == true
+                name: userProfileResponse?.isMemberNew == true
                     ? LocaleKeys.official_member.tr()
                     : LocaleKeys.new_member.tr(),
               ),

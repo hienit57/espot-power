@@ -1,3 +1,6 @@
+import 'package:espot_power/features/deposit_money/dashboard/presentation/bloc/dashboard_deposit_money_cubit.dart';
+import 'package:espot_power/features/deposit_money/electronic_wallet/dashboard/presentation/bloc/electric_wallet_cubit.dart';
+
 import 'features/index.dart';
 
 final providers = [
@@ -54,5 +57,20 @@ final providers = [
   ),
   BlocProvider<DashboardOrderCubit>(
     create: (context) => DashboardOrderCubit(),
+  ),
+  BlocProvider<DashboardBalanceCubit>(
+    create: (context) => DashboardBalanceCubit(),
+  ),
+  BlocProvider<HistoryTransactionCubit>(
+    create: (context) => HistoryTransactionCubit(),
+  ),
+  BlocProvider<DashboardDepositMoneyCubit>(
+    create: (context) => DashboardDepositMoneyCubit(),
+  ),
+  BlocProvider<ElectricWalletCubit>(
+    create: (context) => ElectricWalletCubit(),
+  ),
+  BlocProvider<TransferMoneyCubit>(
+    create: (context) => TransferMoneyCubit(),
   ),
 ];

@@ -5,6 +5,8 @@ class NotificationState extends Equatable {
 
   final int? skip;
   final int? totalPage;
+  final bool? isFirstLoad;
+
   final List<NotificationResponse>? notificationsReponse;
   final List<NotificationResponse>? notificationsReponseDisplay;
 
@@ -14,6 +16,7 @@ class NotificationState extends Equatable {
     this.onGetNotification,
     this.skip,
     this.totalPage,
+    this.isFirstLoad,
     this.notificationsReponse,
     this.notificationsReponseDisplay,
     this.indexTab,
@@ -23,6 +26,7 @@ class NotificationState extends Equatable {
     RequestStatus? onGetNotification,
     int? skip,
     int? totalPage,
+    bool? isFirstLoad,
     List<NotificationResponse>? notificationsReponse,
     List<NotificationResponse>? notificationsReponseDisplay,
     int? indexTab,
@@ -31,6 +35,7 @@ class NotificationState extends Equatable {
       onGetNotification: onGetNotification ?? this.onGetNotification,
       skip: skip ?? this.skip,
       totalPage: totalPage ?? this.totalPage,
+      isFirstLoad: isFirstLoad ?? this.isFirstLoad,
       notificationsReponse: notificationsReponse ?? this.notificationsReponse,
       notificationsReponseDisplay:
           notificationsReponseDisplay ?? this.notificationsReponseDisplay,
@@ -43,6 +48,7 @@ class NotificationState extends Equatable {
         onGetNotification,
         skip,
         totalPage,
+        isFirstLoad,
         notificationsReponse,
         notificationsReponseDisplay,
         indexTab,

@@ -3,9 +3,9 @@ import 'package:espot_power/core/network/http_request/request_model/request_mode
 class GetBalanceRequest extends RequestModel {
   GetBalanceRequest({String? body, Map<String, dynamic>? queryParameters})
       : super(
-          route: '/',
+          route: '/Java/m/user/oauth/info',
           requestType: RequestType.http,
-          requestMethod: RequestMethod.post,
+          requestMethod: RequestMethod.get,
           params: body,
           queryParameters: queryParameters,
         );

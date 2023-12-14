@@ -6,35 +6,24 @@ class DashboardBalanceCubit extends Cubit<DashboardBalanceState>
     with LoadingMixin, ToastMixin {
   DashboardBalanceCubit() : super(const DashboardBalanceState());
 
-//  final _datasource = GetIt.instance<VerifyUserDatasourcesImpl>();
+  final _datasource = GetIt.instance<DashboardBalanceDatasourcesImpl>();
 
-  // Future<void> verifyUserExist() async {
-  //   emit(state.copyWith(onVerifyUserExists: RequestStatus.loading));
+  Future<void> getBalance() async {
+    emit(state.copyWith(onGetBalance: RequestStatus.loading));
 
-  //   try {
+    try {
+      await _datasource.getBalance().then((response) async {
+        final dataResponse = UserProfileResponse.fromJson(response.obj);
 
-  //       final dataRequest = VerifyUserExistModelRequest(
-  //           phoneNumber: phoneController?.text ?? '');
-  //       await _datasource.verifyUserExist(dataRequest).then((response) async {
-  //         if (response.ok == false) {
-  //           emit(
-  //             state.copyWith(
-  //               msgVerifyUserExists: response.msg,
-  //               onVerifyUserExists: RequestStatus.failure,
-  //             ),
-  //           );
-  //         } else {
-  //           emit(
-  //             state.copyWith(
-  //               msgVerifyUserExists: response.msg,
-  //               onVerifyUserExists: RequestStatus.success,
-  //             ),
-  //           );
-  //         }
-  //       });
-
-  //   } catch (e) {
-  //     emit(state.copyWith(onVerifyUserExists: RequestStatus.failure));
-  //   }
-  // }
+        emit(
+          state.copyWith(
+            onGetBalance: RequestStatus.success,
+            userProfileResponse: dataResponse,
+          ),
+        );
+      });
+    } catch (e) {
+      emit(state.copyWith(onGetBalance: RequestStatus.failure));
+    }
+  }
 }

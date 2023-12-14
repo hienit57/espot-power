@@ -15,7 +15,7 @@ class BaseWrapperWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: false,
       body: Column(
         children: [
           const SizedBox(height: 58),

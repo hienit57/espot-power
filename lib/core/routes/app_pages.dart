@@ -10,6 +10,9 @@ class AppRoutes {
   static const login = '/login';
   static const forgotPassword = '/forgot-password';
 
+  ///Map
+  static const map = '/map';
+
   ///Profile
   static const profile = '/profile';
   static const personalInformation = '/personal-information';
@@ -28,6 +31,14 @@ class AppRoutes {
   ///Transaction
   static const transaction = '/dashboard-transaction';
   static const detailOrder = '/detail-order';
+
+  ///Deposit Money Into Your Account
+  static const dashboardDepositMoney = '/dashboard-deposit-money';
+  static const dashboardElectronicWallet = '/dashboard-electronic-wallet';
+
+  ///Transfer Money
+  static const transferMoney = '/transfer-money';
+  static const verifyTransferMoney = '/verify-transfer-money';
 
   // static Map<String, String> profile = {
   //   "profile": "/profile",

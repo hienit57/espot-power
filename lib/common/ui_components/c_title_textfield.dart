@@ -43,16 +43,16 @@ class CTitleTextField extends StatelessWidget {
         if (title != null) ...[
           CText(
             text: title,
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-            textColor: AppColors.color212121,
+            fontSize: 13,
+            fontWeight: FontWeight.w500,
+            textColor: AppColors.colorText514D56,
           ),
           SizedBox(height: 7),
         ],
         AppTextField(
           readOnly: readOnly ?? false,
           controller: controller,
-          borderRadius: 4,
+          borderRadius: 10,
           placeholder: hintText,
           keyboardType: keyboardType,
           inputFormatters: inputFormatters,

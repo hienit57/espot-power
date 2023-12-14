@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> with LoadingMixin {
     _homeCubit = BlocProvider.of<HomeCubit>(context);
     _homeCubit.emitIndexTabSelect(
       widget.indexTab ?? 0,
-      screenForHome: widget.child,
+      screenForHome: widget.child ?? AllScreenHome.map,
     );
     super.initState();
   }
@@ -51,7 +51,7 @@ class _HomePageState extends State<HomePage> with LoadingMixin {
                       child: (() {
                         switch (state.screenForHome) {
                           case AllScreenHome.map:
-                            return Container();
+                            return const MapPage();
                           case AllScreenHome.transaction:
                             return const DashboardTransactionPage();
                           case AllScreenHome.qrScan:
@@ -66,7 +66,9 @@ class _HomePageState extends State<HomePage> with LoadingMixin {
                                   context.setLocale(const Locale('en')),
                             );
                           case AllScreenHome.detailOrder:
-                            return DetailOrderPage();
+                            return const DetailOrderPage();
+                          case AllScreenHome.historyTransaction:
+                            return const HistoryTransactionPage();
                           default:
                             break;
                         }

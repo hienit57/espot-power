@@ -32,5 +32,12 @@ Future<void> setupDi() async {
       () => NotificationDatasourcesImpl());
   getIt.registerFactory<DashboardOrderDatasourcesImpl>(
       () => DashboardOrderDatasourcesImpl());
+  getIt.registerFactory<DashboardBalanceDatasourcesImpl>(
+      () => DashboardBalanceDatasourcesImpl());
+  getIt.registerFactory<HistoryTransacltionDatasourcesImpl>(
+      () => HistoryTransacltionDatasourcesImpl());
+  getIt.registerFactory<TransferMoneyDatasourcesImpl>(
+      () => TransferMoneyDatasourcesImpl());
+  getIt.registerFactory<MapDatasourcesImpl>(() => MapDatasourcesImpl());
   return;
 }

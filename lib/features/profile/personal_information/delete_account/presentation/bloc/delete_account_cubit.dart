@@ -17,7 +17,10 @@ class DeleteAccountCubit extends Cubit<DeleteAccountState>
   }
 
   void initData() {
-    emit(state.copyWith(indexCountdown: 10));
+    emit(state.copyWith(
+      indexCountdown: 10,
+      onDeleteAccount: RequestStatus.initial,
+    ));
   }
 
   final _datasource = GetIt.instance<DeleteAccountDatasourcesImpl>();

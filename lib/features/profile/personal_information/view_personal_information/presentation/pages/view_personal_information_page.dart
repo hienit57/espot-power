@@ -89,6 +89,7 @@ class ViewPersonalInformationPage extends StatelessWidget with DialogMixin {
                 padding:
                     const EdgeInsets.symmetric(vertical: 20, horizontal: 24),
                 child: GestureDetector(
+                  behavior: HitTestBehavior.opaque,
                   onTap: () => NavigatorExt.push(
                     AppContext.navigatorKey.currentContext!,
                     const ChangePasswordPage(),
@@ -105,6 +106,7 @@ class ViewPersonalInformationPage extends StatelessWidget with DialogMixin {
                 padding:
                     const EdgeInsets.symmetric(vertical: 20, horizontal: 24),
                 child: GestureDetector(
+                  behavior: HitTestBehavior.opaque,
                   onTap: () => NavigatorExt.push(
                     AppContext.navigatorKey.currentContext!,
                     const UpdateInformationUserPage(),
@@ -122,6 +124,7 @@ class ViewPersonalInformationPage extends StatelessWidget with DialogMixin {
                 padding:
                     const EdgeInsets.symmetric(vertical: 20, horizontal: 24),
                 child: GestureDetector(
+                  behavior: HitTestBehavior.opaque,
                   onTap: () {
                     _onDeleteAccount(context);
                   },

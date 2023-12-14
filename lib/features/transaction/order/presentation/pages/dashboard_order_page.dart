@@ -1,6 +1,7 @@
 import 'package:espot_power/common/index.dart';
 import 'package:espot_power/features/index.dart';
 import 'package:espot_power/index.dart';
+import 'package:espot_power/models/index.dart';
 import 'package:espot_power/theme/index.dart';
 import 'package:flutter/widgets.dart';
 
@@ -76,9 +77,15 @@ class _DashboardOrderPageState extends State<DashboardOrderPage> {
           buildWhen: (previous, current) =>
               previous.onGetOrders != current.onGetOrders,
           builder: (context, state) {
-            final orderProgress = state.ordersReponseDisplay?.firstWhere(
+            bool? isOrderProgress = state.ordersReponseDisplay?.any(
               (element) => element.statusGroup == 'Underway',
             );
+            OrderResponse? orderProgress;
+            if (isOrderProgress == true) {
+              orderProgress = state.ordersReponseDisplay?.firstWhere(
+                (element) => element.statusGroup == 'Underway',
+              );
+            }
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

@@ -10,11 +10,12 @@ class DashboardOrderCubit extends Cubit<DashboardOrderState>
   DashboardOrderCubit() : super(const DashboardOrderState());
 
   final _datasource = GetIt.instance<DashboardOrderDatasourcesImpl>();
-  bool? isFirstLoadData;
 
   void initData() {
-    isFirstLoadData = false;
-    emit(state.copyWith(skip: 0));
+    emit(state.copyWith(
+      skip: 0,
+      isFirstLoad: false,
+    ));
     getOrders();
   }
 
@@ -60,8 +61,7 @@ class DashboardOrderCubit extends Cubit<DashboardOrderState>
           }
         });
       }
-      if (isFirstLoadData == false) {
-        isFirstLoadData = true;
+      if (state.isFirstLoad == false) {
         await _datasource
             .getOrders(GetOrdersModelRequest(skip: 1))
             .then((response) async {
@@ -70,6 +70,7 @@ class DashboardOrderCubit extends Cubit<DashboardOrderState>
               state.copyWith(
                 skip: 1,
                 totalPage: response.totalPage,
+                isFirstLoad: true,
                 ordersReponse: response.obj as List<OrderResponse>,
                 ordersReponseDisplay: response.obj as List<OrderResponse>,
                 onGetOrders: RequestStatus.success,
@@ -78,6 +79,7 @@ class DashboardOrderCubit extends Cubit<DashboardOrderState>
           } else {
             emit(
               state.copyWith(
+                isFirstLoad: false,
                 ordersReponseDisplay: [],
                 onGetOrders: RequestStatus.success,
               ),

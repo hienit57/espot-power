@@ -4,5 +4,6 @@ enum AllScreenHome {
   qrScan,
   notification,
   profile,
-  detailOrder;
+  detailOrder,
+  historyTransaction;
 }
