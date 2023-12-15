@@ -1,5 +1,6 @@
 import 'package:espot_power/common/index.dart';
 import 'package:espot_power/core/mixins/dialog_mixin.dart';
+import 'package:espot_power/core/routes/app_pages.dart';
 import 'package:espot_power/features/index.dart';
 import 'package:espot_power/index.dart';
 import 'package:espot_power/theme/index.dart';
@@ -108,30 +109,30 @@ class _DashboardProfilePageState extends State<DashboardProfilePage>
   }) {
     switch (value) {
       case FeaturesProfile.profileInformation:
-        NavigatorExt.push(AppContext.navigatorKey.currentContext!,
-            ViewPersonalInformationPage());
+        NavigatorExt.pushAndRemoveUntil(AppContext.navigatorKey.currentContext!,
+            ViewPersonalInformationPage(), AppRoutes.profile);
         break;
       case FeaturesProfile.userManual:
-        NavigatorExt.push(
-            AppContext.navigatorKey.currentContext!, const UserManualPage());
+        NavigatorExt.pushAndRemoveUntil(AppContext.navigatorKey.currentContext!,
+            const UserManualPage(), AppRoutes.profile);
 
         break;
       case FeaturesProfile.informationAndSupportCenter:
-        NavigatorExt.push(AppContext.navigatorKey.currentContext!,
-            const InformationAndSupportCenterPage());
+        NavigatorExt.pushAndRemoveUntil(AppContext.navigatorKey.currentContext!,
+            const InformationAndSupportCenterPage(), AppRoutes.profile);
 
         break;
       case FeaturesProfile.languageSettings:
         _onLanguageSettings(AppContext.navigatorKey.currentContext!);
         break;
       case FeaturesProfile.contactForCooperation:
-        NavigatorExt.push(AppContext.navigatorKey.currentContext!,
-            const ContactForCooperationPage());
+        NavigatorExt.pushAndRemoveUntil(AppContext.navigatorKey.currentContext!,
+            const ContactForCooperationPage(), AppRoutes.profile);
 
         break;
       case FeaturesProfile.feedback:
-        NavigatorExt.push(
-            AppContext.navigatorKey.currentContext!, const FeedbackPage());
+        NavigatorExt.pushAndRemoveUntil(AppContext.navigatorKey.currentContext!,
+            const FeedbackPage(), AppRoutes.profile);
 
         break;
       case FeaturesProfile.logout:

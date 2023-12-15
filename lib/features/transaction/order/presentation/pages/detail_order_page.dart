@@ -17,6 +17,7 @@ class DetailOrderPage extends StatelessWidget {
     BlocProvider.of<DashboardOrderCubit>(context);
 
     return BaseWrapperWidget(
+      isViewSupportProblem: true,
       onReturn: () {
         BlocProvider.of<HomeCubit>(context)
             .emitIndexTabSelect(1, screenForHome: AllScreenHome.transaction);

@@ -44,6 +44,11 @@ class AppPages {
       AppRoutes.verifyTransferMoney: (context) =>
           const VerifyTransferMoneyPage(),
       AppRoutes.map: (context) => const MapPage(),
+      AppRoutes.voucher: (context) => const VoucherPage(),
+      AppRoutes.addBankAccount: (context) => const AddBankAccountPage(),
+      AppRoutes.selectBankAccount: (context) => const SelectBankAccountPage(),
+      AppRoutes.verifyBankAccount: (context) =>
+          const VerifyAmountWithDrawPage(),
     };
   }
 

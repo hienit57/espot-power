@@ -18,6 +18,7 @@ class TransferMoneyPage extends StatelessWidget {
     profileCubit.getUserProfile();
     transferMoneyCubit.initData();
     return BaseWrapperWidget(
+      isViewSupportProblem: true,
       onReturn: () {
         NavigatorExt.pop(AppContext.navigatorKey.currentContext!);
       },

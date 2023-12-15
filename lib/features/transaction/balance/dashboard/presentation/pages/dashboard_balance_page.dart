@@ -37,6 +37,10 @@ class DashboardBalancePage extends StatelessWidget with DialogMixin {
                 onExplain: () => onTapSubAccount(context),
                 titleButton2: LocaleKeys.enter_voucher_code.tr(),
                 titleButton3: LocaleKeys.use_now.tr(),
+                onTapButton2: () => NavigatorExt.push(
+                  AppContext.navigatorKey.currentContext!,
+                  const VoucherPage(),
+                ),
                 onTapButton3: () => BlocProvider.of<HomeCubit>(context)
                     .emitIndexTabSelect(0, screenForHome: AllScreenHome.map),
               ),

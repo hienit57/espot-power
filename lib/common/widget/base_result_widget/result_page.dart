@@ -8,6 +8,11 @@ import 'package:flutter/material.dart';
 
 class ResultPage extends StatelessWidget with DialogMixin {
   final String? icon;
+  final double? heightImage;
+  final double? widthImage;
+  final double? paddingTop;
+  final bool? isHiddenProblem;
+
   final String? title;
   final bool? isReserveColorButton;
   final Widget? customMessage;
@@ -21,6 +26,10 @@ class ResultPage extends StatelessWidget with DialogMixin {
   const ResultPage({
     super.key,
     this.icon,
+    this.widthImage,
+    this.heightImage,
+    this.paddingTop,
+    this.isHiddenProblem,
     this.title,
     this.isReserveColorButton,
     this.customMessage,
@@ -35,10 +44,10 @@ class ResultPage extends StatelessWidget with DialogMixin {
     return Scaffold(
       body: Column(
         children: [
-          const SizedBox(height: 128),
+          SizedBox(height: paddingTop ?? 128),
           CImage(
-            width: 120,
-            height: 120,
+            width: widthImage ?? 120,
+            height: heightImage ?? 120,
             assetsPath: icon ?? AppAssets.iconCheckOutFailed,
             boxFit: BoxFit.contain,
           ),
@@ -90,26 +99,28 @@ class ResultPage extends StatelessWidget with DialogMixin {
             ),
           ),
           const Spacer(),
-          GestureDetector(
-            onTap: () => onTapProblem(context),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                const CImage(
-                  assetsPath: AppAssets.iconProblem,
-                  width: 16,
-                  height: 16,
-                ),
-                const SizedBox(width: 5),
-                CText(
-                  text: LocaleKeys.your_problem.tr(),
-                  textColor: AppColors.colorText514D56,
-                  textDecoration: TextDecoration.underline,
-                ),
-              ],
+          if (isHiddenProblem == false) ...[
+            GestureDetector(
+              onTap: () => onTapProblem(context),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  const CImage(
+                    assetsPath: AppAssets.iconProblem,
+                    width: 16,
+                    height: 16,
+                  ),
+                  const SizedBox(width: 5),
+                  CText(
+                    text: LocaleKeys.your_problem.tr(),
+                    textColor: AppColors.colorText514D56,
+                    textDecoration: TextDecoration.underline,
+                  ),
+                ],
+              ),
             ),
-          ),
+          ],
           const SizedBox(height: 58)
         ],
       ),

@@ -12,6 +12,7 @@ class NotificationCubit extends Cubit<NotificationState>
   void initData() {
     emit(state.copyWith(
       skip: 0,
+      indexTab: 0,
       isFirstLoad: false,
     ));
     getNotifications();

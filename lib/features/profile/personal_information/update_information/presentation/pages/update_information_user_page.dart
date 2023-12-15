@@ -7,7 +7,11 @@ import 'package:flutter/material.dart';
 import 'package:pattern_formatter/date_formatter.dart';
 
 class UpdateInformationUserPage extends StatelessWidget with DialogMixin {
-  const UpdateInformationUserPage({super.key});
+  final VoidCallback? onReturn;
+  const UpdateInformationUserPage({
+    super.key,
+    this.onReturn,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -29,10 +33,11 @@ class UpdateInformationUserPage extends StatelessWidget with DialogMixin {
             .emitGender(state.userProfileResponse?.gender ?? '');
       },
       child: BaseWrapperWidget(
-        onReturn: () {
-          NavigatorExt.push(AppContext.navigatorKey.currentContext!,
-              const ViewPersonalInformationPage());
-        },
+        onReturn: onReturn ??
+            () {
+              NavigatorExt.push(AppContext.navigatorKey.currentContext!,
+                  const ViewPersonalInformationPage());
+            },
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24),
           child: BlocConsumer<UpdateInformationUserCubit,
@@ -69,7 +74,12 @@ class UpdateInformationUserPage extends StatelessWidget with DialogMixin {
                       fontWeight: FontWeight.w500,
                     ),
                   ),
-                  const SizedBox(height: 36),
+                  const SizedBox(height: 16),
+                  CText(
+                    text: LocaleKeys.please_update_info_account.tr(),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 24),
                   AppTextField(
                     readOnly:
                         state.userProfileResponse?.name?.isNotEmpty ?? false,

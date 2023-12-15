@@ -1,7 +1,6 @@
 import 'package:espot_power/common/index.dart';
 import 'package:espot_power/common/widget/base_result_widget/result_page.dart';
 import 'package:espot_power/core/routes/app_pages.dart';
-import 'package:espot_power/core/routes/app_routes.dart';
 import 'package:espot_power/features/index.dart';
 import 'package:espot_power/index.dart';
 import 'package:espot_power/theme/index.dart';

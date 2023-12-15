@@ -1,4 +1,5 @@
 import 'package:espot_power/common/index.dart';
+import 'package:espot_power/core/routes/app_pages.dart';
 import 'package:espot_power/features/index.dart';
 import 'package:espot_power/index.dart';
 import 'package:espot_power/theme/index.dart';
@@ -11,12 +12,13 @@ class InformationAndSupportCenterPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseWrapperWidget(
       onReturn: () {
-        NavigatorExt.push(
+        NavigatorExt.pushAndRemoveUntil(
             AppContext.navigatorKey.currentContext!,
             const HomePage(
               indexTab: 4,
               child: AllScreenHome.profile,
-            ));
+            ),
+            AppRoutes.profile);
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

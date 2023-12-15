@@ -31,8 +31,8 @@ class UpdateInformationUserCubit extends Cubit<UpdateInformationUserState>
     emit(state.copyWith(
       onUpdateInformationUser: RequestStatus.initial,
       msgUpdateInformationUser: '',
-      gender: '',
-      address: '',
+      // gender: '',
+      // address: '',
     ));
   }
 

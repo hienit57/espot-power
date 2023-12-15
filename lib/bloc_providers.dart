@@ -73,4 +73,7 @@ final providers = [
   BlocProvider<TransferMoneyCubit>(
     create: (context) => TransferMoneyCubit(),
   ),
+  BlocProvider<VoucherCubit>(
+    create: (context) => VoucherCubit(),
+  ),
 ];

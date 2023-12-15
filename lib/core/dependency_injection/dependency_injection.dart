@@ -39,5 +39,6 @@ Future<void> setupDi() async {
   getIt.registerFactory<TransferMoneyDatasourcesImpl>(
       () => TransferMoneyDatasourcesImpl());
   getIt.registerFactory<MapDatasourcesImpl>(() => MapDatasourcesImpl());
+  getIt.registerFactory<VoucherDatasourcesImpl>(() => VoucherDatasourcesImpl());
   return;
 }

@@ -40,6 +40,14 @@ class AppRoutes {
   static const transferMoney = '/transfer-money';
   static const verifyTransferMoney = '/verify-transfer-money';
 
+  ///Voucher
+  static const voucher = '/voucher';
+
+  ///Withdraw money
+  static const addBankAccount = '/add-bank-account';
+  static const selectBankAccount = '/select-bank-account';
+  static const verifyBankAccount = '/verify-amount-withdraw';
+
   // static Map<String, String> profile = {
   //   "profile": "/profile",
   //   "personal-information": "/personal-information",

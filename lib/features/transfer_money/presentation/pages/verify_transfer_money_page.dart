@@ -14,6 +14,7 @@ class VerifyTransferMoneyPage extends StatelessWidget {
     final transferMoneyCubit = BlocProvider.of<TransferMoneyCubit>(context);
 
     return BaseWrapperWidget(
+      isViewSupportProblem: true,
       onReturn: () {
         NavigatorExt.pop(AppContext.navigatorKey.currentContext!);
       },
