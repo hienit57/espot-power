@@ -1,19 +1,36 @@
 part of 'verify_amount_withdraw_cubit.dart';
 
 class VerifyAmountWithdrawState extends Equatable {
-  final RequestStatus? onGetView;
-  const VerifyAmountWithdrawState({this.onGetView});
+  final RequestStatus? onVerifyAmountWithdraw;
+
+  final UserProfileResponse? userProfile;
+
+  final String? msgInputAmountWithdraw;
+
+  const VerifyAmountWithdrawState({
+    this.onVerifyAmountWithdraw,
+    this.userProfile,
+    this.msgInputAmountWithdraw,
+  });
 
   VerifyAmountWithdrawState copyWith({
-    RequestStatus? onGetView,
+    RequestStatus? onVerifyAmountWithdraw,
+    UserProfileResponse? userProfile,
+    String? msgInputAmountWithdraw,
   }) {
     return VerifyAmountWithdrawState(
-      onGetView: onGetView ?? this.onGetView,
+      onVerifyAmountWithdraw:
+          onVerifyAmountWithdraw ?? this.onVerifyAmountWithdraw,
+      userProfile: userProfile ?? this.userProfile,
+      msgInputAmountWithdraw:
+          msgInputAmountWithdraw ?? this.msgInputAmountWithdraw,
     );
   }
 
   @override
   List<Object?> get props => [
-        onGetView,
+        onVerifyAmountWithdraw,
+        userProfile,
+        msgInputAmountWithdraw,
       ];
 }

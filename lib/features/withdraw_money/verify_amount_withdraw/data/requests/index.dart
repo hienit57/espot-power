@@ -1,1 +1,1 @@
-export 'verify_amount_withdraw_request.dart';
+export 'verify_withdraw_money_request.dart';

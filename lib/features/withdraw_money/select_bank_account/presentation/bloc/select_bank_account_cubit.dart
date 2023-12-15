@@ -42,8 +42,12 @@ class SelectBankAccountCubit extends Cubit<SelectBankAccountState>
 
   void checkSelectYourBankAccount() {
     if (state.yourBankSelected != null) {
-      NavigatorExt.push(AppContext.navigatorKey.currentContext!,
-          const VerifyAmountWithDrawPage());
+      NavigatorExt.push(
+        AppContext.navigatorKey.currentContext!,
+        InputAmountWithdrawPage(
+          bankInformationResponse: state.yourBankSelected,
+        ),
+      );
     } else {
       emit(state.copyWith(
           msgSelectBank:

@@ -1,11 +1,6 @@
 import 'package:espot_power/common/widget/base_result_widget/result_page.dart';
 import 'package:espot_power/core/routes/app_pages.dart';
-import 'package:espot_power/features/deposit_money/dashboard/presentation/pages/dashboard_deposit_money_page.dart';
-import 'package:espot_power/features/deposit_money/electronic_wallet/dashboard/presentation/pages/dashboard_electronic_page.dart';
 import 'package:espot_power/features/index.dart';
-import 'package:espot_power/features/transaction/dashboard/presentation/index.dart';
-import 'package:espot_power/features/transaction/order/presentation/pages/detail_order_page.dart';
-import 'package:espot_power/features/transfer_money/presentation/pages/verify_transfer_money_page.dart';
 import 'package:flutter/material.dart';
 
 class AppPages {
@@ -47,8 +42,10 @@ class AppPages {
       AppRoutes.voucher: (context) => const VoucherPage(),
       AppRoutes.addBankAccount: (context) => const AddBankAccountPage(),
       AppRoutes.selectBankAccount: (context) => const SelectBankAccountPage(),
-      AppRoutes.verifyBankAccount: (context) =>
+      AppRoutes.verifyAmountWithdaw: (context) =>
           const VerifyAmountWithDrawPage(),
+      AppRoutes.inputAmountWithdraw: (context) =>
+          const InputAmountWithdrawPage(),
     };
   }
 

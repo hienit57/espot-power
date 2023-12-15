@@ -34,14 +34,14 @@ class CColumnTitleContentWidget extends StatelessWidget {
       children: [
         CText(
           text: title,
-          fontSize: fontSizeTitle ?? 18,
-          fontWeight: fontWeightTitle ?? FontWeight.bold,
+          fontSize: fontSizeTitle ?? 13,
+          fontWeight: fontWeightTitle ?? FontWeight.w400,
           textColor: titleColor,
         ),
-        SizedBox(height: spaceHeight ?? 15),
+        SizedBox(height: spaceHeight ?? 0),
         CText(
           text: content,
-          fontSize: fontSizeContent ?? 16,
+          fontSize: fontSizeContent ?? 14,
           fontWeight: fontWeightContent ?? FontWeight.w500,
           textColor: contentColor,
         ),

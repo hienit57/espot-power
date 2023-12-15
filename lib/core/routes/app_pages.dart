@@ -46,7 +46,8 @@ class AppRoutes {
   ///Withdraw money
   static const addBankAccount = '/add-bank-account';
   static const selectBankAccount = '/select-bank-account';
-  static const verifyBankAccount = '/verify-amount-withdraw';
+  static const inputAmountWithdraw = '/input-amount-withdraw';
+  static const verifyAmountWithdaw = '/verify-amount-withdraw';
 
   // static Map<String, String> profile = {
   //   "profile": "/profile",
