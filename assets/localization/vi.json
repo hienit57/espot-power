@@ -402,5 +402,7 @@
   "message_service_usage": "Là số tiền sử dụng dịch vụ thuê pin sạc của bạn tính tới thời điểm hiện tại.",
   "please_choose_amount_and_payment_method": "Làm ơn chọn số tiền bạn muốn nạp và hình thức thanh toán",
   "deposit_via_e_wallet": "Nạp tiền qua ví điện tử",
-  "amount_transfer_exceeds": "Số tiền bạn chuyển vượt quá số tiền trong tài khoản của bạn"
+  "amount_transfer_exceeds": "Số tiền bạn chuyển vượt quá số tiền trong tài khoản của bạn",
+  "please_select_account_to_make_transaction": "Xin vui lòng chọn 1 tài khoản để thực hiện giao dịch",
+  "please_try_again_few_minutes": "Xin vui lòng thử lại sau ít phút."
 }

@@ -118,10 +118,7 @@ class _NotificationPageState extends State<NotificationPage> {
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: SizedBox(
                   child: (() {
-                    if (state.notificationsReponseDisplay?.isEmpty ?? true) {
-                      return const SizedBox.shrink();
-                    } else if (state.notificationsReponseDisplay?.isNotEmpty ??
-                        true) {
+                    if (state.notificationsReponseDisplay?.isNotEmpty ?? true) {
                       return ListView(
                           controller: _scrollController,
                           padding: EdgeInsets.zero,

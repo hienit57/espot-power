@@ -29,6 +29,10 @@ class DashboardBalancePage extends StatelessWidget with DialogMixin {
                   const TransferMoneyPage(),
                 ),
                 titleButton3: LocaleKeys.withdraw_money.tr(),
+                onTapButton3: () => NavigatorExt.push(
+                  AppContext.navigatorKey.currentContext!,
+                  const SelectBankAccountPage(),
+                ),
               ),
               const SizedBox(height: 12),
               _buildItemBalance(

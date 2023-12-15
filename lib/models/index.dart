@@ -1,3 +1,4 @@
+export 'bank_information_response.dart';
 export 'manual_response.dart';
 export 'notification_response.dart';
 export 'order_response.dart';

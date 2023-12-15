@@ -3,7 +3,7 @@ import 'package:espot_power/features/index.dart';
 
 class SelectBankAccountDatasourcesImpl extends SelectBankAccountDatasources {
   @override
-  Future<BaseResponseWithObj> verify() async {
+  Future<BaseResponseWithObj> getListYourBank() async {
     Map<String, dynamic> queryParameters = {}
       ..removeWhere((key, value) => value == '' || value == null);
 

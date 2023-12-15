@@ -402,5 +402,7 @@
   "please_choose_amount_and_payment_method": "Please choose the amount you want to deposit and payment method",
   "deposit_via_e_wallet": "Deposit via e-wallet",
   "amount_transfer_exceeds": "The amount you transferred exceeds the amount in your account",
-  "please_experence": "Please continue to experience."
+  "please_experence": "Please continue to experience.",
+  "please_select_account_to_make_transaction": "Please select an account to make a transaction",
+  "please_try_again_few_minutes": "Please try again in a few minutes."
 }

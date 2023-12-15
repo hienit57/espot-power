@@ -76,10 +76,7 @@ class _HistoryTransactionPageState extends State<HistoryTransactionPage> {
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: SizedBox(
                   child: (() {
-                    if (state.transactionsReponseDisplay?.isEmpty ?? true) {
-                      return const SizedBox.shrink();
-                    } else if (state.transactionsReponseDisplay?.isNotEmpty ??
-                        true) {
+                    if (state.transactionsReponseDisplay?.isNotEmpty ?? true) {
                       return ListView(
                           controller: _scrollController,
                           padding: EdgeInsets.zero,

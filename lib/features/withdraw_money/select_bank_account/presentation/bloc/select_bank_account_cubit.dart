@@ -1,4 +1,6 @@
 import 'package:espot_power/features/index.dart';
+import 'package:espot_power/index.dart';
+import 'package:espot_power/models/index.dart';
 
 part 'select_bank_account_state.dart';
 
@@ -6,35 +8,46 @@ class SelectBankAccountCubit extends Cubit<SelectBankAccountState>
     with LoadingMixin, ToastMixin {
   SelectBankAccountCubit() : super(const SelectBankAccountState());
 
-//  final _datasource = GetIt.instance<VerifyUserDatasourcesImpl>();
+  final _datasource = GetIt.instance<SelectBankAccountDatasourcesImpl>();
 
-  // Future<void> verifyUserExist() async {
-  //   emit(state.copyWith(onVerifyUserExists: RequestStatus.loading));
+  void initData() {
+    emit(state.copyWith(msgSelectBank: '', yourBankSelected: null));
+  }
 
-  //   try {
+  Future<void> getListYourBank() async {
+    emit(state.copyWith(onGetListBank: RequestStatus.loading));
 
-  //       final dataRequest = VerifyUserExistModelRequest(
-  //           phoneNumber: phoneController?.text ?? '');
-  //       await _datasource.verifyUserExist(dataRequest).then((response) async {
-  //         if (response.ok == false) {
-  //           emit(
-  //             state.copyWith(
-  //               msgVerifyUserExists: response.msg,
-  //               onVerifyUserExists: RequestStatus.failure,
-  //             ),
-  //           );
-  //         } else {
-  //           emit(
-  //             state.copyWith(
-  //               msgVerifyUserExists: response.msg,
-  //               onVerifyUserExists: RequestStatus.success,
-  //             ),
-  //           );
-  //         }
-  //       });
+    try {
+      await _datasource.getListYourBank().then((response) async {
+        final dataResponse = (response.obj as List<dynamic>?)
+            ?.map((item) =>
+                BankInformationResponse.fromJson(item as Map<String, dynamic>))
+            .toList();
 
-  //   } catch (e) {
-  //     emit(state.copyWith(onVerifyUserExists: RequestStatus.failure));
-  //   }
-  // }
+        emit(
+          state.copyWith(
+            listYourBank: dataResponse,
+            onGetListBank: RequestStatus.success,
+          ),
+        );
+      });
+    } catch (e) {
+      emit(state.copyWith(onGetListBank: RequestStatus.failure));
+    }
+  }
+
+  void emitYourBankSelected(BankInformationResponse? value) {
+    emit(state.copyWith(yourBankSelected: value, msgSelectBank: ''));
+  }
+
+  void checkSelectYourBankAccount() {
+    if (state.yourBankSelected != null) {
+      NavigatorExt.push(AppContext.navigatorKey.currentContext!,
+          const VerifyAmountWithDrawPage());
+    } else {
+      emit(state.copyWith(
+          msgSelectBank:
+              LocaleKeys.please_select_account_to_make_transaction.tr()));
+    }
+  }
 }

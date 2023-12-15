@@ -405,5 +405,7 @@ abstract class  LocaleKeys {
   static const deposit_via_e_wallet = 'deposit_via_e_wallet';
   static const amount_transfer_exceeds = 'amount_transfer_exceeds';
   static const please_experence = 'please_experence';
+  static const please_select_account_to_make_transaction = 'please_select_account_to_make_transaction';
+  static const please_try_again_few_minutes = 'please_try_again_few_minutes';
 
 }
