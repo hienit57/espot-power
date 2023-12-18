@@ -46,6 +46,9 @@ Future<void> setupDi() async {
       () => SelectBankAccountDatasourcesImpl());
   getIt.registerFactory<VerifyAmountWithdrawDatasourcesImpl>(
       () => VerifyAmountWithdrawDatasourcesImpl());
+  getIt.registerFactory<ScanDatasourcesImpl>(() => ScanDatasourcesImpl());
+  getIt.registerFactory<ConfirmForRentDatasourcesImpl>(
+      () => ConfirmForRentDatasourcesImpl());
 
   return;
 }

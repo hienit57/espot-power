@@ -17,10 +17,14 @@ class _DashboardOrderPageState extends State<DashboardOrderPage> {
 
   final ScrollController _scrollController = ScrollController();
 
+  late OrderResponse? orderProgress;
+
   @override
   void initState() {
     orderCubit = BlocProvider.of<DashboardOrderCubit>(context);
     orderCubit.initData();
+
+    orderProgress = OrderResponse();
 
     _scrollController.addListener(_scrollListener);
 
@@ -54,7 +58,8 @@ class _DashboardOrderPageState extends State<DashboardOrderPage> {
       buildWhen: (previous, current) =>
           previous.onGetOrders != current.onGetOrders,
       builder: (context, state) {
-        if (state.ordersReponseDisplay?.isEmpty ?? false) {
+        if ((state.ordersReponseDisplay?.isEmpty ?? false) &&
+            state.onGetOrders != RequestStatus.loading) {
           return _buildEmptyOrders();
         } else if (state.ordersReponseDisplay?.isNotEmpty ?? false) {
           return Column(
@@ -80,7 +85,7 @@ class _DashboardOrderPageState extends State<DashboardOrderPage> {
             bool? isOrderProgress = state.ordersReponseDisplay?.any(
               (element) => element.statusGroup == 'Underway',
             );
-            OrderResponse? orderProgress;
+
             if (isOrderProgress == true) {
               orderProgress = state.ordersReponseDisplay?.firstWhere(
                 (element) => element.statusGroup == 'Underway',

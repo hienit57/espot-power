@@ -49,6 +49,12 @@ class AppRoutes {
   static const inputAmountWithdraw = '/input-amount-withdraw';
   static const verifyAmountWithdaw = '/verify-amount-withdraw';
 
+  ///QRScan
+  static const qrScan = '/qr-scan';
+  static const balanceNotEnough = '/balance-not-enough';
+  static const chargingStationErrorPage = '/charging-station-error';
+  static const orderConfirmation = '/order-confirmation';
+
   // static Map<String, String> profile = {
   //   "profile": "/profile",
   //   "personal-information": "/personal-information",

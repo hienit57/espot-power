@@ -4,6 +4,8 @@ import 'package:crypto/crypto.dart';
 import 'package:espot_power/core/const.dart';
 import 'package:espot_power/utils/index.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:location/location.dart';
 
 class FormatUtils {
   String displayDateAndTime(
@@ -305,7 +307,7 @@ class FormatUtils {
   }
 
   ///Format dạng 00:00:00
-  String formatDuration(int seconds) {
+  String? formatDuration(int seconds) {
     Duration duration = Duration(seconds: seconds);
 
     int hours = duration.inHours;
@@ -316,5 +318,32 @@ class FormatUtils {
         '$hours:${minutes.toString().padLeft(2, '0')}:${remainingSeconds.toString().padLeft(2, '0')}';
 
     return formattedDuration;
+  }
+
+  Future<String> calculateDistance(double latitude, double longitude) async {
+    final location = Location();
+    var currentLocation = await location.getLocation();
+    double? currentLat = currentLocation.latitude;
+    double? currentLong = currentLocation.longitude;
+
+    if (currentLat != null && currentLong != null) {
+      double distanceBetweenNewCenterMapPoint = Geolocator.distanceBetween(
+          latitude, longitude, currentLat, currentLong);
+
+      if (distanceBetweenNewCenterMapPoint < 1000) {
+        return '${distanceBetweenNewCenterMapPoint.toStringAsFixed(2)}m';
+      } else {
+        double kilometers = distanceBetweenNewCenterMapPoint / 1000;
+        return '${kilometers.toStringAsFixed(2)}km';
+      }
+    } else {
+      return '0m';
+    }
+  }
+
+  int calculateRemainingAmount(double currentAmount, double maxAmount) {
+    double remainingAmount = maxAmount - currentAmount;
+    int remainingThousands = (remainingAmount / 1000).ceil() * 1000;
+    return remainingThousands;
   }
 }

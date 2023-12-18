@@ -96,7 +96,7 @@ class DashboardOrderCubit extends Cubit<DashboardOrderState>
     emit(state.copyWith(orderSelected: value));
   }
 
-  Timer? timeCounting;
+  late Timer timeCounting;
 
   void increaseValueEverySecond(int initialValue) {
     int value = initialValue;
@@ -112,6 +112,6 @@ class DashboardOrderCubit extends Cubit<DashboardOrderState>
   }
 
   void cancelTimeCounting() {
-    timeCounting?.cancel();
+    timeCounting.cancel();
   }
 }

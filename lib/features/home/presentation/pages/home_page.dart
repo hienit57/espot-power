@@ -1,4 +1,5 @@
 import 'package:espot_power/common/index.dart';
+import 'package:espot_power/core/routes/app_pages.dart';
 import 'package:espot_power/features/index.dart';
 import 'package:espot_power/index.dart';
 import 'package:espot_power/theme/index.dart';
@@ -43,7 +44,8 @@ class _HomePageState extends State<HomePage> with LoadingMixin {
             color: AppColors.white,
             child: SafeArea(
               top: false,
-              bottom: true,
+              bottom:
+                  state.screenForHome != AllScreenHome.qrScan ? true : false,
               child: Column(
                 children: [
                   Expanded(
@@ -51,11 +53,40 @@ class _HomePageState extends State<HomePage> with LoadingMixin {
                       child: (() {
                         switch (state.screenForHome) {
                           case AllScreenHome.map:
-                            return const MapPage();
+                            return ResultPage(
+                              isReserveColorButton: true,
+                              title: LocaleKeys.battery_rental_failed.tr(),
+                              icon: AppAssets.iconCheckOutFailed,
+                              customMessage: Padding(
+                                padding: const EdgeInsets.only(bottom: 36),
+                                child: CText(
+                                  text: LocaleKeys.error_quality_pin.tr(),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                              paddingButton: 60,
+                              titleButtonOne: LocaleKeys.goback_home.tr(),
+                              titleButtonTwo: LocaleKeys.check_oder.tr(),
+                              onTapButtonOne: () {
+                                NavigatorExt.pushAndRemoveUntil(
+                                    AppContext.navigatorKey.currentContext!,
+                                    const HomePage(indexTab: 0),
+                                    AppRoutes.verifyTransferMoney);
+                              },
+                              onTapButtonTwo: () {
+                                NavigatorExt.push(
+                                  AppContext.navigatorKey.currentContext!,
+                                  const HomePage(
+                                    indexTab: 1,
+                                    child: AllScreenHome.historyTransaction,
+                                  ),
+                                );
+                              },
+                            );
                           case AllScreenHome.transaction:
                             return const DashboardTransactionPage();
                           case AllScreenHome.qrScan:
-                            return Container();
+                            return const ScanPage();
                           case AllScreenHome.notification:
                             return const NotificationPage();
                           case AllScreenHome.profile:
@@ -75,7 +106,9 @@ class _HomePageState extends State<HomePage> with LoadingMixin {
                       }()),
                     ),
                   ),
-                  _buildBottomTab()
+                  if (state.screenForHome != AllScreenHome.qrScan) ...[
+                    _buildBottomTab()
+                  ]
                 ],
               ),
             ),

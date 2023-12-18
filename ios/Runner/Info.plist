@@ -4,6 +4,14 @@
 <dict>
 	<key>ITSAppUsesNonExemptEncryption</key>  
 	<false/>
+	
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>...</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>...</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>...</string>
+
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
 	<key>CFBundleDevelopmentRegion</key>
@@ -58,5 +66,9 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>io.flutter.embedded_views_preview</key>
+	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>This app needs camera access to scan QR codes</string>
 </dict>
 </plist>

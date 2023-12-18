@@ -110,7 +110,7 @@ class _DashboardProfilePageState extends State<DashboardProfilePage>
     switch (value) {
       case FeaturesProfile.profileInformation:
         NavigatorExt.pushAndRemoveUntil(AppContext.navigatorKey.currentContext!,
-            ViewPersonalInformationPage(), AppRoutes.profile);
+            const ViewPersonalInformationPage(), AppRoutes.profile);
         break;
       case FeaturesProfile.userManual:
         NavigatorExt.pushAndRemoveUntil(AppContext.navigatorKey.currentContext!,

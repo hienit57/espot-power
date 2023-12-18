@@ -7,7 +7,7 @@ import 'package:espot_power/theme/index.dart';
 import 'package:espot_power/utils/index.dart';
 import 'package:flutter/widgets.dart';
 
-class CountingTimeRentalBatteryWidget extends StatelessWidget with DialogMixin {
+class CountingTimeRentalBatteryWidget extends StatefulWidget {
   final OrderResponse? orderProgress;
 
   const CountingTimeRentalBatteryWidget({
@@ -16,9 +16,33 @@ class CountingTimeRentalBatteryWidget extends StatelessWidget with DialogMixin {
   });
 
   @override
+  State<CountingTimeRentalBatteryWidget> createState() =>
+      _CountingTimeRentalBatteryWidgetState();
+}
+
+class _CountingTimeRentalBatteryWidgetState
+    extends State<CountingTimeRentalBatteryWidget> with DialogMixin {
+  late DashboardOrderCubit _dashboardOrderCubit;
+
+  @override
+  void initState() {
+    _dashboardOrderCubit = BlocProvider.of<DashboardOrderCubit>(context);
+
+    _dashboardOrderCubit.initData();
+    _dashboardOrderCubit
+        .increaseValueEverySecond(widget.orderProgress?.getTimeProgress ?? 0);
+
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _dashboardOrderCubit.cancelTimeCounting();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    BlocProvider.of<DashboardOrderCubit>(context)
-        .increaseValueEverySecond(orderProgress?.getTimeProgress ?? 0);
     return Column(
       children: [
         Center(
@@ -27,7 +51,8 @@ class CountingTimeRentalBatteryWidget extends StatelessWidget with DialogMixin {
                 previous.countTime != current.countTime,
             builder: (context, state) {
               return CText(
-                text: FormatUtils().formatDuration(state.countTime ?? 0),
+                text: FormatUtils().formatDuration(state.countTime ?? 0) ??
+                    '00:00:00',
                 fontSize: 36,
                 textColor: AppColors.colorText514D56,
               );
@@ -80,7 +105,7 @@ class CountingTimeRentalBatteryWidget extends StatelessWidget with DialogMixin {
                   textColor: AppColors.color979797,
                 ),
                 CText(
-                  text: orderProgress?.id.toString(),
+                  text: widget.orderProgress?.id.toString(),
                   textAlign: TextAlign.center,
                   textColor: AppColors.colorText231F20,
                   fontWeight: FontWeight.w500,
@@ -131,7 +156,7 @@ class CountingTimeRentalBatteryWidget extends StatelessWidget with DialogMixin {
                 children: [
                   _itemFinance(
                     title: LocaleKeys.deposit.tr().toUpperCase(),
-                    content: orderProgress?.getCustodyAmount,
+                    content: widget.orderProgress?.getCustodyAmount,
                     contentColor: AppColors.colorF9A825,
                     onTapExplain: () => onTapExplainDeposit(context),
                   ),
@@ -149,7 +174,7 @@ class CountingTimeRentalBatteryWidget extends StatelessWidget with DialogMixin {
                 padding: const EdgeInsets.only(left: 10),
                 child: _itemFinance(
                   title: LocaleKeys.used.tr().toUpperCase(),
-                  content: orderProgress?.getPriceOrder,
+                  content: widget.orderProgress?.getPriceOrder,
                   contentColor: AppColors.color039BE5,
                   onTapExplain: () => onTapExplainMoneyUsed(context),
                 ),

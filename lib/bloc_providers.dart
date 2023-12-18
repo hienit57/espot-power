@@ -1,6 +1,3 @@
-import 'package:espot_power/features/deposit_money/dashboard/presentation/bloc/dashboard_deposit_money_cubit.dart';
-import 'package:espot_power/features/deposit_money/electronic_wallet/dashboard/presentation/bloc/electric_wallet_cubit.dart';
-
 import 'features/index.dart';
 
 final providers = [
@@ -84,5 +81,11 @@ final providers = [
   ),
   BlocProvider<VerifyAmountWithdrawCubit>(
     create: (context) => VerifyAmountWithdrawCubit(),
+  ),
+  BlocProvider<ScanCubit>(
+    create: (context) => ScanCubit(),
+  ),
+  BlocProvider<ConfirmForRentCubit>(
+    create: (context) => ConfirmForRentCubit(),
   ),
 ];

@@ -14,6 +14,8 @@ export 'home/index.dart';
 export 'map/index.dart';
 export 'notification/index.dart';
 export 'profile/index.dart';
+export 'qr_scan/index.dart';
+
 export 'transaction/index.dart';
 export 'transfer_money/index.dart';
 export 'voucher/index.dart';

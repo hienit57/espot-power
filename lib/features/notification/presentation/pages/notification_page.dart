@@ -118,7 +118,11 @@ class _NotificationPageState extends State<NotificationPage> {
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: SizedBox(
                   child: (() {
-                    if (state.notificationsReponseDisplay?.isNotEmpty ?? true) {
+                    if ((state.notificationsReponseDisplay?.isEmpty ?? false) &&
+                        state.onGetNotification != RequestStatus.loading) {
+                      return _buildNotificationBlank();
+                    } else if (state.notificationsReponseDisplay?.isNotEmpty ??
+                        true) {
                       return ListView(
                           controller: _scrollController,
                           padding: EdgeInsets.zero,
@@ -133,7 +137,7 @@ class _NotificationPageState extends State<NotificationPage> {
                               )
                               .toList());
                     }
-                    return _buildNotificationBlank();
+                    return const SizedBox.shrink();
                   }()),
                 ),
               ),

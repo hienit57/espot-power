@@ -39,10 +39,10 @@ class VerifyTransferMoneyPage extends StatelessWidget {
                     titleButtonOne: LocaleKeys.goback_home.tr(),
                     titleButtonTwo: LocaleKeys.check_transaction_history.tr(),
                     onTapButtonOne: () {
-                      NavigatorExt.push(
-                        AppContext.navigatorKey.currentContext!,
-                        const HomePage(indexTab: 0),
-                      );
+                      NavigatorExt.pushAndRemoveUntil(
+                          AppContext.navigatorKey.currentContext!,
+                          const HomePage(indexTab: 0),
+                          AppRoutes.verifyTransferMoney);
                     },
                     onTapButtonTwo: () {
                       NavigatorExt.push(
@@ -94,13 +94,10 @@ class VerifyTransferMoneyPage extends StatelessWidget {
                     titleButtonOne: LocaleKeys.goback_home.tr(),
                     titleButtonTwo: LocaleKeys.check_transaction_history.tr(),
                     onTapButtonOne: () {
-                      NavigatorExt.push(
-                        AppContext.navigatorKey.currentContext!,
-                        const HomePage(
-                          indexTab: 0,
-                          child: AllScreenHome.map,
-                        ),
-                      );
+                      NavigatorExt.pushAndRemoveUntil(
+                          AppContext.navigatorKey.currentContext!,
+                          const HomePage(indexTab: 0),
+                          AppRoutes.verifyTransferMoney);
                     },
                     onTapButtonTwo: () {
                       NavigatorExt.push(

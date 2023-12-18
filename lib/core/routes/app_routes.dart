@@ -46,6 +46,11 @@ class AppPages {
           const VerifyAmountWithDrawPage(),
       AppRoutes.inputAmountWithdraw: (context) =>
           const InputAmountWithdrawPage(),
+      AppRoutes.balanceNotEnough: (context) => const BalanceNotEnoughPage(),
+      AppRoutes.chargingStationErrorPage: (context) =>
+          const ChargingStationErrorPage(),
+      AppRoutes.orderConfirmation: (context) => const OrderConfirmationPage(),
+      AppRoutes.qrScan: (context) => const ScanPage(),
     };
   }
 
