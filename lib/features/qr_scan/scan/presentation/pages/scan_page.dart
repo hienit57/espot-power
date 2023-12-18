@@ -22,12 +22,14 @@ class _ScanPageState extends State<ScanPage> {
   late DashboardOrderCubit _dashboardOrderCubit;
   late ScanCubit _scanCubit;
 
+  GlobalKey<ScaffoldState> _scaffoldkey = new GlobalKey<ScaffoldState>();
+
   @override
   void reassemble() {
     super.reassemble();
-    if (defaultTargetPlatform == TargetPlatform.android) {
-      controller?.pauseCamera();
-    }
+    // if (defaultTargetPlatform == TargetPlatform.android) {
+    //   controller?.pauseCamera();
+    // }
     controller?.resumeCamera();
   }
 
@@ -134,7 +136,9 @@ class _ScanPageState extends State<ScanPage> {
                 }
               },
               child: QRView(
-                key: UniqueKey(),
+                key: defaultTargetPlatform == TargetPlatform.android
+                    ? _scaffoldkey
+                    : UniqueKey(),
                 onQRViewCreated: _onQRViewCreated,
                 overlay: QrScannerOverlayShape(
                   borderColor: AppColors.colorFFCB05,
