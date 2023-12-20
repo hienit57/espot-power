@@ -1,19 +1,34 @@
 part of 'map_cubit.dart';
 
 class MapState extends Equatable {
-  final RequestStatus? onGetView;
-  const MapState({this.onGetView});
+  final RequestStatus? onSearchLocation;
+  final SearchLocationModelRequest? paramSearchRequest;
+
+  final List<LocationResponse>? listLocationSearchResponse;
+
+  const MapState({
+    this.onSearchLocation,
+    this.paramSearchRequest,
+    this.listLocationSearchResponse,
+  });
 
   MapState copyWith({
-    RequestStatus? onGetView,
+    RequestStatus? onSearchLocation,
+    SearchLocationModelRequest? paramSearchRequest,
+    List<LocationResponse>? listLocationSearchResponse,
   }) {
     return MapState(
-      onGetView: onGetView ?? this.onGetView,
+      onSearchLocation: onSearchLocation ?? this.onSearchLocation,
+      paramSearchRequest: paramSearchRequest ?? this.paramSearchRequest,
+      listLocationSearchResponse:
+          listLocationSearchResponse ?? this.listLocationSearchResponse,
     );
   }
 
   @override
   List<Object?> get props => [
-        onGetView,
+        onSearchLocation,
+        paramSearchRequest,
+        listLocationSearchResponse,
       ];
 }

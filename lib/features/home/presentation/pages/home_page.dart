@@ -40,6 +40,7 @@ class _HomePageState extends State<HomePage> with LoadingMixin {
           previous.screenForHome != current.screenForHome,
       builder: (context, state) {
         return Scaffold(
+          resizeToAvoidBottomInset: false,
           body: Container(
             color: AppColors.white,
             child: SafeArea(
@@ -53,36 +54,7 @@ class _HomePageState extends State<HomePage> with LoadingMixin {
                       child: (() {
                         switch (state.screenForHome) {
                           case AllScreenHome.map:
-                            return ResultPage(
-                              isReserveColorButton: true,
-                              title: LocaleKeys.battery_rental_failed.tr(),
-                              icon: AppAssets.iconCheckOutFailed,
-                              customMessage: Padding(
-                                padding: const EdgeInsets.only(bottom: 36),
-                                child: CText(
-                                  text: LocaleKeys.error_quality_pin.tr(),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ),
-                              paddingButton: 60,
-                              titleButtonOne: LocaleKeys.goback_home.tr(),
-                              titleButtonTwo: LocaleKeys.check_oder.tr(),
-                              onTapButtonOne: () {
-                                NavigatorExt.pushAndRemoveUntil(
-                                    AppContext.navigatorKey.currentContext!,
-                                    const HomePage(indexTab: 0),
-                                    AppRoutes.verifyTransferMoney);
-                              },
-                              onTapButtonTwo: () {
-                                NavigatorExt.push(
-                                  AppContext.navigatorKey.currentContext!,
-                                  const HomePage(
-                                    indexTab: 1,
-                                    child: AllScreenHome.historyTransaction,
-                                  ),
-                                );
-                              },
-                            );
+                            return const MapPage();
                           case AllScreenHome.transaction:
                             return const DashboardTransactionPage();
                           case AllScreenHome.qrScan:

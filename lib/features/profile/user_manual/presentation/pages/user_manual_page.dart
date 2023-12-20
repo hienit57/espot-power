@@ -6,7 +6,12 @@ import 'package:espot_power/theme/index.dart';
 import 'package:flutter/material.dart';
 
 class UserManualPage extends StatelessWidget {
-  const UserManualPage({super.key});
+  final VoidCallback? onReturn;
+
+  const UserManualPage({
+    super.key,
+    this.onReturn,
+  });
 
   static List<String> listTabUserManual = [
     LocaleKeys.rent_and_pay_batterry.tr(),
@@ -21,15 +26,16 @@ class UserManualPage extends StatelessWidget {
     userManualCubit.getUserManual();
 
     return BaseWrapperWidget(
-      onReturn: () {
-        NavigatorExt.pushAndRemoveUntil(
-            AppContext.navigatorKey.currentContext!,
-            const HomePage(
-              indexTab: 4,
-              child: AllScreenHome.profile,
-            ),
-            AppRoutes.profile);
-      },
+      onReturn: onReturn ??
+          () {
+            NavigatorExt.pushAndRemoveUntil(
+                AppContext.navigatorKey.currentContext!,
+                const HomePage(
+                  indexTab: 4,
+                  child: AllScreenHome.profile,
+                ),
+                AppRoutes.profile);
+          },
       child: BlocBuilder<UserManualCubit, UserManualState>(
         buildWhen: (previous, current) =>
             previous.onGetUserManual != current.onGetUserManual ||

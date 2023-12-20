@@ -88,4 +88,7 @@ final providers = [
   BlocProvider<ConfirmForRentCubit>(
     create: (context) => ConfirmForRentCubit(),
   ),
+  BlocProvider<MapCubit>(
+    create: (context) => MapCubit(),
+  ),
 ];

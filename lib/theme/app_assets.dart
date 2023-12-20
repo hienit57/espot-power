@@ -13,6 +13,7 @@ class AppAssets {
   static const String iconAtmCheck = 'assets/images/icon_atm_check.svg';
   static const String iconSignupTelephone =
       'assets/images/icon_signup_telephone.svg';
+
   static const String iconSignupDialogCheckedError =
       'assets/images/icon_signup_dialog_checked_error.svg';
   static const String iconCheckOutFailed =
@@ -22,6 +23,8 @@ class AppAssets {
   static const String iconDialogClose = 'assets/images/icon_dialog_close.svg';
   static const String iconDetailDialogTelephone =
       'assets/images/icon_detail_dialog_telephone.svg';
+
+  static const String iconDot = 'assets/images/icon_dot.svg';
   static const String iconDepositElectronicWallet =
       'assets/images/icon_deposit_electronic_wallet.svg';
   static const String iconDepositTransferBank =

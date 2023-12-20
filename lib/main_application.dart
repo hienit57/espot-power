@@ -34,16 +34,16 @@ class MainApplication extends StatelessWidget with PreferencesUtil {
                     routes: AppPages.getPages(context),
                     onGenerateRoute: AppPages.generateRoute,
                     navigatorKey: AppContext.navigatorKey,
-                    theme: ThemeData(
-                      useMaterial3: true,
-                      // colorScheme: lightColorScheme,
-                      colorSchemeSeed: Colors.blue,
-                      visualDensity: VisualDensity.adaptivePlatformDensity,
-                    ),
-                    darkTheme: ThemeData(
-                      useMaterial3: true,
-                    ),
-                    themeMode: ThemeMode.light,
+                    // theme: ThemeData(
+                    //   useMaterial3: true,
+                    //   // colorScheme: lightColorScheme,
+                    //   colorSchemeSeed: Colors.blue,
+                    //   visualDensity: VisualDensity.adaptivePlatformDensity,
+                    // ),
+                    // darkTheme: ThemeData(
+                    //   useMaterial3: true,
+                    // ),
+                    // themeMode: ThemeMode.light,
                     initialRoute: (() {
                       if (snapshotUser.data == true) {
                         return AppRoutes.home;
