@@ -20,7 +20,7 @@ class _HighSlidingWidgetState extends State<HighSlidingWidget>
   @override
   void initState() {
     _mapCubit = BlocProvider.of<MapCubit>(context);
-    _mapCubit.onSearchLocation();
+    //_mapCubit.onSearchLocation();
     super.initState();
   }
 
@@ -33,7 +33,7 @@ class _HighSlidingWidgetState extends State<HighSlidingWidget>
         padding: const EdgeInsets.symmetric(horizontal: 24),
         child: BlocBuilder<MapCubit, MapState>(
           buildWhen: (previous, current) =>
-              previous.onSearchLocation != current.onSearchLocation,
+              previous.onGetListLocationMap != current.onGetListLocationMap,
           builder: (context, state) {
             // if (state.onSearchLocation == RequestStatus.loading) {
             //   return Container(
@@ -98,7 +98,7 @@ class _HighSlidingWidgetState extends State<HighSlidingWidget>
                     ),
                   ),
                   onChanged: (value) {
-                    _mapCubit.onSearchChanged();
+                    //_mapCubit.onSearchChanged();
                   },
                 ),
                 const SizedBox(height: 27),
@@ -110,13 +110,13 @@ class _HighSlidingWidgetState extends State<HighSlidingWidget>
                   ),
                   const SizedBox(height: 16),
                 ],
-                if (state.onSearchLocation == RequestStatus.success) ...[
-                  Expanded(
-                    child: _buildLocationNearMe(
-                      listLocationNearMe: state.listLocationSearchResponse,
-                    ),
-                  ),
-                ]
+                // if (state.onSearchLocation == RequestStatus.success) ...[
+                //   Expanded(
+                //     child: _buildLocationNearMe(
+                //       listLocationNearMe: state.listLocationSearchResponse,
+                //     ),
+                //   ),
+                // ]
               ],
             );
           },

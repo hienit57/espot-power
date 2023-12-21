@@ -20,6 +20,8 @@ class AppAssets {
       'assets/images/icon_checkout_failed.svg';
   static const String iconCheckOutSuccess =
       'assets/images/icon_checkout_success.svg';
+  static const String iconCurrentLocation =
+      'assets/images/icon_current_location.png';
   static const String iconDialogClose = 'assets/images/icon_dialog_close.svg';
   static const String iconDetailDialogTelephone =
       'assets/images/icon_detail_dialog_telephone.svg';

@@ -33,41 +33,32 @@ class _MapPageState extends State<MapPage> with AutomaticKeepAliveClientMixin {
       resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
-          // ListView
-          Container(
-            height: MediaQuery.of(context).size.height,
-            width: double.infinity,
-            color: Colors.yellow,
-            child: const Column(
-              children: [
-                SearchBarMapWidget(),
-              ],
-            ),
-          ),
+          const MapWidget(),
+          const SearchBarMapWidget(),
           StreamBuilder<StatusSliding>(
               stream: _mapCubit.slidingController.stream,
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   return (() {
                     if (snapshot.data == StatusSliding.initial) {
-                      return Positioned(
+                      return const Positioned(
                         bottom: 0,
                         left: 0,
                         right: 0,
-                        child: const InitialSlidingWidget(),
+                        child: InitialSlidingWidget(),
                       );
                     } else if (snapshot.data == StatusSliding.high) {
-                      return Positioned(
+                      return const Positioned(
                           top: 0,
                           left: 0,
                           right: 0,
-                          child: const HighSlidingWidget());
+                          child: HighSlidingWidget());
                     }
-                    return Positioned(
+                    return const Positioned(
                       bottom: 0,
                       left: 0,
                       right: 0,
-                      child: const MiddleSlidingWidget(isEmptyLocation: true),
+                      child: MiddleSlidingWidget(isEmptyLocation: true),
                     );
                   }());
                 } else {

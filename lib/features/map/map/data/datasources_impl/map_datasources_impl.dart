@@ -26,7 +26,7 @@ class MapDatasourcesImpl extends MapDatasources {
       GetListLocationMapModelRequest? dataRequest) async {
     Map<String, dynamic> queryParameters = {
       "distance": dataRequest?.distance,
-      "limit": 100,
+      "limit": dataRequest?.limit,
       "lat": dataRequest?.lat,
       "lon": dataRequest?.lon,
     }..removeWhere((key, value) => value == '' || value == null);

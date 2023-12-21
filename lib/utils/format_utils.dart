@@ -1,10 +1,12 @@
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:crypto/crypto.dart';
 import 'package:espot_power/core/const.dart';
 import 'package:espot_power/utils/index.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 
 class FormatUtils {
@@ -341,9 +343,47 @@ class FormatUtils {
     }
   }
 
+  Future<LocationData> currentLocationUser() async {
+    final location = Location();
+    return await location.getLocation();
+  }
+
   int calculateRemainingAmount(double currentAmount, double maxAmount) {
     double remainingAmount = maxAmount - currentAmount;
     int remainingThousands = (remainingAmount / 1000).ceil() * 1000;
     return remainingThousands;
+  }
+
+  LatLng caculateLatLng(String? lat, String? lon) {
+    double latitude = double.parse(lat ?? '0.0');
+    double longitude = double.parse(lon ?? '0.0');
+
+    return LatLng(latitude, longitude);
+  }
+
+  double findShortestDistance(LatLng point1, LatLng point2) {
+    const double earthRadius = 6371000; // Bán kính trái đất trong mét
+
+    // Chuyển đổi độ sang radian
+    double lat1Rad = radians(point1.latitude);
+    double lon1Rad = radians(point1.longitude);
+    double lat2Rad = radians(point2.latitude);
+    double lon2Rad = radians(point2.longitude);
+
+    // Tính chênh lệch giữa các độ lat và lon
+    double latDiff = lat2Rad - lat1Rad;
+    double lonDiff = lon2Rad - lon1Rad;
+
+    // Tính khoảng cách sử dụng công thức haversine
+    double a = sin(latDiff / 2) * sin(latDiff / 2) +
+        cos(lat1Rad) * cos(lat2Rad) * sin(lonDiff / 2) * sin(lonDiff / 2);
+    double c = 2 * atan2(sqrt(a), sqrt(1 - a));
+    double distance = earthRadius * c;
+
+    return distance;
+  }
+
+  double radians(double degrees) {
+    return degrees * (pi / 180);
   }
 }

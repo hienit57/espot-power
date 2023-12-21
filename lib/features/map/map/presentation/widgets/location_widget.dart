@@ -59,7 +59,7 @@ class LocationWidget extends StatelessWidget {
                       CText(
                         text: informationLocation?.displayAddr ?? '',
                         textOverflow: TextOverflow.ellipsis,
-                        maxLine: 3,
+                        maxLine: 2,
                         lineSpacing: 1,
                       ),
                       const SizedBox(height: 4),

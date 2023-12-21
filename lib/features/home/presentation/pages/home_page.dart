@@ -39,49 +39,52 @@ class _HomePageState extends State<HomePage> with LoadingMixin {
           previous.indexSelectTab != current.indexSelectTab ||
           previous.screenForHome != current.screenForHome,
       builder: (context, state) {
-        return Scaffold(
-          resizeToAvoidBottomInset: false,
-          body: Container(
-            color: AppColors.white,
-            child: SafeArea(
-              top: false,
-              bottom:
-                  state.screenForHome != AllScreenHome.qrScan ? true : false,
-              child: Column(
-                children: [
-                  Expanded(
-                    child: SizedBox(
-                      child: (() {
-                        switch (state.screenForHome) {
-                          case AllScreenHome.map:
-                            return const MapPage();
-                          case AllScreenHome.transaction:
-                            return const DashboardTransactionPage();
-                          case AllScreenHome.qrScan:
-                            return const ScanPage();
-                          case AllScreenHome.notification:
-                            return const NotificationPage();
-                          case AllScreenHome.profile:
-                            return DashboardProfilePage(
-                              onSetLocaleVi: () =>
-                                  context.setLocale(const Locale('vi')),
-                              onSetLocaleEn: () =>
-                                  context.setLocale(const Locale('en')),
-                            );
-                          case AllScreenHome.detailOrder:
-                            return const DetailOrderPage();
-                          case AllScreenHome.historyTransaction:
-                            return const HistoryTransactionPage();
-                          default:
-                            break;
-                        }
-                      }()),
+        return WillPopScope(
+          onWillPop: () async => false,
+          child: Scaffold(
+            resizeToAvoidBottomInset: false,
+            body: Container(
+              color: AppColors.white,
+              child: SafeArea(
+                top: false,
+                bottom:
+                    state.screenForHome != AllScreenHome.qrScan ? true : false,
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: SizedBox(
+                        child: (() {
+                          switch (state.screenForHome) {
+                            case AllScreenHome.map:
+                              return const MapPage();
+                            case AllScreenHome.transaction:
+                              return const DashboardTransactionPage();
+                            case AllScreenHome.qrScan:
+                              return const ScanPage();
+                            case AllScreenHome.notification:
+                              return const NotificationPage();
+                            case AllScreenHome.profile:
+                              return DashboardProfilePage(
+                                onSetLocaleVi: () =>
+                                    context.setLocale(const Locale('vi')),
+                                onSetLocaleEn: () =>
+                                    context.setLocale(const Locale('en')),
+                              );
+                            case AllScreenHome.detailOrder:
+                              return const DetailOrderPage();
+                            case AllScreenHome.historyTransaction:
+                              return const HistoryTransactionPage();
+                            default:
+                              break;
+                          }
+                        }()),
+                      ),
                     ),
-                  ),
-                  if (state.screenForHome != AllScreenHome.qrScan) ...[
-                    _buildBottomTab()
-                  ]
-                ],
+                    if (state.screenForHome != AllScreenHome.qrScan) ...[
+                      _buildBottomTab()
+                    ]
+                  ],
+                ),
               ),
             ),
           ),
