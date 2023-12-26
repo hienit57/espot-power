@@ -74,6 +74,8 @@ class _HomePageState extends State<HomePage> with LoadingMixin {
                               return const DetailOrderPage();
                             case AllScreenHome.historyTransaction:
                               return const HistoryTransactionPage();
+                            case AllScreenHome.detailsLocation:
+                              return const DetailsLocationPage();
                             default:
                               break;
                           }

@@ -1,3 +1,4 @@
+import 'package:app_settings/app_settings.dart';
 import 'package:espot_power/features/index.dart';
 import 'package:espot_power/index.dart';
 import 'package:espot_power/utils/index.dart';
@@ -24,8 +25,6 @@ class _MapWidgetState extends State<MapWidget>
   @override
   void initState() {
     _mapCubit = BlocProvider.of<MapCubit>(context);
-    _mapCubit.onInitMap();
-    _mapCubit.currentLocationUser();
 
     _checkPermissionLocation();
 
@@ -41,7 +40,7 @@ class _MapWidgetState extends State<MapWidget>
         _mapCubit.onInitMap();
       } else {
         showNeedLocationPermission(
-          onTapClose: () async {
+          onTapOpenPermission: () async {
             await Geolocator.openLocationSettings()
                 .then((value) => isBackFromRequestOpenGPS = value);
             Navigator.pop(AppContext.navigatorKey.currentContext!);
@@ -68,9 +67,11 @@ class _MapWidgetState extends State<MapWidget>
     bool isLocationServiceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!isLocationServiceEnabled) {
       showNeedLocationPermission(
-        onTapClose: () async {
-          await Geolocator.openLocationSettings()
-              .then((value) => isBackFromRequestOpenGPS = value);
+        onTapOpenPermission: () async {
+          await AppSettings.openAppSettings();
+
+          // await Geolocator.openLocationSettings()
+          //     .then((value) => isBackFromRequestOpenGPS = value);
           Navigator.pop(AppContext.navigatorKey.currentContext!);
         },
         locationType: LocationType.openGPS,
@@ -83,7 +84,7 @@ class _MapWidgetState extends State<MapWidget>
         if (permission == LocationPermission.denied ||
             permission == LocationPermission.deniedForever) {
           showNeedLocationPermission(
-            onTapClose: () async {
+            onTapOpenPermission: () async {
               openAppSettings().then((value) {
                 if (value) {
                   isBackFromGrantPermission = value;
@@ -94,6 +95,8 @@ class _MapWidgetState extends State<MapWidget>
             locationType: LocationType.grantPermission,
           );
         }
+      } else {
+        _mapCubit.onInitMap();
       }
     }
   }
@@ -118,7 +121,8 @@ class _MapWidgetState extends State<MapWidget>
       },
       buildWhen: (previous, current) =>
           previous.onGetListLocationMap != current.onGetListLocationMap ||
-          previous.listMaker != current.listMaker,
+          previous.listMaker != current.listMaker ||
+          previous.onRequestFocusLocation != current.onRequestFocusLocation,
       builder: (context, state) {
         if (state.currentLocationUser == null) {
           return Container();

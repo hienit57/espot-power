@@ -1,19 +1,4 @@
-class ListLocationSearchResponse {
-  final List<LocationResponse>? obj;
-
-  ListLocationSearchResponse({
-    this.obj,
-  });
-
-  ListLocationSearchResponse.fromJson(Map<String, dynamic> json)
-      : obj = (json['obj'] as List?)
-            ?.map((dynamic e) =>
-                LocationResponse.fromJson(e as Map<String, dynamic>))
-            .toList();
-
-  Map<String, dynamic> toJson() =>
-      {'obj': obj?.map((e) => e.toJson()).toList()};
-}
+import 'package:espot_power/utils/index.dart';
 
 class LocationResponse {
   final int? id;
@@ -136,4 +121,15 @@ class LocationResponse {
         'totalTopMoney': totalTopMoney,
         'freeTime': freeTime
       };
+}
+
+extension LocationExt on LocationResponse {
+  String get timeShopOpen => '$startTimestring - $endTimestring';
+
+  String? get getPriceService => money != null
+      ? '${FormatUtils().formatNumberWithCommas(money).toString()}đ'
+      : '0đ';
+
+  String? get getFreeTimeOfService =>
+      freeTime != '0' ? '${freeTime.toInt()}' : '0';
 }

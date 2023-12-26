@@ -65,11 +65,12 @@ class MapCubit extends Cubit<MapState> with LoadingMixin, ToastMixin {
     pinLocationIconSelected = BitmapDescriptor.fromBytes(markerIconSelected);
     currentLocationIcon = BitmapDescriptor.fromBytes(currentLocation);
 
-    // setupSearch();
+    await currentLocationUser();
 
-    // _selectedMarkerId.listen((value) {
-    //   _addMarkers(stores);
-    // });
+    if (state.listLocationMapResponse?.isEmpty ??
+        false || state.listLocationMapResponse == null) {
+      await getListLocationMap();
+    }
   }
 
   Future<void> paramGetListLocationMap() async {
@@ -136,7 +137,10 @@ class MapCubit extends Cubit<MapState> with LoadingMixin, ToastMixin {
         false || state.listLocationMapResponse == null) {
       await getListLocationMap();
     }
-    emitListMakerMap(newLatLng);
+
+    if (state.markerSelected == null) {
+      emitListMakerMap(newLatLng);
+    }
   }
 
   Future<Position> requestPermission() async {
@@ -208,13 +212,13 @@ class MapCubit extends Cubit<MapState> with LoadingMixin, ToastMixin {
       emit(state.copyWith(listMaker: markers, markerSelected: markerNearest));
     } else {
       markers.insert(0, currentMarker);
-      emit(state.copyWith(
-          listMaker: markers, markerSelected: LocationResponse()));
+      emit(state.copyWith(listMaker: markers, markerSelected: null));
     }
   }
 
   Future<void> updateCamera(LatLng latLng) async {
     logger.d("Change camera to: ${latLng.latitude} Long: ${latLng.longitude}");
+
     cameraPosition = CameraPosition(
         target: LatLng(latLng.latitude, latLng.longitude), zoom: 14);
     SchedulerBinding.instance.addPostFrameCallback((_) async {
@@ -223,6 +227,60 @@ class MapCubit extends Cubit<MapState> with LoadingMixin, ToastMixin {
     });
 
     return;
+  }
+
+  ///Hàm swipe
+  Future<void> emitLocationSwipe(bool? isSwipeLeft) async {
+    if (isSwipeLeft == true) {
+      int index = (state.listLocationMapResponse ?? [])
+          .indexWhere((element) => element.id == state.markerSelected?.id);
+      if (index >= 0) {
+        index--;
+        await updateCamera(FormatUtils().caculateLatLng(
+            state.listLocationMapResponse?[index].lat,
+            state.listLocationMapResponse?[index].lng));
+        emitListMakerMap(FormatUtils().caculateLatLng(
+            state.listLocationMapResponse?[index].lat,
+            state.listLocationMapResponse?[index].lng));
+
+        emit(state.copyWith(
+            markerSelected: state.listLocationMapResponse?[index]));
+      }
+    } else {
+      int index = (state.listLocationMapResponse ?? [])
+          .indexWhere((element) => element.id == state.markerSelected?.id);
+      if (index < (state.listLocationMapResponse?.length ?? 0)) {
+        index++;
+        await updateCamera(FormatUtils().caculateLatLng(
+            state.listLocationMapResponse?[index].lat,
+            state.listLocationMapResponse?[index].lng));
+        emitListMakerMap(FormatUtils().caculateLatLng(
+            state.listLocationMapResponse?[index].lat,
+            state.listLocationMapResponse?[index].lng));
+
+        emit(state.copyWith(
+            markerSelected: state.listLocationMapResponse?[index]));
+      }
+    }
+  }
+
+  ///Force emit initial location
+  Future<void> forceFocusUserLocation() async {
+    emit(state.copyWith(onRequestFocusLocation: RequestFocusLocation.initial));
+    try {
+      final latLng = LatLng(
+        state.currentLocationUser?.latitude ?? 0,
+        state.currentLocationUser?.longitude ?? 0,
+      );
+
+      await updateCamera(latLng);
+      emit(state.copyWith(
+          markerSelected: LocationResponse(id: null),
+          onRequestFocusLocation: RequestFocusLocation.success));
+    } catch (e) {
+      emit(
+          state.copyWith(onRequestFocusLocation: RequestFocusLocation.failure));
+    }
   }
 
   ///Hàm lấy ra location gần nhất để cắm marker
@@ -263,7 +321,7 @@ class MapCubit extends Cubit<MapState> with LoadingMixin, ToastMixin {
     return false;
   }
 
-  ///Custom Current Maker
+  ///Custom Current Maker (Là Location của bạn)
   Marker get currentMarker {
     const MarkerId markerId = MarkerId('current_marker');
 

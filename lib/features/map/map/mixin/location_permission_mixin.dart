@@ -6,11 +6,11 @@ import 'package:flutter/material.dart';
 
 mixin PermissionMixin {
   Future<void> showNeedLocationPermission({
-    VoidCallback? onTapClose,
+    VoidCallback? onTapOpenPermission,
     required LocationType locationType,
   }) async {
     return await showNeedPermission(
-      onTapClose: onTapClose,
+      onTapOpenPermission: onTapOpenPermission,
       title: LocaleKeys.location_issue.tr(),
       confirmText: locationType == LocationType.grantPermission
           ? LocaleKeys.grant_permission.tr()
@@ -19,18 +19,20 @@ mixin PermissionMixin {
     );
   }
 
-  Future<void> showNeedCameraPermission({VoidCallback? onTapClose}) async {
+  Future<void> showNeedCameraPermission(
+      {VoidCallback? onTapOpenPermission}) async {
     return await showNeedPermission(
-      onTapClose: onTapClose,
+      onTapOpenPermission: onTapOpenPermission,
       title: LocaleKeys.camera_issue.tr(),
       content: LocaleKeys.can_not_detect_camera.tr(),
       confirmText: LocaleKeys.grant_permission.tr(),
     );
   }
 
-  Future<void> showNeedMicroPhonePermission({VoidCallback? onTapClose}) async {
+  Future<void> showNeedMicroPhonePermission(
+      {VoidCallback? onTapOpenPermission}) async {
     return await showNeedPermission(
-      onTapClose: onTapClose,
+      onTapOpenPermission: onTapOpenPermission,
       title: LocaleKeys.micro_phone_issue.tr(),
       content: LocaleKeys.can_not_detect_micro_phone.tr(),
       confirmText: LocaleKeys.grant_permission.tr(),
@@ -38,7 +40,7 @@ mixin PermissionMixin {
   }
 
   Future<void> showNeedPermission({
-    VoidCallback? onTapClose,
+    VoidCallback? onTapOpenPermission,
     required String title,
     required String content,
     required String confirmText,
@@ -110,7 +112,7 @@ mixin PermissionMixin {
                   ),
                   const SizedBox(height: 24),
                   CButton(
-                    onPressed: onTapClose,
+                    onPressed: onTapOpenPermission,
                     title: confirmText,
                     width: 152,
                     height: 40,

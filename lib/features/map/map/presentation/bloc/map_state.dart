@@ -11,6 +11,7 @@ class MapState extends Equatable {
   final List<Marker>? listMaker;
   final LocationResponse? markerSelected;
 
+  final RequestFocusLocation? onRequestFocusLocation;
   final userLocation.LocationData? currentLocationUser;
 
   const MapState({
@@ -20,6 +21,7 @@ class MapState extends Equatable {
     this.listLocationSearchResponse,
     this.listMaker,
     this.markerSelected,
+    this.onRequestFocusLocation,
     this.currentLocationUser,
   });
 
@@ -31,6 +33,7 @@ class MapState extends Equatable {
     List<LocationResponse>? listLocationMapResponse,
     List<Marker>? listMaker,
     LocationResponse? markerSelected,
+    RequestFocusLocation? onRequestFocusLocation,
     userLocation.LocationData? currentLocationUser,
   }) {
     return MapState(
@@ -43,6 +46,8 @@ class MapState extends Equatable {
           listLocationSearchResponse ?? this.listLocationSearchResponse,
       listMaker: listMaker ?? this.listMaker,
       markerSelected: markerSelected ?? this.markerSelected,
+      onRequestFocusLocation:
+          onRequestFocusLocation ?? this.onRequestFocusLocation,
       currentLocationUser: currentLocationUser ?? this.currentLocationUser,
     );
   }
@@ -55,6 +60,7 @@ class MapState extends Equatable {
         listLocationSearchResponse,
         listMaker,
         markerSelected,
+        onRequestFocusLocation,
         currentLocationUser,
       ];
 }

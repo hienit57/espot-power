@@ -386,4 +386,44 @@ class FormatUtils {
   double radians(double degrees) {
     return degrees * (pi / 180);
   }
+
+  LatLng calculateLeftCoordinate(LatLng center, double distanceInMeters) {
+    const double radiusEarth = 6371000; // Radius of the Earth in meters
+
+    double lat = center.latitude * (pi / 180);
+    double lng = center.longitude * (pi / 180);
+    double bearing = 270 * (pi / 180); // 270 degrees is to the left
+
+    double latResult = asin(sin(lat) * cos(distanceInMeters / radiusEarth) +
+        cos(lat) * sin(distanceInMeters / radiusEarth) * cos(bearing));
+    double lngResult = lng +
+        atan2(sin(bearing) * sin(distanceInMeters / radiusEarth) * cos(lat),
+            cos(distanceInMeters / radiusEarth) - sin(lat) * sin(latResult));
+
+    // Convert back to degrees
+    latResult *= (180 / pi);
+    lngResult *= (180 / pi);
+
+    return LatLng(latResult, lngResult);
+  }
+
+  LatLng calculateRightCoordinate(LatLng center, double distanceInMeters) {
+    const double radiusEarth = 6371000; // Radius of the Earth in meters
+
+    double lat = center.latitude * (pi / 180);
+    double lng = center.longitude * (pi / 180);
+    double bearing = 90 * (pi / 180); // 90 degrees is to the right
+
+    double latResult = asin(sin(lat) * cos(distanceInMeters / radiusEarth) +
+        cos(lat) * sin(distanceInMeters / radiusEarth) * cos(bearing));
+    double lngResult = lng +
+        atan2(sin(bearing) * sin(distanceInMeters / radiusEarth) * cos(lat),
+            cos(distanceInMeters / radiusEarth) - sin(lat) * sin(latResult));
+
+    // Convert back to degrees
+    latResult *= (180 / pi);
+    lngResult *= (180 / pi);
+
+    return LatLng(latResult, lngResult);
+  }
 }

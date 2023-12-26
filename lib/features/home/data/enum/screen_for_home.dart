@@ -1,5 +1,6 @@
 enum AllScreenHome {
   map,
+  detailsLocation,
   transaction,
   qrScan,
   notification,
