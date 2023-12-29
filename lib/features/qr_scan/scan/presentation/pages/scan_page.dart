@@ -27,9 +27,9 @@ class _ScanPageState extends State<ScanPage> {
   @override
   void reassemble() {
     super.reassemble();
-    // if (defaultTargetPlatform == TargetPlatform.android) {
-    //   controller?.pauseCamera();
-    // }
+    if (defaultTargetPlatform == TargetPlatform.android) {
+      controller?.pauseCamera();
+    }
     controller?.resumeCamera();
   }
 
@@ -136,9 +136,12 @@ class _ScanPageState extends State<ScanPage> {
                 }
               },
               child: QRView(
-                key: defaultTargetPlatform == TargetPlatform.android
-                    ? _scaffoldkey
-                    : UniqueKey(),
+                key: _scaffoldkey
+                // defaultTargetPlatform == TargetPlatform.android
+                //     ? _scaffoldkey
+                //     : UniqueKey()
+
+                ,
                 onQRViewCreated: _onQRViewCreated,
                 overlay: QrScannerOverlayShape(
                   borderColor: AppColors.colorFFCB05,
@@ -273,8 +276,11 @@ class _ScanPageState extends State<ScanPage> {
       if (path.isNotEmpty) {
         final result = await Scan.parse(path);
 
-        var id = result?[0].split('/').last;
-
+        var id = result?.split('/').last;
+        if (id?.isNotEmpty == true) {
+          await controller?.pauseCamera();
+          _scanCubit.emitQrCode(id!);
+        }
         logger.d(id);
       }
     } catch (e) {
